@@ -1,16 +1,18 @@
 <div ng-controller="CtrlSearch">
 	<div ng-include="'portal/search/search.inc.html'"></div>
-	<form ng-submit="addLocality()">
-    	<div class="form-horizontal">
-			<div class="control-group">
-				<label  class="control-label" for="locality">Lieu </label>
+	<div class="form-group alert alert-warning">
+		<form ng-submit="addLocality()">
+	    	<div class="form-horizontal btn btn-large btn-warning">
 				<div class="control">
+					<i class="icon-question-sign" ng-click="isCollapsedLocality = !isCollapsedLocality"></i>
+					<label  class="control-label label-filter" for="locality">Lieu </label>
 					<input type="text" id="locality" class="input-medium search-query" ng-model="locality" typeahead="name for name in autocompleteLocality($viewValue)">
-  					<input type="submit" class="btn" value="Ajouter" >
-  				</div>
-  			</div>
-		</div>
-	</form>
+	  				<input type="submit" class="btn" value="Ajouter" >
+	  			</div>
+			</div>
+			<div collapse="isCollapsedLocality"> Ajouter le nom d'un pays, d'une région ou d'une ville pour filtrer les résultats. Par exemple : Paris, Vaucluse. </div>
+		</form>
+	</div>
 	<form ng-submit="addLatitude()">
     	<div class="form-horizontal">
 			<div class="control-group">

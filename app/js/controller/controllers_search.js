@@ -13,8 +13,11 @@ function CtrlSearch($scope, $routeParams, $http, $q, searchForm){
   $scope.dates=searchForm.getDate();
   $scope.georeferences = searchForm.getGeoreferencedData();
   $scope.datapublisherDataset = searchForm.getDatapublisherDataset();
+
+  //Boolean for show the popup for the help
   $scope.isCollapsedCommun=true;
   $scope.isCollapsedScientific=true;
+  $scope.isCollapsedLocality=true;
 
   // Function dedicated to the different filters of the research engine. 
   // Each function add its filter to the searchForm
