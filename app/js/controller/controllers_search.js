@@ -41,6 +41,10 @@ function CtrlSearch($scope, $routeParams, $http, $q, searchForm){
     $scope.locality = '';
   };
 
+  $scope.removeLocality = function(index){
+    searchForm.removeLocality(index);
+  } 
+
   $scope.addLatitude = function(){
     searchForm.addLatitude($scope.latitude);
     $scope.latitude = '';
@@ -172,6 +176,11 @@ function CtrlSearch($scope, $routeParams, $http, $q, searchForm){
       }).map(function(vernacularNameObject){
         return vernacularNameObject.vernacularName;
       });
+    });
+
+  $scope.autocompleteLocality = autocomplete("http://nominatim.openstreetmap.org/search/?format=json&limit=10&q=",
+    function(locality){
+        return [locality.display_name];
     });
 
 

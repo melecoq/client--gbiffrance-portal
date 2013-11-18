@@ -55,6 +55,9 @@ myApp.factory('searchForm', function(){
 		var addLocality = function(name){
 			localities.push({text:name});
 		}
+		var removeLocality = function(index){
+			localities.splice(index, 1);
+		}
 		var getLatitude = function(){
 			return latitudes;
 		}
@@ -119,6 +122,7 @@ myApp.factory('searchForm', function(){
 			// Return for the geography tab
 			getLocality : getLocality,
 			addLocality : addLocality,
+			removeLocality : removeLocality,
 			getLatitude : getLatitude,
 			addLatitude : addLatitude,
 			getLongitude : getLongitude,

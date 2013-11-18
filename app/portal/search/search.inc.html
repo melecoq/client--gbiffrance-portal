@@ -1,24 +1,26 @@
 <div ng-controller="CtrlSearch">
 	<div class="hero-unit">
 		<h3> Votre recherche </h3>
-		<div>
-			<h4 ng-if="scientificNames.length>=1"> Nom scientifique </h4>
-			<ul class="unstyle">
-				<li  ng-repeat="name in scientificNames ">{{name.text}} <i class="icon-remove" ng-click="removeScientificName($index)"></i></li>
-			</ul>
-		</div>
-		<div>
-			<h4 ng-if="vernacularNames.length>=1"> Nom commun </h4>
-			<ul class="unstyle">
-				<li ng-repeat="name in vernacularNames">{{name.text}} <i class="icon-remove" ng-click="removeVernacularName($index)"></i></li>
-			</ul>
-		</div>
-		<div>
-			<h4 ng-if="localities.length>=1"> Lieu  </h4>
-			<ul class="unstyle">
-				<li  ng-repeat="name in localities">{{name.text}} <i class="icon-remove" ng-click="removeLocality($index)"></i></li>
-			</ul>
-		</div>
+		<dl>
+			<dt ng-if="scientificNames.length>=1"> Nom scientifique </dt>
+			<dd> 
+				<span ng-repeat="name in scientificNames ">
+					{{name.text}} <i class="icon-remove" ng-click="removeScientificName($index)"></i> 
+				</span>
+			</dd>
+			<dt ng-if="vernacularNames.length>=1"> Nom commun </dt>
+			<dd> 
+				<span ng-repeat="name in vernacularNames">
+					{{name.text}} <i class="icon-remove" ng-click="removeVernacularName($index)"></i> 
+				</span>
+			</dd>
+			<dt ng-if="localities.length>=1"> Lieu </dt>
+			<dd> 
+				<span ng-repeat="name in localities">
+					{{name.text}} <i class="icon-remove" ng-click="removeLocality($index)"></i> 
+				</span>
+			</dd>
+		</dl>
 		<div ng-repeat="number in latitudes">
 			<h4 ng-show="$first"> Latitude  </h4>
 			<ul class="unstyle">

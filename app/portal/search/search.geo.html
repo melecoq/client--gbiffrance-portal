@@ -5,7 +5,7 @@
 			<div class="control-group">
 				<label  class="control-label" for="locality">Lieu </label>
 				<div class="control">
-					<input type="text" id="locality" class="input-medium search-query" ng-model="locality">
+					<input type="text" id="locality" class="input-medium search-query" ng-model="locality" typeahead="name for name in autocompleteLocality($viewValue)">
   					<input type="submit" class="btn" value="Ajouter" >
   				</div>
   			</div>
