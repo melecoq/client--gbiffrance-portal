@@ -1,0 +1,180 @@
+/* app css stylesheet */
+
+body {
+	color: green;
+  	margin-left: auto;
+	margin-right: auto;
+	width: 800px;
+}
+
+.container {
+	margin: 0 auto;
+	max-width: 1000px;
+}
+
+.container > hr {
+	margin: 60px;
+}
+
+/* Header */
+header{
+  	padding-top: 20px;
+	background-color: black;
+	padding-bottom: 20px;
+}
+
+/* Navigation */
+
+nav{
+    width: 100%;
+   
+}
+
+nav ul{
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+}
+
+nav li
+{
+	display: inline-block;
+    margin:0px;
+    padding: 0px;
+    text-align: center;
+    width: 16.2%;
+    font-weight: bold;
+}
+
+/* Bandereaux */
+
+.hero-unit{
+	padding: 1%;
+	margin-bottom: 20px;
+	margin-top: 20px;
+}
+
+.entete{
+	text-align: center;
+}
+.text-block{
+	display: inline-block;
+	width: 600px;
+	vertical-align: middle;
+	text-align: left;
+}
+
+#box-img{
+	display: inline-block;
+	width: 13%;
+	vertical-align: middle;
+	text-align: right;
+	margin-left: 20px;
+}
+
+/* Ajout pour bootstrap */
+
+.navbar .navbar-inner {
+    padding: 0;
+}
+
+.navbar .nav {
+    margin: 0;
+    display: table;
+    width: 100%;
+}
+
+.navbar .nav li {
+    display: table-cell;
+    width: 1%;
+    float: none;
+}
+
+.navbar .nav li a {
+    text-align: center;
+    color: white;
+    border-left: 1px solid rgba(255,255,255,.75);
+    border-right: 1px solid rgba(0,0,0,.1);
+}
+
+.navbar .nav li:first-child a {
+    border-left: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.navbar .nav li:last-child a {
+    border-right: 0;
+    border-radius: 0 3px 3px 0;
+}
+
+/* Index */
+.description{
+	margin-left: 25px;
+	margin-right: 25px;
+}
+
+.hero-unit .text-description{
+	font-size: 13px;
+	line-height: 18px;
+	font-weight: normal;
+}
+
+/* Footer */
+footer{
+	padding-top: 100px;
+}
+
+#map{ 
+	height: 360px;
+	width:511px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/* filtre formulaire */
+.bouton-nav {
+	text-align: center;
+}
+
+.bouton-nav .btn{
+	margin-right: 20px;
+}
+
+.btn-group .btn{
+	width: 22.3%;
+}
+
+.btn-group{
+	padding-bottom: 20px;
+	padding-top: 20px;
+}
+
+.label-filter{
+	margin-right: 5px;
+}
+
+.form-bottom{
+	margin-bottom: 0px;
+}
+
+/* popup aide */
+
+.popover-content{
+	color:black;
+	text-align:left;
+	font-size: 13px;
+}
+
+.popover-title{
+	color:black;
+	text-align:left;
+	font-size: 13px;
+}
+
+.popover-border{
+	border-width:0.1px;
+}
+
+/* Recapitulatif recherche */
+
+

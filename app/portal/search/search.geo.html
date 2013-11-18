@@ -1,0 +1,48 @@
+<div ng-controller="CtrlSearch">
+	<div ng-include="'portal/search/search.inc.html'"></div>
+	<form ng-submit="addLocality()">
+    	<div class="form-horizontal">
+			<div class="control-group">
+				<label  class="control-label" for="locality">Lieu </label>
+				<div class="control">
+					<input type="text" id="locality" class="input-medium search-query" ng-model="locality">
+  					<input type="submit" class="btn" value="Ajouter" >
+  				</div>
+  			</div>
+		</div>
+	</form>
+	<form ng-submit="addLatitude()">
+    	<div class="form-horizontal">
+			<div class="control-group">
+				<label  class="control-label" for="latitude">Latitude</label>
+				<div class="control">
+					<input type="text" id="latitude" class="input-medium search-query" ng-model="latitude">
+  					<input type="submit" class="btn" value="Ajouter" >
+  				</div>
+  			</div>
+		</div>
+	</form>
+	<form ng-submit="addLongitude()">
+    	<div class="form-horizontal">
+			<div class="control-group">
+				<label  class="control-label" for="longitude">Longitude</label>
+				<div class="control">
+					<input type="text" id="longitude" class="input-medium search-query" ng-model="longitude">
+  					<input type="submit" class="btn" value="Ajouter" >
+  				</div>
+  			</div>
+		</div>
+	</form>
+	<form>
+    	<div class="form-horizontal">
+			<div class="control-group">
+				<label  class="control-label" for="georeference">Données géoréférencées</label>
+				<div class="control">
+					<input type="checkbox" id="georeference" ng-model="georeference" ng-init="getGeoreferencedData()" ng-change="addGeoreferencedData()">
+  				</div>
+  			</div>
+		</div>
+	</form>
+
+	<div id="map" ng-controller="mapBoundingBox"></div>
+</div>

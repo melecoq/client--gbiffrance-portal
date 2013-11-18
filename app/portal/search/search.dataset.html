@@ -1,0 +1,30 @@
+<div ng-controller="CtrlSearch">
+	<div ng-include="'portal/search/search.inc.html'"></div>
+	<form ng-submit="addDatapublisherDataset()">
+    	<div class="form-horizontal">
+			<div class="control-group">
+				<label  class="control-label" for="datapublisher">Fournisseur de donnée </label>
+				<div class="control">
+					<select id="datapublisher" class="input-medium search-query" ng-model="datapublisher">
+						<option value="-1"> Tous les  fournisseurs </option>
+						<option ng-repeat=" taxa in dataPublisherList" value="{{taxa.id}}">{{taxa.name}}</option>
+					</select>
+  				</div>
+  			</div>
+		</div>
+    	<div class="form-horizontal">
+			<div class="control-group">
+				<label  class="control-label" for="dataset">Jeu de données</label>
+				<div class="control">
+					<select id="dataset" class="input-medium search-query" ng-model="dataset">
+						<option> Tous les jeux de données </option>
+						<option ng-if="datapublisher==-1" ng-repeat="name in datasetList" value="{{name.id}}">{{name.name}}<option>
+						<option ng-if="datapublisher!=-1" ng-repeat="name in datasetList | filter: {datapubliserId:datapublisher}" value="{{name.id}}">{{name.name}}<option>
+					</select>
+  					<input type="submit" class="btn" value="Ajouter" >
+
+  				</div>
+  			</div>
+		</div>
+	</form>
+</div>

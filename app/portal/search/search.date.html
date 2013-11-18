@@ -1,0 +1,14 @@
+<div ng-controller="CtrlSearch">
+	<div ng-include="'portal/search/search.inc.html'"></div>
+	<form ng-submit="addDate()">
+    	<div class="form-horizontal">
+			<div class="control-group">
+				<label  class="control-label" for="date">Date</label>
+				<div class="control">
+					<input type="text" id="date" class="input-medium search-query" ng-model="date">
+  					<input type="submit" class="btn" value="Ajouter" >
+  				</div>
+  			</div>
+		</div>
+	</form>
+</div>

@@ -1,0 +1,64 @@
+<div ng-controller="CtrlSearch">
+	<div class="hero-unit">
+		<h3> Votre recherche </h3>
+		<div>
+			<h4 ng-if="scientificNames.length>=1"> Nom scientifique </h4>
+			<ul class="unstyle">
+				<li  ng-repeat="name in scientificNames ">{{name.text}} <i class="icon-remove" ng-click="removeScientificName($index)"></i></li>
+			</ul>
+		</div>
+		<div>
+			<h4 ng-if="vernacularNames.length>=1"> Nom commun </h4>
+			<ul class="unstyle">
+				<li ng-repeat="name in vernacularNames">{{name.text}} <i class="icon-remove" ng-click="removeVernacularName($index)"></i></li>
+			</ul>
+		</div>
+		<div>
+			<h4 ng-if="localities.length>=1"> Lieu  </h4>
+			<ul class="unstyle">
+				<li  ng-repeat="name in localities">{{name.text}} <i class="icon-remove" ng-click="removeLocality($index)"></i></li>
+			</ul>
+		</div>
+		<div ng-repeat="number in latitudes">
+			<h4 ng-show="$first"> Latitude  </h4>
+			<ul class="unstyle">
+				<li >{{number.float}}</li>
+			</ul>
+		</div>
+		<div ng-repeat="number in longitudes">
+			<h4 ng-show="$first"> Longitudes  </h4>
+			<ul class="unstyle">
+				<li >{{number.float}}</li>
+			</ul>
+		</div>
+		<div ng-repeat="name in datapublisherDataset">
+			<h4 ng-show="$first"> Jeux de données </h4>
+			<ul class="unstyle">
+				<li >{{name.datapublisher.name}}<span ng-if="name.dataset"> - {{name.dataset.name}} </span></li>
+			</ul>
+		</div>
+		<div ng-repeat="date in dates">
+			<h4 ng-show="$first"> Date </h4>
+			<ul class="unstyle">
+				<li >{{date.dateFormat}}</li>
+			</ul>
+		</div>
+		<div ng-show="georeferences"> <h4>Données géoréférencées</h4></div>
+		<form>
+	    	<div class="form-horizontal">
+				<div class="control-group">
+					<div class="control">
+	  					<input type="submit" class="btn" value="Rechercher" >
+	  				</div>
+	  			</div>
+			</div>
+		</form>
+	</div>
+
+	<div class="btn-group"> 	
+		<a ng-href="#/search/taxa" class="btn btn-info">Taxon</a>
+		<a ng-href="#/search/geography" class="btn btn-warning">Géographie</a> 
+		<a ng-href="#/search/dataset" class="btn btn-success">Jeu de données</a>
+		<a ng-href="#/search/date" class="btn btn-danger">Date</a>                 
+	</div>
+</div>
