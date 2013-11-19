@@ -1,4 +1,4 @@
-<div ng-controller="CtrlSearch">
+
 	<div class="hero-unit">
 		<h3> Votre recherche </h3>
 		<dl>
@@ -45,9 +45,7 @@
 				<li >{{date.dateFormat}}</li>
 			</ul>
 		</div>
-		<pre> {{longitudes}}</pre>
-		<div ng-if="georeference"> <h4>Données géoréférencées</h4></div>
-		<pre>{{georeference}}</pre>
+		<div ng-show="georeferences"> <h4>Données géoréférencées</h4></div>
 		<form>
 	    	<div class="form-horizontal">
 				<div class="control-group">
@@ -65,4 +63,3 @@
 		<a ng-href="#/search/dataset" class="btn btn-success">Jeu de données</a>
 		<a ng-href="#/search/date" class="btn btn-danger">Date</a>                 
 	</div>
-</div>

@@ -11,7 +11,7 @@ function CtrlSearch($scope, $routeParams, $http, $q, searchForm){
   $scope.datapublishers=searchForm.getDatapublisher();
   $scope.datasets=searchForm.getDataset();
   $scope.dates=searchForm.getDate();
-  $scope.georeference = searchForm.getGeoreferencedData();
+  $scope.georeferences = searchForm.getGeoreferencedData();
   $scope.datapublisherDataset = searchForm.getDatapublisherDataset();
 
   //Boolean for show the popup for the help
@@ -58,7 +58,8 @@ function CtrlSearch($scope, $routeParams, $http, $q, searchForm){
 
   $scope.addGeoreferencedData = function(){
     searchForm.addGeoreferencedData($scope.georeference);
-  }
+    $scope.georeferences = searchForm.getGeoreferencedData();
+  };
 
   $scope.addLongitude = function(){
     searchForm.addLongitude($scope.longitude);

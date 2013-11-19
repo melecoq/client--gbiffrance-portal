@@ -36,11 +36,10 @@
 		</form>
 		<form>
     		<div class="form-horizontal">
-				<div class="control-group">
+				<div class="control">
 					<i class="icon-question-sign" ng-click="isCollapsedGeoreferenced = !isCollapsedGeoreferenced"></i>
 					<label  class="control-label label-filter" for="georeference">Données géoréférencées</label>
-					<input type="checkbox" id="georeference" ng-model="georeference" ng-init="georeference" ng-change="addGeoreferencedData()">
-					<pre> {{georeference}}</pre>
+					<input type="checkbox" id="georeference" ng-model="georeference" ng-init="getGeoreferencedData()" ng-change="addGeoreferencedData()">
   				</div>
 			</div>
 			<div collapse="isCollapsedGeoreferenced"> En cochant cette option, seules les occurrences géoréférancées seront retournées</div>
