@@ -11,13 +11,16 @@ function CtrlSearch($scope, $routeParams, $http, $q, searchForm){
   $scope.datapublishers=searchForm.getDatapublisher();
   $scope.datasets=searchForm.getDataset();
   $scope.dates=searchForm.getDate();
-  $scope.georeferences = searchForm.getGeoreferencedData();
+  $scope.georeference = searchForm.getGeoreferencedData();
   $scope.datapublisherDataset = searchForm.getDatapublisherDataset();
 
   //Boolean for show the popup for the help
   $scope.isCollapsedCommun=true;
   $scope.isCollapsedScientific=true;
   $scope.isCollapsedLocality=true;
+  $scope.isCollapsedLatitude=true;
+  $scope.isCollapsedLongitude=true;
+  $scope.isCollapsedGeoreferenced=true;
 
   // Function dedicated to the different filters of the research engine. 
   // Each function add its filter to the searchForm
@@ -55,11 +58,6 @@ function CtrlSearch($scope, $routeParams, $http, $q, searchForm){
 
   $scope.addGeoreferencedData = function(){
     searchForm.addGeoreferencedData($scope.georeference);
-    $scope.georeferences = $scope.georeference;
-  }
-
-  $scope.getGeoreferencedData = function(){
-    $scope.georeference = $scope.georeferences
   }
 
   $scope.addLongitude = function(){

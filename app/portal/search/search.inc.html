@@ -45,7 +45,9 @@
 				<li >{{date.dateFormat}}</li>
 			</ul>
 		</div>
-		<div ng-show="georeferences"> <h4>Données géoréférencées</h4></div>
+		<pre> {{longitudes}}</pre>
+		<div ng-if="georeference"> <h4>Données géoréférencées</h4></div>
+		<pre>{{georeference}}</pre>
 		<form>
 	    	<div class="form-horizontal">
 				<div class="control-group">

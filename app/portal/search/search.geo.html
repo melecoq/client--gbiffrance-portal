@@ -12,39 +12,39 @@
 			</div>
 			<div collapse="isCollapsedLocality"> Ajouter le nom d'un pays, d'une région ou d'une ville pour filtrer les résultats. Par exemple : Paris, Vaucluse. </div>
 		</form>
-	</div>
-	<form ng-submit="addLatitude()">
-    	<div class="form-horizontal">
-			<div class="control-group">
-				<label  class="control-label" for="latitude">Latitude</label>
+		<form ng-submit="addLatitude()">
+	    	<div class="form-horizontal btn btn-large btn-warning">
 				<div class="control">
+					<i class="icon-question-sign" ng-click="isCollapsedLatitude = !isCollapsedLatitude"></i>
+					<label  class="control-label label-filter" for="latitude">Latitude</label>
 					<input type="text" id="latitude" class="input-medium search-query" ng-model="latitude">
-  					<input type="submit" class="btn" value="Ajouter" >
-  				</div>
-  			</div>
-		</div>
-	</form>
-	<form ng-submit="addLongitude()">
-    	<div class="form-horizontal">
-			<div class="control-group">
-				<label  class="control-label" for="longitude">Longitude</label>
+	  				<input type="submit" class="btn" value="Ajouter" >
+	  			</div>
+			</div>
+			<div collapse="isCollapsedLatitude"> Faire une recherche en fonction d'une latitude. Les filtres possibles sont : supérieur, inférieur ou égal </div>
+		</form>
+		<form ng-submit="addLongitude()">
+	    	<div class="form-horizontal btn btn-large btn-warning">
 				<div class="control">
-					<input type="text" id="longitude" class="input-medium search-query" ng-model="longitude">
-  					<input type="submit" class="btn" value="Ajouter" >
+					<i class="icon-question-sign" ng-click="isCollapsedLongitude = !isCollapsedLongitude"></i>
+					<label  class="control-label label-filter" for="Longitude">Longitude</label>
+					<input type="text" id="Longitude" class="input-medium search-query" ng-model="longitude">
+	  				<input type="submit" class="btn" value="Ajouter" >
+	  			</div>
+			</div>
+			<div collapse="isCollapsedLongitude"> Faire une recherche en fonction d'une longitude. Les filtres possibles sont : supérieur, inférieur ou égal </div>
+		</form>
+		<form>
+    		<div class="form-horizontal">
+				<div class="control-group">
+					<i class="icon-question-sign" ng-click="isCollapsedGeoreferenced = !isCollapsedGeoreferenced"></i>
+					<label  class="control-label label-filter" for="georeference">Données géoréférencées</label>
+					<input type="checkbox" id="georeference" ng-model="georeference" ng-init="georeference" ng-change="addGeoreferencedData()">
+					<pre> {{georeference}}</pre>
   				</div>
-  			</div>
-		</div>
-	</form>
-	<form>
-    	<div class="form-horizontal">
-			<div class="control-group">
-				<label  class="control-label" for="georeference">Données géoréférencées</label>
-				<div class="control">
-					<input type="checkbox" id="georeference" ng-model="georeference" ng-init="getGeoreferencedData()" ng-change="addGeoreferencedData()">
-  				</div>
-  			</div>
-		</div>
-	</form>
-
-	<div id="map" ng-controller="mapBoundingBox"></div>
+			</div>
+			<div collapse="isCollapsedGeoreferenced"> En cochant cette option, seules les occurrences géoréférancées seront retournées</div>
+		</form> 
+		<div id="map" ng-controller="mapBoundingBox"></div>
+	</div>
 </div>
