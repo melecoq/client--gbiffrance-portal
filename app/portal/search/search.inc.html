@@ -20,39 +20,43 @@
 					{{name.text}} <i class="icon-remove" ng-click="removeLocality($index)"></i> 
 				</span>
 			</dd>
+			<dt ng-if="latitudes.length>=1"> Latitude </dt>
+			<dd> 
+				<span ng-repeat="number in latitudes">
+					{{number.float}} <i class="icon-remove" ng-click="removeLatitude($index)"></i> 
+				</span>
+			</dd>
+			<dt ng-if="longitudes.length>=1"> Longitude </dt>
+			<dd> 
+				<span ng-repeat="number in longitudes">
+					{{number.float}} <i class="icon-remove" ng-click="removeLongitude($index)"></i> 
+				</span>
+			</dd>
+			<dt ng-if="longitudes.length>=1"> Longitude </dt>
+			<dd> 
+				<span ng-repeat="number in longitudes">
+					{{number.float}} <i class="icon-remove" ng-click="removeLongitude($index)"></i> 
+				</span>
+			</dd>
+			<dt ng-if="datapublisherDataset.length>=1"> Jeux de données </dt>
+			<dd> 
+				<span ng-repeat="name in datapublisherDataset">
+					{{name.datapublisher.name}}<span ng-if="name.dataset"> - {{name.dataset.name}} </span> <i class="icon-remove" ng-click="removeDataset($index)"></i> 
+				</span>
+			</dd>
+			<dt ng-if="dates.length>=1"> Date </dt>
+			<dd> 
+				<span ng-repeat="date in dates">
+					{{date.dateFormat}} <i class="icon-remove" ng-click="removeDate($index)"></i> 
+				</span>
+			</dd>
+			<dt ng-if="georeferences"> Données géoréférencées</dt>
 		</dl>
-		<div ng-repeat="number in latitudes">
-			<h4 ng-show="$first"> Latitude  </h4>
-			<ul class="unstyle">
-				<li >{{number.float}}</li>
-			</ul>
-		</div>
-		<div ng-repeat="number in longitudes">
-			<h4 ng-show="$first"> Longitudes  </h4>
-			<ul class="unstyle">
-				<li >{{number.float}}</li>
-			</ul>
-		</div>
-		<div ng-repeat="name in datapublisherDataset">
-			<h4 ng-show="$first"> Jeux de données </h4>
-			<ul class="unstyle">
-				<li >{{name.datapublisher.name}}<span ng-if="name.dataset"> - {{name.dataset.name}} </span></li>
-			</ul>
-		</div>
-		<div ng-repeat="date in dates">
-			<h4 ng-show="$first"> Date </h4>
-			<ul class="unstyle">
-				<li >{{date.dateFormat}}</li>
-			</ul>
-		</div>
-		<div ng-show="georeferences"> <h4>Données géoréférencées</h4></div>
 		<form>
 	    	<div class="form-horizontal">
-				<div class="control-group">
 					<div class="control">
 	  					<input type="submit" class="btn" value="Rechercher" >
 	  				</div>
-	  			</div>
 			</div>
 		</form>
 	</div>

@@ -23,7 +23,7 @@
 			</div>
 			<div collapse="isCollapsedLatitude"> Faire une recherche en fonction d'une latitude. Les filtres possibles sont : supérieur, inférieur ou égal </div>
 		</form>
-		<form ng-submit="addLongitude()">
+		<form class="form-bottom" ng-submit="addLongitude()">
 	    	<div class="form-horizontal btn btn-large btn-warning">
 				<div class="control">
 					<i class="icon-question-sign" ng-click="isCollapsedLongitude = !isCollapsedLongitude"></i>
@@ -37,9 +37,9 @@
 		<form>
     		<div class="form-horizontal">
 				<div class="control">
-					<i class="icon-question-sign" ng-click="isCollapsedGeoreferenced = !isCollapsedGeoreferenced"></i>
-					<label  class="control-label label-filter" for="georeference">Données géoréférencées</label>
-					<input type="checkbox" id="georeference" ng-model="georeference" ng-init="getGeoreferencedData()" ng-change="addGeoreferencedData()">
+						<i class="icon-question-sign" ng-click="isCollapsedGeoreferenced = !isCollapsedGeoreferenced"></i>
+						<label  class="control-label label-filter " for="georeference">Données géoréférencées</label>
+						<input  type="checkbox" id="georeference" ng-model="georeference" ng-init="getGeoreferencedData()" ng-change="addGeoreferencedData()">
   				</div>
 			</div>
 			<div collapse="isCollapsedGeoreferenced"> En cochant cette option, seules les occurrences géoréférancées seront retournées</div>

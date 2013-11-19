@@ -64,11 +64,17 @@ myApp.factory('searchForm', function(){
 		var addLatitude = function(number){
 			latitudes.push({float:number});
 		}
+		var removeLatitude = function(index){
+			latitudes.splice(index, 1);
+		}
 		var getLongitude = function(){
 			return longitudes;
 		}
 		var addLongitude = function(number){
 			longitudes.push({float:number});
+		}
+		var removeLongitude = function(index){
+			longitudes.splice(index, 1);
 		}
 		var getGeoreferencedData = function(){
 			return georeferencedData;
@@ -100,6 +106,9 @@ myApp.factory('searchForm', function(){
 		var addDatapublisherDataset = function(nameDatapublisher, nameDataset){
 			datapublisherDataset.push({datapublisher:nameDatapublisher, dataset:nameDataset});
 		}
+		var removeDataset = function(index){
+			datapublisherDataset.splice(index, 1);
+		}
 
 		// Getter and setter for the date part
 		var getDate = function(){
@@ -107,6 +116,9 @@ myApp.factory('searchForm', function(){
 		}
 		var addDate = function(date){
 				dates.push({dateFormat:date});
+		}
+		var removeDate = function(index){
+			dates.splice(index, 1);
 		}
 
 
@@ -125,8 +137,10 @@ myApp.factory('searchForm', function(){
 			removeLocality : removeLocality,
 			getLatitude : getLatitude,
 			addLatitude : addLatitude,
+			removeLatitude : removeLatitude,
 			getLongitude : getLongitude,
 			addLongitude : addLongitude,
+			removeLongitude : removeLongitude, 
 			getGeoreferencedData : getGeoreferencedData,
 			addGeoreferencedData : addGeoreferencedData,
 
@@ -137,10 +151,12 @@ myApp.factory('searchForm', function(){
 			addDataset : addDataset,
 			addDatapublisherDataset:addDatapublisherDataset,
 			getDatapublisherDataset:getDatapublisherDataset,
+			removeDataset : removeDataset, 
 
 
 			//Return for the date tab
 			getDate : getDate,
-			addDate : addDate
+			addDate : addDate,
+			removeDate : removeDate
 		};
 	});

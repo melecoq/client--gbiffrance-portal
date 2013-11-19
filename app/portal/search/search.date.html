@@ -1,14 +1,16 @@
 <div ng-controller="CtrlSearch">
 	<div ng-include="'portal/search/search.inc.html'"></div>
-	<form ng-submit="addDate()">
-    	<div class="form-horizontal">
-			<div class="control-group">
-				<label  class="control-label" for="date">Date</label>
+	<div class="form-group alert alert-danger">
+		<form class="form-bottom" ng-submit="addDate()">
+	    	<div class="form-horizontal btn btn-large btn-danger">
 				<div class="control">
+					<i class="icon-question-sign" ng-click="isCollapsedDate = !isCollapsedDate"></i>
+					<label  class="control-label label-filter" for="date">Date</label>
 					<input type="text" id="date" class="input-medium search-query" ng-model="date">
-  					<input type="submit" class="btn" value="Ajouter" >
-  				</div>
-  			</div>
-		</div>
-	</form>
+	  				<input type="submit" class="btn" value="Ajouter" >
+	  			</div>
+			</div>
+			<div collapse="isCollapsedDate"> Il est possible de filtrer en mettant une date précise, une année, une période... </div>
+		</form>
+	</div
 </div>

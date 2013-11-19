@@ -1,30 +1,32 @@
 <div ng-controller="CtrlSearch">
 	<div ng-include="'portal/search/search.inc.html'"></div>
-	<form ng-submit="addDatapublisherDataset()">
-    	<div class="form-horizontal">
-			<div class="control-group">
-				<label  class="control-label" for="datapublisher">Fournisseur de donnée </label>
+	<div class="form-group alert alert-success">
+		<form ng-submit="addDatapublisherDataset()">
+	    	<div class="form-horizontal btn btn-large btn-success">
 				<div class="control">
-					<select id="datapublisher" class="input-medium search-query" ng-model="datapublisher">
-						<option value="-1"> Tous les  fournisseurs </option>
+					<i class="icon-question-sign" ng-click="isCollapsedDatapublisher = !isCollapsedDatapublisher"></i>
+					<label  class="control-label label-filter" for="datapublisher">Fournisseur de donnée </label>
+					<select id="datapublisher" class="input-medium search-query"  ng-model="datapublisher">
 						<option ng-repeat=" taxa in dataPublisherList" value="{{taxa.id}}">{{taxa.name}}</option>
 					</select>
-  				</div>
-  			</div>
-		</div>
-    	<div class="form-horizontal">
-			<div class="control-group">
-				<label  class="control-label" for="dataset">Jeu de données</label>
+	  			</div>
+			</div>
+			<div collapse="isCollapsedDatapublisher"> Vous pouvez directement séléctionner un fournisseur de données afin de visualiser ses jeux de données. Si vous laissez vide, tous les fournisseurs seront choisis </div>
+		</form>
+		<form class="form-bottom" ng-submit="addDatapublisherDataset()">
+	    	<div class="form-horizontal btn btn-large btn-success">
 				<div class="control">
+					<i class="icon-question-sign" ng-click="isCollapsedDataset = !isCollapsedDataset"></i>
+					<label  class="control-label label-filter" for="dataset">Jeu de données</label>
 					<select id="dataset" class="input-medium search-query" ng-model="dataset">
-						<option> Tous les jeux de données </option>
-						<option ng-if="datapublisher==-1" ng-repeat="name in datasetList" value="{{name.id}}">{{name.name}}<option>
-						<option ng-if="datapublisher!=-1" ng-repeat="name in datasetList | filter: {datapubliserId:datapublisher}" value="{{name.id}}">{{name.name}}<option>
+						<option ng-if="!datapublisher" ng-repeat="name in datasetList" value="{{name.id}}">{{name.name}}<option>
+						<option ng-if="datapublisher" ng-repeat="name in datasetList | filter: {datapubliserId:datapublisher}" value="{{name.id}}">{{name.name}}<option>
 					</select>
-  					<input type="submit" class="btn" value="Ajouter" >
+					<input type="submit" class="btn btn-select" value="Ajouter" >
+	  			</div>
+			</div>
+			<div collapse="isCollapsedDataset"> Vous pouvez sélectionner un ou plusieurs jeux de données. Si vous laissez vide, la recherche se fera sur tous les jeux de données. </div>
+		</form>
 
-  				</div>
-  			</div>
-		</div>
-	</form>
+	</div>
 </div>

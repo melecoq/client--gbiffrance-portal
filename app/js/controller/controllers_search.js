@@ -21,6 +21,9 @@ function CtrlSearch($scope, $routeParams, $http, $q, searchForm){
   $scope.isCollapsedLatitude=true;
   $scope.isCollapsedLongitude=true;
   $scope.isCollapsedGeoreferenced=true;
+  $scope.isCollapsedDate=true;
+   $scope.isCollapsedDatapublisher=true;
+  $scope.isCollapsedDataset=true;
 
   // Function dedicated to the different filters of the research engine. 
   // Each function add its filter to the searchForm
@@ -49,12 +52,16 @@ function CtrlSearch($scope, $routeParams, $http, $q, searchForm){
 
   $scope.removeLocality = function(index){
     searchForm.removeLocality(index);
-  } 
+  }; 
 
   $scope.addLatitude = function(){
     searchForm.addLatitude($scope.latitude);
     $scope.latitude = '';
   };
+
+  $scope.removeLatitude = function(index){
+    searchForm.removeLatitude(index);
+  }; 
 
   $scope.addGeoreferencedData = function(){
     searchForm.addGeoreferencedData($scope.georeference);
@@ -65,6 +72,11 @@ function CtrlSearch($scope, $routeParams, $http, $q, searchForm){
     searchForm.addLongitude($scope.longitude);
     $scope.longitude = '';
   };
+
+  $scope.removeLongitude= function(index){
+    searchForm.removeLongitude(index);
+  }; 
+
   //DEPRECIED
   $scope.addDatapublisher = function(){
     searchForm.addDatapublisher($scope.datapublisher);
@@ -88,10 +100,18 @@ function CtrlSearch($scope, $routeParams, $http, $q, searchForm){
     $scope.dataset = '';
   }
 
+  $scope.removeDataset = function(index){
+    searchForm.removeDataset(index);
+  }
+
   $scope.addDate = function(){
     searchForm.addDate($scope.date);
     $scope.date = '';
   };
+
+  $scope.removeDate = function(index){
+    searchForm.removeDate(index);
+  }
 
   // Function dedicated to the map for the bounding box
   $scope.mapBoundingBox = function(){
