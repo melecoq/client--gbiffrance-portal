@@ -32,6 +32,12 @@
 					{{number.filter}} {{number.longitude}} <i class="icon-remove" ng-click="removeLongitude($index)"></i> 
 				</span>
 			</dd>
+			<dt class="label-geo" ng-if="boundingBoxes.length>=1"> Bounding box </dt>
+			<dd>
+				<span class="label-geo" ng-repeat="box in boundingBoxes">
+					Bounding box<i class="icon-remove" ng-click="removeBoundingBox(box)"></i> 
+				</span>
+			</dd>
 			<dt class="label-dataset" ng-if="datapublisherDataset.length>=1"> Jeux de données </dt>
 			<dd> 
 				<span class="label-dataset"  ng-repeat="name in datapublisherDataset">
@@ -47,10 +53,10 @@
 			<dt class="label-geo"  ng-if="georeferences"> Données géoréférencées</dt>
 		</dl>
 		<form>
-	    	<div class="form-horizontal">
+				<div class="form-horizontal">
 					<div class="control">
-	  					<a ng-href="#/result" class="btn">Rechercher</a>
-	  				</div>
+							<a ng-href="#/result" class="btn">Rechercher</a>
+						</div>
 			</div>
 		</form>
 	</div>

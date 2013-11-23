@@ -2,12 +2,13 @@
 
 /* Controllers */
 
-function CtrlSearch($scope, $routeParams, $http, $q, searchForm){
+function CtrlSearch($scope, $route, $routeParams, $http, $q, searchForm){
   $scope.scientificNames=searchForm.getScientificName();
   $scope.vernacularNames=searchForm.getVernacularName();
   $scope.localities=searchForm.getLocality();
   $scope.latitudes=searchForm.getLatitude();
   $scope.longitudes=searchForm.getLongitude();
+  $scope.boundingBoxes=searchForm.getBoundingBoxes();
   $scope.datapublishers=searchForm.getDatapublisher();
   $scope.datasets=searchForm.getDataset();
   $scope.dates=searchForm.getDate();
@@ -116,8 +117,20 @@ function CtrlSearch($scope, $routeParams, $http, $q, searchForm){
     searchForm.removeDate(index);
   }
 
+  var filterLayers = function(bounds) {
+  }
+
+  $scope.removeBoundingBox = function(bounds) {
+    searchForm.removeBoundingBox(bounds);
+    filterLayers(bounds);
+    var a = searchForm.getBoundingBoxes();
+    console.log(a + []);
+    $scope.boundingBoxes = a;
+  }
+
   // Function dedicated to the map for the bounding box
-  $scope.mapBoundingBox = function(){
+  // Only initiate the map on the map view
+  if ($route.current.templateUrl == "portal/search/search.geo.html") {
     var franceMetropolitan = new L.LatLng(47.0176, 2.3427);
 
     var map = L.map('search-map', {
@@ -126,6 +139,28 @@ function CtrlSearch($scope, $routeParams, $http, $q, searchForm){
       center: franceMetropolitan,
       zoom: 5
     });
+
+    var layers = [];
+    var addBoundingBox = function(bounds) {
+      var layer = L.rectangle(bounds, {
+        color: '#d62727',
+      })
+      layer.addTo(map);
+
+      // Store bounding box in service
+      searchForm.addBoundingBox(bounds);
+
+      // Store layers in case we want to remove them
+      layers.push({bounds: bounds, layer: layer});
+    }
+
+    filterLayers = function(bounds) {
+      layers = layers.filter(function(b){
+        if (b.bounds == bounds) {
+          map.removeLayer(b.layer)
+        }
+      });
+    };
 
     // Bounding box controls
     var drawControl = new L.Control.Draw({
@@ -157,8 +192,10 @@ function CtrlSearch($scope, $routeParams, $http, $q, searchForm){
           layer = e.layer;
 
       // Only add rectangle layer types
-      if (type === 'rectangle' || true) {
-        map.addLayer(layer);
+      if (type === 'rectangle') {
+        addBoundingBox(layer.getBounds());
+        // Trigger the reload of layers
+        $scope.$digest();
       }
     });
 
@@ -168,6 +205,10 @@ function CtrlSearch($scope, $routeParams, $http, $q, searchForm){
         maxZoom: 18,
         noWrap: true
     }).addTo(map);
+
+    $scope.boundingBoxes.map(function (bounds) {
+
+    });
   }
 
   // Generic function for the autocomplete
@@ -230,4 +271,4 @@ function CtrlSearch($scope, $routeParams, $http, $q, searchForm){
 }
 
 
-myApp.controller('CtrlSearch', ['$scope', '$routeParams', '$http', '$q', 'searchForm', CtrlSearch]);
+myApp.controller('CtrlSearch', ['$scope', '$route', '$routeParams', '$http', '$q', 'searchForm', CtrlSearch]);

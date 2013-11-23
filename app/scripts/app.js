@@ -3,17 +3,17 @@
 
 /* App Module */
 
-var myApp = angular.module('portailApp', ['ngRoute', 'ui.bootstrap', 'ui.select2']).
-  	config(['$routeProvider', function($routeProvider) {
-  	$routeProvider.
-		when('/', {templateUrl: 'portal/index.html'}).
-		when('/search/taxa', {templateUrl: 'portal/search/search.taxa.html',   controller: 'CtrlSearch'}).
-		when('/search/geography', {templateUrl: 'portal/search/search.geo.html',   controller: 'CtrlSearch'}).
-		when('/search/dataset',{templateUrl: 'portal/search/search.dataset.html',   controller: 'CtrlSearch'}).
-		when('/search/date',{templateUrl: 'portal/search/search.date.html',   controller: 'CtrlSearch'}).
-		when('/dataset',{templateUrl: 'portal/dataset.html',   controller: 'CtrlIndex'}).
-		when('/result',{templateUrl: 'portal/result/result.html',   controller: 'CtrlResult'}).
-      	otherwise({redirectTo: '/'});
+var myApp = angular.module('portailApp', ['ngRoute', 'ui.bootstrap', 'ui.select2'])
+	.config(['$routeProvider', function($routeProvider) {
+		$routeProvider
+			.when('/', {templateUrl: 'portal/index.html'})
+			.when('/search/taxa',      {templateUrl: 'portal/search/search.taxa.html',    controller: 'CtrlSearch'})
+			.when('/search/geography', {templateUrl: 'portal/search/search.geo.html',     controller: 'CtrlSearch'})
+			.when('/search/dataset',   {templateUrl: 'portal/search/search.dataset.html', controller: 'CtrlSearch'})
+			.when('/search/date',      {templateUrl: 'portal/search/search.date.html',    controller: 'CtrlSearch'})
+			.when('/dataset',          {templateUrl: 'portal/dataset.html',               controller: 'CtrlIndex'})
+			.when('/result',           {templateUrl: 'portal/result/result.html',         controller: 'CtrlResult'})
+			.otherwise({redirectTo: '/'});
 	}]);
 
 myApp.factory('searchForm', function(){
@@ -23,6 +23,7 @@ myApp.factory('searchForm', function(){
 		var localities = [];
 		var latitudes = [];
 		var longitudes = [];
+		var boundingBoxes = [];
 		var datapublishers = [];
 		var datasets = [];
 		var dates = [];
@@ -82,6 +83,20 @@ myApp.factory('searchForm', function(){
 		}
 		var addGeoreferencedData = function(checked){
 			georeferencedData = checked;
+		}
+
+		var addBoundingBox = function(layer){
+			console.log("SERVICE", boundingBoxes + []);
+			boundingBoxes.push(layer);
+			console.log("SERVICE", boundingBoxes + []);
+		}
+		var getBoundingBoxes = function(){
+			return boundingBoxes;
+		}
+		var removeBoundingBox = function(bounds){
+			boundingBoxes = boundingBoxes.filter(function(b){
+				return b == bounds;
+			});
 		}
 
 		// Getter and setter for the dataset part
@@ -144,6 +159,9 @@ myApp.factory('searchForm', function(){
 			removeLongitude : removeLongitude, 
 			getGeoreferencedData : getGeoreferencedData,
 			addGeoreferencedData : addGeoreferencedData,
+			getBoundingBoxes: getBoundingBoxes,
+			addBoundingBox: addBoundingBox,
+			removeBoundingBox: removeBoundingBox,
 
 			// Return for the dataset tab
 			getDatapublisher : getDatapublisher,
