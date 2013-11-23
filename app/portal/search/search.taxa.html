@@ -1,7 +1,6 @@
 <div id="search-form">
 	<div ng-include="'portal/search/search.inc.html'"></div>
 	<div class="form-group search-form search-form-taxa">
-		<div class="form-inline">
 		<form  ng-submit="addScientificName()">
 	    	<div class="form-horizontal">
 				<div class="control">
@@ -13,7 +12,6 @@
 			</div>
 			<div class="help-message" collapse="isCollapsedScientific"> Faire une recherche en utilisant le nom scientifique de l'occurrence. Par exemple : canis lupus. </div>	
 		</form>
-
 		<form class="form-bottom" ng-submit="addVernacularName()">
 	    	<div class="form-horizontal">
 				<div class="control">

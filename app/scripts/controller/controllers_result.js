@@ -8,4 +8,4 @@ function CtrlResult($scope){
 }
 
 
-myApp.controller('CtrlSearch', ['$scope', CtrlResult]);
+myApp.controller('CtrlResult', ['$scope', CtrlResult]);

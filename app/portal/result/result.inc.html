@@ -1,0 +1,69 @@
+
+	<div class="hero-unit search-summary">
+		<h3> Votre recherche </h3>
+		<dl>
+			<dt class="label-taxa" ng-if="scientificNames.length>=1"> Nom scientifique </dt>
+			<dd> 
+				<span class="label-taxa" ng-repeat="name in scientificNames ">
+					{{name.text}} <i class="icon-remove" ng-click="removeScientificName($index)"></i> 
+				</span>
+			</dd>
+			<dt class="label-taxa" ng-if="vernacularNames.length>=1"> Nom commun </dt>
+			<dd> 
+				<span class="label-taxa" ng-repeat="name in vernacularNames">
+					{{name.text}} <i class="icon-remove" ng-click="removeVernacularName($index)"></i> 
+				</span>
+			</dd>
+			<dt class="label-geo" ng-if="localities.length>=1"> Lieu </dt>
+			<dd> 
+				<span class="label-geo" ng-repeat="name in localities">
+					{{name.text}} <i class="icon-remove" ng-click="removeLocality($index)"></i> 
+				</span>
+			</dd>
+			<dt class="label-geo" ng-if="latitudes.length>=1"> Latitude </dt>
+			<dd> 
+				<span class="label-geo" ng-repeat="number in latitudes">
+					{{number.filter}} {{number.latitude}} <i class="icon-remove" ng-click="removeLatitude($index)"></i> 
+				</span>
+			</dd>
+			<dt class="label-geo" ng-if="longitudes.length>=1"> Longitude </dt>
+			<dd> 
+				<span class="label-geo" ng-repeat="number in longitudes">
+					{{number.filter}} {{number.longitude}} <i class="icon-remove" ng-click="removeLongitude($index)"></i> 
+				</span>
+			</dd>
+			<dt class="label-dataset" ng-if="datapublisherDataset.length>=1"> Jeux de données </dt>
+			<dd> 
+				<span class="label-dataset"  ng-repeat="name in datapublisherDataset">
+					{{name.datapublisher.name}}<span ng-if="name.dataset"> - {{name.dataset.name}} </span> <i class="icon-remove" ng-click="removeDataset($index)"></i> 
+				</span>
+			</dd>
+			<dt class="label-date"  ng-if="dates.length>=1"> Date </dt>
+			<dd> 
+				<span class="label-date" ng-repeat="date in dates">
+					{{date.dateFormat}} <i class="icon-remove" ng-click="removeDate($index)"></i> 
+				</span>
+			</dd>
+			<dt class="label-geo"  ng-if="georeferences"> Données géoréférencées</dt>
+		</dl>
+		<form>
+	    	<div class="form-horizontal">
+					<div class="control">
+	  					<a ng-href="#/result" class="btn">Rechercher</a>
+	  				</div>
+			</div>
+		</form>
+	<div class="btn-group" id="search-tabs"> 	
+		<a ng-href="#/search/taxa" class="btn btn-info">Taxon</a>
+		<a ng-href="#/search/geography" class="btn btn-warning">Géographie</a> 
+		<a ng-href="#/search/dataset" class="btn btn-success">Jeu de données</a>
+		<a ng-href="#/search/date" class="btn btn-danger">Date</a>                 
+	</div>
+</div>
+
+<div> 	
+	<a ng-href="#/result/taxa" class="btn">Taxon</a>
+	<a ng-href="#/result/occurrence" class="btn">Occurrence</a> 
+	<a ng-href="#/result/stat" class="btn">Statistiques</a>
+	<a ng-href="#/result/map" class="btn">Autres cartes</a>                 
+</div>

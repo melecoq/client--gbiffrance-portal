@@ -1,0 +1,18 @@
+[
+	{
+		"scientificName":"scientificName",
+		"vernicularName":"vernicularName",
+		"rank":"rank",
+		"classification":"classification",
+		"imageURL" : "imageURL",
+		"occurrence":[
+			{
+				"id":"id",
+				"datasetName":"datasetName",
+				"location":"location",
+				"basis_of_record":"basis_of_record",
+				"date":"date",
+			}	
+		]
+	}
+]

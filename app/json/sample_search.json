@@ -1,0 +1,32 @@
+{
+	"scientificName":["term1"],
+	"vernacularName":["term1"],
+	"locality":["term1"],
+	"latitude":[
+		{
+			"filter":">",
+			"latitude":"number1"
+		}
+	],
+	"lontitude":[
+		{
+			"filter":"<",
+			"latitude":"number1"
+		}
+	],
+	"geolocalizedData" : "true",
+	"boundingBox" : [
+		{
+			"northEast": {
+				"latitude":"numb1",
+				"longititude":"numb2"
+			},
+			"southWest":{
+				"latitude":"numb1",
+				"longititude":"numb2"
+			}
+		}
+	],
+	"dataPublisher":["id1"],
+	"dataset":["id1"]
+}
