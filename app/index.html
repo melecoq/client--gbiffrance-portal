@@ -1,58 +1,58 @@
 <!doctype html>
 <html lang="en" ng-app="portailApp">
-<head>
-  <meta charset="utf-8">
-  <title>Le Portail du GBIF France</title>
-  <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/2.3.2/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css">
-  <link rel="stylesheet" href="//cdn.leafletjs.com/leaflet-0.6.4/leaflet.css">
-  <link rel="stylesheet" href="/lib/leaflet.draw-0.2.2/leaflet.draw.css" />
-  <link rel="stylesheet" href="/lib/select2-3.4.5/select2.css" />
-  <!--[if lte IE 8]><link rel="stylesheet" href="../lib/leaflet.draw-0.2.2/leaflet.draw.ie.css" /><![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <title>Le Portail du GBIF France</title>
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/2.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css">
+    <link rel="stylesheet" href="//cdn.leafletjs.com/leaflet-0.6.4/leaflet.css">
+    <link rel="stylesheet" href="/lib/leaflet.draw-0.2.2/leaflet.draw.css" />
+    <link rel="stylesheet" href="/lib/select2-3.4.5/select2.css" />
+    <!--[if lte IE 8]><link rel="stylesheet" href="../lib/leaflet.draw-0.2.2/leaflet.draw.ie.css" /><![endif]-->
+  
+    <link rel="stylesheet" type="text/css" href="css/app.css">
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular-route.js"></script>
+    <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="//cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
+    <script src="/lib/leaflet.draw-0.2.2/leaflet.draw.js"></script>
+    <script src="/lib/angular-ui/bootstrap/ui-bootstrap-tpls-0.6.0.js"></script>
+    <script src="/lib/select2-3.4.5/select2.js"></script>
+    <script src="/lib/ui-select2-0.0.2/select2.js"></script>
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controller/controllers_index.js"></script> 
+    <script src="scripts/controller/controllers_search.js"></script> 
+  </head>
+  <body>
 
-  <link rel="stylesheet" type="text/css" href="css/app.css">
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular-route.js"></script>
-  <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
-  <script src="//cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
-  <script src="/lib/leaflet.draw-0.2.2/leaflet.draw.js"></script>
-  <script src="/lib/angular-ui/bootstrap/ui-bootstrap-tpls-0.6.0.js"></script>
-  <script src="/lib/select2-3.4.5/select2.js"></script>
-  <script src="/lib/ui-select2-0.0.2/select2.js"></script>
-  <script src="js/app.js"></script>
-  <script src="js/controller/controllers_index.js"></script> 
-  <script src="js/controller/controllers_search.js"></script> 
-</head>
-<body>
-
-<header >
-  <nav >
-    <ul>
-      <li>Portail</li>
-      <li>GBIF</li>
-      <li>Actualité</li>
-      <li>Participer</li>
-      <li>Documentation</li>
-      <li>Metadonnée</li>
-    </ul>
-  </nav>
-</header>
-  <div class="hero-unit entete">
-    <p  class="text-block">
-      Le GBIF France est le point nodal français du <a href="www.gbif.org">Global Biodiversity Information Facility</a>,
-      projet scientifique international qui a pour but de mettre à disposition toute l’information connue sur la biodiversité.
-    </p>
-    <div id="box-img">
-      <img src="img/logo/logo_def.png" alt="Logo du GBIF France" />
+    <header>
+      <nav>
+        <ul>
+          <li>Portail</li>
+          <li>GBIF</li>
+          <li>Actualité</li>
+          <li>Participer</li>
+          <li>Documentation</li>
+          <li>Metadonnée</li>
+        </ul>
+      </nav>
+    </header>
+    <div class="hero-unit entete">
+      <p  class="text-block">
+        Le GBIF France est le point nodal français du <a href="www.gbif.org">Global Biodiversity Information Facility</a>,
+        projet scientifique international qui a pour but de mettre à disposition toute l’information connue sur la biodiversité.
+      </p>
+      <div id="box-img">
+        <img src="img/logo/logo_def.png" alt="Logo du GBIF France" />
+      </div>
     </div>
-  </div>
 
-  <div ng-view></div>
+    <div ng-view></div>
 
-<footer>
-  <a href="http://www.gbif.fr"> A propos du GBIF France </a> |
-  <a href="http://www.gbif.fr/?page_id=355"> Contact </a> |
-  <a href="http://twitter.com/gbiffrance"><i class="icon-twitter"></i> Suivre GBIF France </a> 
-</footer>
-</body>
+    <footer>
+      <a href="http://www.gbif.fr"> A propos du GBIF France </a> |
+      <a href="http://www.gbif.fr/?page_id=355"> Contact </a> |
+      <a href="http://twitter.com/gbiffrance"><i class="icon-twitter"></i> Suivre GBIF France </a> 
+    </footer>
+  </body>
 </html>
