@@ -124,6 +124,13 @@ footer{
 	padding-top: 100px;
 }
 
+#index-map{
+  height: 360px;
+  width:511px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 #search-map{ 
 	height: 360px;
 	width:100%;

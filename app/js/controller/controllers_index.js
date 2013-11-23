@@ -3,10 +3,10 @@
 function CtrlIndex($scope) {
 
 	$scope.MapIndex= function(){
-		var map = L.map('map', {zoomControl:false, dragging:false}).setView([47.3, -0.89], 1);
+		var map = L.map('index-map', {zoomControl:false, dragging:false}).setView([47.3, -0.89], 1);
 
 		// Fond de carte
-		L.tileLayer('http://b.tiles.mapbox.com/v3/timrobertson100.map-x2mlizjd/{z}/{x}/{y}.png', {
+		L.tileLayer('http://{s}.tiles.mapbox.com/v3/timrobertson100.map-x2mlizjd/{z}/{x}/{y}.png', {
 	    	attribution: 'Map data &copy; <a href="http://mapbox.org">MapBox</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
 	    	maxZoom: 18,
 	    	noWrap: true
