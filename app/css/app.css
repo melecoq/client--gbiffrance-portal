@@ -124,30 +124,101 @@ footer{
 	padding-top: 100px;
 }
 
-#map{ 
+#search-map{ 
 	height: 360px;
-	width:511px;
+	width:100%;
 	margin-left: auto;
 	margin-right: auto;
 }
 
+#search-tabs {
+	margin-bottom: 20px;
+	width: 100%;
+}
+#search-tabs .btn {
+	width: 25%;
+	/* Cancel the border effect */
+	margin-left: -2px;
+	padding: 4px 0;
+}
+#search-tabs .btn:first-child{
+	/* No margin left for the lefter element */
+	margin-left: 0;
+}
+
+#georeferenced-data input[type="checkbox"] {
+	margin-left: 10px;
+	height: 15px;
+	width: 15px;
+}
+
+
+#search-form .form-group {
+	padding: 20px;
+}
+
+#search-form form {
+	padding-right: 40px;
+}
+#search-form form .form-horizontal{
+	width: 100%;
+}
+#search-form form > .btn{
+	text-align: left;
+}
+
+#search-form .help-message {
+	font-size: 12px;
+}
+.search-form {
+	border: 1px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+}
+
+.search-form-geo {
+	background-color: #fcf8e3;
+	border-color: #fbeed5;
+	color:#c09853;
+}
+.search-form-taxa {
+	border-color: #bce8f1;
+	background-color: #d9edf7;
+	color : #3a87ad;
+}
+.search-form-date {
+	background-color: #f2dede;
+    border-color: #eed3d7;
+    color:#b94a48;
+}
+.search-form-dataset {
+	background-color: #dff0d8;
+    border-color: #d6e9c6;
+    color:#468847;
+}
+
+.label-taxa{
+	color : #3a87ad;
+}
+
+.label-geo{
+	color : #c09853;
+}
+
+.label-dataset{
+	color : #468847;
+}
+
+.label-date{
+	color : #b94a48;
+}
+
+.lt-gt-filter {
+	width: 3em;
+}
+
 /* filtre formulaire */
-.bouton-nav {
-	text-align: center;
-}
-
-.bouton-nav .btn{
-	margin-right: 20px;
-}
-
-.btn-group .btn{
-	width: 22.3%;
-}
-
-.btn-group{
-	padding-bottom: 20px;
-	padding-top: 20px;
-}
 
 .label-filter{
 	margin-right: 5px;
@@ -187,4 +258,24 @@ dl{
 	list-style-type: none;
 	margin: 0px;
 	padding: 0px;
+}
+
+.search-summary h3{
+	font-size: 17px;
+	margin: 0px;
+	text-decoration: underline;
+}
+
+.search-summary{
+	font-size: 15px;
+	padding: 15px 20px 15px 20px;
+	color: #000000;
+}
+
+.search-summary span{
+	border: 1px solid gray;
+	padding-left: 5px;
+	padding-right: 5px;
+	margin-left: 3px;
+	font-style: italic;
 }

@@ -25,6 +25,9 @@ function CtrlSearch($scope, $routeParams, $http, $q, searchForm){
    $scope.isCollapsedDatapublisher=true;
   $scope.isCollapsedDataset=true;
 
+  $scope.latitudeFilter="<";
+  $scope.longitudeFilter="<";
+
   // Function dedicated to the different filters of the research engine. 
   // Each function add its filter to the searchForm
   $scope.addScientificName = function() {
@@ -55,7 +58,7 @@ function CtrlSearch($scope, $routeParams, $http, $q, searchForm){
   }; 
 
   $scope.addLatitude = function(){
-    searchForm.addLatitude($scope.latitude);
+    searchForm.addLatitude($scope.latitude, $scope.latitudeFilter);
     $scope.latitude = '';
   };
 
@@ -69,7 +72,7 @@ function CtrlSearch($scope, $routeParams, $http, $q, searchForm){
   };
 
   $scope.addLongitude = function(){
-    searchForm.addLongitude($scope.longitude);
+    searchForm.addLongitude($scope.longitude, $scope.longitudeFilter);
     $scope.longitude = '';
   };
 
@@ -117,7 +120,7 @@ function CtrlSearch($scope, $routeParams, $http, $q, searchForm){
   $scope.mapBoundingBox = function(){
     var franceMetropolitan = new L.LatLng(47.0176, 2.3427);
 
-    var map = L.map('map', {
+    var map = L.map('search-map', {
       zoomControl: false,
       dragging: false,
       center: franceMetropolitan,

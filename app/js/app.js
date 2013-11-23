@@ -3,7 +3,7 @@
 
 /* App Module */
 
-var myApp = angular.module('portailApp', ['ngRoute', 'ui.bootstrap']).
+var myApp = angular.module('portailApp', ['ngRoute', 'ui.bootstrap', 'ui.select2']).
   	config(['$routeProvider', function($routeProvider) {
   	$routeProvider.
 		when('/', {templateUrl: 'portal/index.html'}).
@@ -12,6 +12,7 @@ var myApp = angular.module('portailApp', ['ngRoute', 'ui.bootstrap']).
 		when('/search/dataset',{templateUrl: 'portal/search/search.dataset.html',   controller: 'CtrlSearch'}).
 		when('/search/date',{templateUrl: 'portal/search/search.date.html',   controller: 'CtrlSearch'}).
 		when('/dataset',{templateUrl: 'portal/dataset.html',   controller: 'CtrlIndex'}).
+		when('/result',{templateUrl: 'portal/result/result.html',   controller: 'CtrlResult'}).
       	otherwise({redirectTo: '/'});
 	}]);
 
@@ -61,8 +62,8 @@ myApp.factory('searchForm', function(){
 		var getLatitude = function(){
 			return latitudes;
 		}
-		var addLatitude = function(number){
-			latitudes.push({float:number});
+		var addLatitude = function(number, filter){
+			latitudes.push({latitude:number, filter: filter});
 		}
 		var removeLatitude = function(index){
 			latitudes.splice(index, 1);
@@ -70,8 +71,8 @@ myApp.factory('searchForm', function(){
 		var getLongitude = function(){
 			return longitudes;
 		}
-		var addLongitude = function(number){
-			longitudes.push({float:number});
+		var addLongitude = function(number, filter){
+			longitudes.push({longitude:number, filter: filter});
 		}
 		var removeLongitude = function(index){
 			longitudes.splice(index, 1);
