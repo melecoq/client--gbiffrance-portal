@@ -34,8 +34,10 @@
 			</dd>
 			<dt class="label-geo" ng-if="boundingBoxes.length>=1"> Bounding box </dt>
 			<dd>
-				<span class="label-geo" ng-repeat="box in boundingBoxes">
-					Bounding box<i class="icon-remove" ng-click="removeBoundingBox(box)"></i> 
+				<span class="label-geo" ng-repeat="box in boundingBoxes" ng-mouseenter="highlightBoundingBox(true, box); inputBoundingBoxName = true;" ng-mouseleave="highlightBoundingBox(false, box); inputBoundingBoxName = false;">
+					<i class="icon-remove" ng-click="removeBoundingBox(box)"></i> 
+					<span ng-if="!inputBoundingBoxName">{{box.name}}</span>
+					<input ng-if="inputBoundingBoxName" ng-model="box.name" value="{{box.name}}" />
 				</span>
 			</dd>
 			<dt class="label-dataset" ng-if="datapublisherDataset.length>=1"> Jeux de données </dt>

@@ -89,17 +89,15 @@ myApp.factory('searchForm', function(){
 			georeferencedData = checked;
 		}
 
-		var addBoundingBox = function(layer){
-			console.log("SERVICE", boundingBoxes + []);
-			boundingBoxes.push(layer);
-			console.log("SERVICE", boundingBoxes + []);
+		var addBoundingBox = function(bounds, name){
+			boundingBoxes.push({bounds: bounds, name: name || "Bounding Box"});
 		}
 		var getBoundingBoxes = function(){
 			return boundingBoxes;
 		}
 		var removeBoundingBox = function(bounds){
 			boundingBoxes = boundingBoxes.filter(function(b){
-				return b == bounds;
+				return !b.bounds.equals(bounds);
 			});
 		}
 

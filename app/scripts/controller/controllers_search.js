@@ -119,13 +119,20 @@ function CtrlSearch($scope, $route, $routeParams, $http, $q, searchForm){
 
   var filterLayers = function(bounds) {
   }
+  var lookupLayers = function(bounds) {
+  }
 
-  $scope.removeBoundingBox = function(bounds) {
-    searchForm.removeBoundingBox(bounds);
-    filterLayers(bounds);
-    var a = searchForm.getBoundingBoxes();
-    console.log(a + []);
-    $scope.boundingBoxes = a;
+  $scope.highlightBoundingBox = function(highlight, box) {
+    var layer = lookupLayers(box.bounds);
+    if (layer) {
+      layer.setStyle({fill: highlight});
+    }
+  }
+
+  $scope.removeBoundingBox = function(box) {
+    searchForm.removeBoundingBox(box.bounds);
+    filterLayers(box.bounds);
+    $scope.boundingBoxes = searchForm.getBoundingBoxes();
   }
 
   // Function dedicated to the map for the bounding box
@@ -144,20 +151,28 @@ function CtrlSearch($scope, $route, $routeParams, $http, $q, searchForm){
     var addBoundingBox = function(bounds) {
       var layer = L.rectangle(bounds, {
         color: '#d62727',
+        fill: false
       })
       layer.addTo(map);
-
-      // Store bounding box in service
-      searchForm.addBoundingBox(bounds);
 
       // Store layers in case we want to remove them
       layers.push({bounds: bounds, layer: layer});
     }
 
+    lookupLayers = function(bounds) {
+      var filteredLayers = layers.filter(function(b) {
+        return b.bounds.equals(bounds);
+      });
+
+      return filteredLayers.map(function(e){return e.layer;})[0];
+    }
     filterLayers = function(bounds) {
       layers = layers.filter(function(b){
-        if (b.bounds == bounds) {
-          map.removeLayer(b.layer)
+        if (b.bounds.equals(bounds)) {
+          map.removeLayer(b.layer);
+          return false;
+        } else {
+          return true;
         }
       });
     };
@@ -193,6 +208,9 @@ function CtrlSearch($scope, $route, $routeParams, $http, $q, searchForm){
 
       // Only add rectangle layer types
       if (type === 'rectangle') {
+        // Store bounding box in service
+        searchForm.addBoundingBox(layer.getBounds());
+
         addBoundingBox(layer.getBounds());
         // Trigger the reload of layers
         $scope.$digest();
@@ -206,8 +224,8 @@ function CtrlSearch($scope, $route, $routeParams, $http, $q, searchForm){
         noWrap: true
     }).addTo(map);
 
-    $scope.boundingBoxes.map(function (bounds) {
-
+    $scope.boundingBoxes.map(function(e){
+      addBoundingBox(e.bounds);
     });
   }
 
