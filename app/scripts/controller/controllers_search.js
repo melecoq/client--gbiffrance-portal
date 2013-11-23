@@ -15,7 +15,7 @@ function CtrlSearch($scope, $routeParams, $http, $q, searchForm){
   $scope.datapublisherDataset = searchForm.getDatapublisherDataset();
 
   //Boolean for show the popup for the help
-  $scope.isCollapsedCommun=true;
+  $scope.isCollapsedCommun=false;
   $scope.isCollapsedScientific=true;
   $scope.isCollapsedLocality=true;
   $scope.isCollapsedLatitude=true;
@@ -23,7 +23,7 @@ function CtrlSearch($scope, $routeParams, $http, $q, searchForm){
   $scope.isCollapsedGeoreferenced=true;
   $scope.isCollapsedDate=true;
   $scope.isCollapsedDatapublisher=true;
-  $scope.isCollapsedDataset=true;
+  $scope.isCollapsedDataset=false;
 
   $scope.latitudeFilter="<";
   $scope.longitudeFilter="<";

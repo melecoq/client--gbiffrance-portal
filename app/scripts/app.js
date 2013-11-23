@@ -12,7 +12,10 @@ var myApp = angular.module('portailApp', ['ngRoute', 'ui.bootstrap', 'ui.select2
 		when('/search/dataset',{templateUrl: 'portal/search/search.dataset.html',   controller: 'CtrlSearch'}).
 		when('/search/date',{templateUrl: 'portal/search/search.date.html',   controller: 'CtrlSearch'}).
 		when('/dataset',{templateUrl: 'portal/dataset.html',   controller: 'CtrlIndex'}).
-		when('/result',{templateUrl: 'portal/result/result.html',   controller: 'CtrlResult'}).
+		when('/result/taxa',{templateUrl: 'portal/result/result.taxa.html',   controller: 'CtrlResult'}).
+		when('/result/occurrence',{templateUrl: 'portal/result/result.occurrence.html',   controller: 'CtrlResult'}).
+		when('/result/stat',{templateUrl: 'portal/result/result.stat.html',   controller: 'CtrlResult'}).
+		when('/result/map',{templateUrl: 'portal/result/result.map.html',   controller: 'CtrlResult'}).
       	otherwise({redirectTo: '/'});
 	}]);
 
