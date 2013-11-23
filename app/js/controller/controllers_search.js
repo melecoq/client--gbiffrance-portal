@@ -22,7 +22,7 @@ function CtrlSearch($scope, $routeParams, $http, $q, searchForm){
   $scope.isCollapsedLongitude=true;
   $scope.isCollapsedGeoreferenced=true;
   $scope.isCollapsedDate=true;
-   $scope.isCollapsedDatapublisher=true;
+  $scope.isCollapsedDatapublisher=true;
   $scope.isCollapsedDataset=true;
 
   $scope.latitudeFilter="<";
@@ -209,7 +209,7 @@ function CtrlSearch($scope, $routeParams, $http, $q, searchForm){
     });
 
 
-  $http.get("http://localhost:8000/app/json/datapublisher.json").
+  $http.get("/json/datapublisher.json").
     success(function(data, status) {
       $scope.dataPublisherList = data.map(function(taxa){ return {name:taxa.name, id:taxa.id};});
 
@@ -218,7 +218,7 @@ function CtrlSearch($scope, $routeParams, $http, $q, searchForm){
       $scope.dataPublisherList =["Erreur" + status];
     });
 
-  $http.get("http://localhost:8000/app/json/dataset.json").
+  $http.get("/json/dataset.json").
     success(function(data, status) {
       $scope.datasetList = data.map(function(taxa){ return {name:taxa.name, id:taxa.id, datapubliserId:taxa.datapubliserId};});
     }).
