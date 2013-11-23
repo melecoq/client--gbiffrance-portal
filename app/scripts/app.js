@@ -141,6 +141,10 @@ myApp.factory('searchForm', function(){
 			dates.splice(index, 1);
 		}
 
+		var buildJson = function(){
+			
+		}
+
 
 		return {
 			// Return for the taxa tab
