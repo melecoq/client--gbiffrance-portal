@@ -1,49 +1,58 @@
-<div ng-controller="CtrlSearch">
+<div ng-controller="CtrlSearch" id="search-form">
 	<div ng-include="'portal/search/search.inc.html'"></div>
-	<div class="form-group alert alert-warning">
+	<div class="form-group search-form search-form-geo">
 		<form ng-submit="addLocality()">
-	    	<div class="form-horizontal btn btn-large btn-warning">
+	    	<div class="form-horizontal">
 				<div class="control">
 					<i class="icon-question-sign" ng-click="isCollapsedLocality = !isCollapsedLocality"></i>
 					<label  class="control-label label-filter" for="locality">Lieu </label>
-					<input type="text" id="locality" class="input-medium search-query" ng-model="locality" typeahead="name for name in autocompleteLocality($viewValue)">
+					<input type="text" id="locality" class="input-medium" ng-model="locality" typeahead="name for name in autocompleteLocality($viewValue)">
 	  				<input type="submit" class="btn" value="Ajouter" >
 	  			</div>
 			</div>
-			<div collapse="isCollapsedLocality"> Ajouter le nom d'un pays, d'une région ou d'une ville pour filtrer les résultats. Par exemple : Paris, Vaucluse. </div>
+			<div class="help-message" collapse="isCollapsedLocality"> Ajouter le nom d'un pays, d'une région ou d'une ville pour filtrer les résultats. Par exemple : Paris, Vaucluse. </div>
 		</form>
 		<form ng-submit="addLatitude()">
-	    	<div class="form-horizontal btn btn-large btn-warning">
+	    	<div class="form-horizontal">
 				<div class="control">
 					<i class="icon-question-sign" ng-click="isCollapsedLatitude = !isCollapsedLatitude"></i>
 					<label  class="control-label label-filter" for="latitude">Latitude</label>
-					<input type="text" id="latitude" class="input-medium search-query" ng-model="latitude">
+					<select class="lt-gt-filter" ng-model="latitudeFilter">
+						<option value="<" selected>&lt;</option>
+						<option value=">">&gt;</option>
+					</select>
+					<input type="text" id="latitude" class="input-medium" ng-model="latitude">
 	  				<input type="submit" class="btn" value="Ajouter" >
 	  			</div>
 			</div>
-			<div collapse="isCollapsedLatitude"> Faire une recherche en fonction d'une latitude. Les filtres possibles sont : supérieur, inférieur ou égal </div>
+			<div class="help-message" collapse="isCollapsedLatitude"> Faire une recherche en fonction d'une latitude. Les filtres possibles sont : supérieur, inférieur ou égal </div>
 		</form>
-		<form class="form-bottom" ng-submit="addLongitude()">
-	    	<div class="form-horizontal btn btn-large btn-warning">
+		<form ng-submit="addLongitude()">
+	    	<div class="form-horizontal">
 				<div class="control">
 					<i class="icon-question-sign" ng-click="isCollapsedLongitude = !isCollapsedLongitude"></i>
 					<label  class="control-label label-filter" for="Longitude">Longitude</label>
-					<input type="text" id="Longitude" class="input-medium search-query" ng-model="longitude">
+					<select class="lt-gt-filter" ng-model="longitudeFilter">
+						<option value="<" selected>&lt;</option>
+						<option value=">">&gt;</option>
+					</select>
+					<input type="text" id="Longitude" class="input-medium" ng-model="longitude">
 	  				<input type="submit" class="btn" value="Ajouter" >
 	  			</div>
 			</div>
-			<div collapse="isCollapsedLongitude"> Faire une recherche en fonction d'une longitude. Les filtres possibles sont : supérieur, inférieur ou égal </div>
+			<div class="help-message" collapse="isCollapsedLongitude"> Faire une recherche en fonction d'une longitude. Les filtres possibles sont : supérieur, inférieur ou égal </div>
 		</form>
-		<form>
+		<form id="georeferenced-data">
     		<div class="form-horizontal">
 				<div class="control">
 						<i class="icon-question-sign" ng-click="isCollapsedGeoreferenced = !isCollapsedGeoreferenced"></i>
-						<label  class="control-label label-filter " for="georeference">Données géoréférencées</label>
-						<input  type="checkbox" id="georeference" ng-model="georeference" ng-init="getGeoreferencedData()" ng-change="addGeoreferencedData()">
+						<label class="control-label label-filter " for="georeference">Données géoréférencées</label>
+						<input type="checkbox" id="georeference" ng-model="georeference" ng-init="getGeoreferencedData()" ng-change="addGeoreferencedData()">
   				</div>
 			</div>
-			<div collapse="isCollapsedGeoreferenced"> En cochant cette option, seules les occurrences géoréférancées seront retournées</div>
+			<div class="help-message" collapse="isCollapsedGeoreferenced"> En cochant cette option, seules les occurrences géoréférancées seront retournées</div>
 		</form> 
-		<div id="map" ng-controller="mapBoundingBox"></div>
+		<div id="search-map" ng-controller="mapBoundingBox"></div>
 	</div>
+
 </div>
