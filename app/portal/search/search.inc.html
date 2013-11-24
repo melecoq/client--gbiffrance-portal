@@ -43,7 +43,7 @@
 			<dt class="label-dataset" ng-if="datapublisherDataset.length>=1"> Jeux de données </dt>
 			<dd> 
 				<span class="label-dataset"  ng-repeat="name in datapublisherDataset">
-					{{name.datapublisher.id}}<span ng-if="name.dataset"> - {{name.dataset.id}} </span> <i class="icon-remove" ng-click="removeDataset($index)"></i> 
+					{{name.datapublisher.name}}<span ng-if="name.dataset"> - {{name.dataset.name}} </span> <i class="icon-remove" ng-click="removeDataset($index)"></i> 
 				</span>
 			</dd>
 			<dt class="label-date"  ng-if="dates.length>=1"> Date </dt>
