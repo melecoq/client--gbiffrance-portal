@@ -12,7 +12,6 @@ var myApp = angular.module('portailApp', ['ngRoute', 'ui.bootstrap', 'ui.select2
 			.when('/search/dataset',   {templateUrl: 'portal/search/search.dataset.html',    controller: 'CtrlSearch'})
 			.when('/search/date',      {templateUrl: 'portal/search/search.date.html',       controller: 'CtrlSearch'})
 			.when('/dataset',          {templateUrl: 'portal/dataset.html',                  controller: 'CtrlIndex'})
-			.when('/result',           {templateUrl: 'portal/result/result.html',            controller: 'CtrlResult'})
 			.when('/result/taxa',       {templateUrl: 'portal/result/result.taxa.html',       controller: 'CtrlResult'})
 			.when('/result/occurrence', {templateUrl: 'portal/result/result.occurrence.html', controller: 'CtrlResult'})
 			.when('/result/stat',       {templateUrl: 'portal/result/result.stat.html',       controller: 'CtrlResult'})
@@ -89,15 +88,17 @@ myApp.factory('searchForm', function(){
 			georeferencedData = checked;
 		}
 
-		var addBoundingBox = function(bounds, name){
-			boundingBoxes.push({bounds: bounds, name: name || "Bounding Box"});
+		var addBoundingBox = function(layer){
+			console.log("SERVICE", boundingBoxes + []);
+			boundingBoxes.push(layer);
+			console.log("SERVICE", boundingBoxes + []);
 		}
 		var getBoundingBoxes = function(){
 			return boundingBoxes;
 		}
 		var removeBoundingBox = function(bounds){
 			boundingBoxes = boundingBoxes.filter(function(b){
-				return !b.bounds.equals(bounds);
+				return b == bounds;
 			});
 		}
 
@@ -139,6 +140,21 @@ myApp.factory('searchForm', function(){
 			dates.splice(index, 1);
 		}
 
+		var buildJson = function(){
+			var json = {
+				"scientificName": scientificNames.map(function(scientificName){
+					return scientificName.text;
+				}),
+				"vernacularName":vernacularNames,
+				"locality":localities,
+				"latitude": latitudes,
+				"longitude":longitudes,
+				"geolocalizedData" : georeferencedData,
+				"boundingBox" : boundingBoxes
+			}
+			return json;
+		}
+
 
 		return {
 			// Return for the taxa tab
@@ -174,10 +190,11 @@ myApp.factory('searchForm', function(){
 			getDatapublisherDataset:getDatapublisherDataset,
 			removeDataset : removeDataset, 
 
-
 			//Return for the date tab
 			getDate : getDate,
 			addDate : addDate,
-			removeDate : removeDate
+			removeDate : removeDate,
+
+			buildJson : buildJson
 		};
 	});

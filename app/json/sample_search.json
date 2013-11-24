@@ -8,10 +8,10 @@
 			"latitude":"number1"
 		}
 	],
-	"lontitude":[
+	"longitude":[
 		{
 			"filter":"<",
-			"latitude":"number1"
+			"longitude":"number1"
 		}
 	],
 	"geolocalizedData" : "true",
@@ -19,11 +19,11 @@
 		{
 			"northEast": {
 				"latitude":"numb1",
-				"longititude":"numb2"
+				"longitude":"numb2"
 			},
 			"southWest":{
 				"latitude":"numb1",
-				"longititude":"numb2"
+				"longitude":"numb2"
 			}
 		}
 	],
