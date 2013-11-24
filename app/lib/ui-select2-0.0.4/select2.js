@@ -12,9 +12,8 @@ angular.module('ui.select2', []).value('uiSelect2Config', {}).directive('uiSelec
   }
   return {
     require: 'ngModel',
-    priority: 1000,
+    priority: 1,
     compile: function (tElm, tAttrs) {
-      tElm = $(tElm[0])
       var watch,
         repeatOption,
         repeatAttr,
@@ -34,7 +33,6 @@ angular.module('ui.select2', []).value('uiSelect2Config', {}).directive('uiSelec
       return function (scope, elm, attrs, controller) {
         // instance-specific options
         var opts = angular.extend({}, options, scope.$eval(attrs.uiSelect2));
-        elm = $(elm);
 
         /*
         Convert from Select2 view-model to Angular view-model.
@@ -91,9 +89,9 @@ angular.module('ui.select2', []).value('uiSelect2Config', {}).directive('uiSelec
             if (current === old) {
               return;
             }
-            controller.render();
+            controller.$render();
           }, true);
-          controller.render = function () {
+          controller.$render = function () {
             if (isSelect) {
               elm.select2('val', controller.$viewValue);
             } else {
@@ -115,7 +113,7 @@ angular.module('ui.select2', []).value('uiSelect2Config', {}).directive('uiSelec
           // Watch the options dataset for changes
           if (watch) {
             scope.$watch(watch, function (newVal, oldVal, scope) {
-              if (!newVal) {
+              if (angular.equals(newVal, oldVal)) {
                 return;
               }
               // Delayed so that the options have time to be rendered
@@ -123,6 +121,9 @@ angular.module('ui.select2', []).value('uiSelect2Config', {}).directive('uiSelec
                 elm.select2('val', controller.$viewValue);
                 // Refresh angular to remove the superfluous option
                 elm.trigger('change');
+                if(newVal && !oldVal && controller.$setPristine) {
+                  controller.$setPristine(true);
+                }
               });
             });
           }
@@ -143,7 +144,7 @@ angular.module('ui.select2', []).value('uiSelect2Config', {}).directive('uiSelec
           if (!isSelect) {
             // Set the view and model value and update the angular template manually for the ajax/multiple select2.
             elm.bind("change", function () {
-              if (scope.$$phase) {
+              if (scope.$$phase || scope.$root.$$phase) {
                 return;
               }
               scope.$apply(function () {
