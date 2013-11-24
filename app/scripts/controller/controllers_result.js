@@ -24,6 +24,34 @@ function CtrlResult($scope, searchForm, $http){
     	.error(function(data, status) {
       		$scope.reponse = status;
     	});
+
+  $scope.removeScientificName = function(index){
+    searchForm.removeScientificName(index);
+  };
+
+  $scope.removeVernacularName = function(index){
+    searchForm.removeVernacularName(index);
+  };
+
+  $scope.removeLocality = function(index){
+    searchForm.removeLocality(index);
+  };
+
+  $scope.removeLatitude = function(index){
+    searchForm.removeLatitude(index);
+  }; 
+
+  $scope.removeLongitude= function(index){
+    searchForm.removeLongitude(index);
+  }; 
+
+  $scope.removeDataset = function(index){
+    searchForm.removeDataset(index);
+  };
+
+  $scope.removeDate = function(index){
+    searchForm.removeDate(index);
+  };
 }
 
 myApp.controller('CtrlResult', ['$scope', 'searchForm', '$http', CtrlResult]);
