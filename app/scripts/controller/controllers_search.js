@@ -96,6 +96,7 @@ function CtrlSearch($scope, $route, $routeParams, $http, $q, searchForm){
     var datapublisherName = $scope.dataPublisherList.filter(function(datapublisher){
       return datapublisher.id == $scope.datapublisher;
     })[0];
+    console.log("je suis ici"+datapublisher);
     var datasetName = $scope.datasetList.filter(function(dataset){
       return dataset.id == $scope.dataset;
     })[0];
@@ -115,12 +116,12 @@ function CtrlSearch($scope, $route, $routeParams, $http, $q, searchForm){
 
   $scope.removeDate = function(index){
     searchForm.removeDate(index);
-  }
+  };
 
   var filterLayers = function(bounds) {
-  }
+  };
   var lookupLayers = function(bounds) {
-  }
+  };
 
   $scope.highlightBoundingBox = function(highlight, box) {
     var layer = lookupLayers(box.bounds);
@@ -141,7 +142,7 @@ function CtrlSearch($scope, $route, $routeParams, $http, $q, searchForm){
     var franceMetropolitan = new L.LatLng(47.0176, 2.3427);
 
     var map = L.map('search-map', {
-      zoomControl: false,
+      zoomControl: true,
       dragging: false,
       center: franceMetropolitan,
       zoom: 5
