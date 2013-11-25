@@ -21,9 +21,11 @@ function CtrlResult($scope, searchForm, $http){
 	$http.post("http://localhost:9000/api/search ", $scope.json)
 		.success(function(data, status) {
       		$scope.reponse = status;
+          $scope.dataJson = data;
     	})
     	.error(function(data, status) {
       		$scope.reponse = status;
+          $scope.dataJson = data;
     	});
 
   $scope.removeScientificName = function(index){
