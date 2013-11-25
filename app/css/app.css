@@ -290,3 +290,7 @@ dl{
 	margin-left: 3px;
 	font-style: italic;
 }
+
+.search-summary-field{
+	padding-bottom: 1px;
+}

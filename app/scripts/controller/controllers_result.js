@@ -14,10 +14,11 @@ function CtrlResult($scope, searchForm, $http){
   	$scope.dates=searchForm.getDate();
   	$scope.georeferences = searchForm.getGeoreferencedData();
   	$scope.datapublisherDataset = searchForm.getDatapublisherDataset();
+    $scope.isCollapsedRecherche = true;
 
 	$scope.json = searchForm.buildJson();
 
-	$http.post("http://localhost:9000/", $scope.json)
+	$http.post("http://localhost:9000/api/search ", $scope.json)
 		.success(function(data, status) {
       		$scope.reponse = status;
     	})

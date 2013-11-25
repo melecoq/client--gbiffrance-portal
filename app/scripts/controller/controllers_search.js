@@ -25,6 +25,7 @@ function CtrlSearch($scope, $route, $routeParams, $http, $q, searchForm){
   $scope.isCollapsedDate=true;
   $scope.isCollapsedDatapublisher=true;
   $scope.isCollapsedDataset=true;
+  $scope.isCollapsedRecherche=false;
 
   $scope.latitudeFilter="<";
   $scope.longitudeFilter="<";
