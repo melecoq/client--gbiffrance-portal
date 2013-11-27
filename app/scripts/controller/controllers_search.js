@@ -93,14 +93,26 @@ function CtrlSearch($scope, $route, $routeParams, $http, $q, searchForm){
     $scope.dataset = '';
   };
 
+  // Update dataset field
+  $scope.$watch("datapublisher", function(newValue, oldValue) {
+    if (newValue) {
+      $scope.datasetListShow = $scope.datasetList.filter(function(e){
+        return e.dataPublisherId == newValue;
+      });
+    } else {
+      $scope.datasetListShow = $scope.datasetList;
+    }
+  });
+
   $scope.addDatapublisherDataset = function(){
     var datapublisherName = $scope.dataPublisherList.filter(function(datapublisher){
       return datapublisher.id == $scope.datapublisher;
     })[0];
-    console.log("je suis ici"+datapublisher);
+
     var datasetName = $scope.datasetList.filter(function(dataset){
       return dataset.id == $scope.dataset;
     })[0];
+
     searchForm.addDatapublisherDataset(datapublisherName, datasetName);
     $scope.datapublisher = '';
     $scope.dataset = '';
@@ -281,10 +293,12 @@ function CtrlSearch($scope, $route, $routeParams, $http, $q, searchForm){
 
   $http.get("/json/dataset.json").
     success(function(data, status) {
-      $scope.datasetList = data.map(function(taxa){ return {name:taxa.name, id:taxa.id, datapubliserId:taxa.datapubliserId};});
+      $scope.datasetList = data.map(function(taxa){ return {name:taxa.name, id:taxa.id, dataPublisherId:taxa.dataPublisherId};});
+      $scope.datasetListShow = $scope.datasetList;
     }).
     error(function(data, status) {
       $scope.datasetList =["Erreur" + status];
+      $scope.datasetListShow = $scope.datasetList;
     });
 
 

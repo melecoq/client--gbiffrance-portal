@@ -3,7 +3,7 @@
 		"id":1,
 		"name": "Inventaire National du Patrimoine Naturel (I054) : Flore de Sologne",
 		"title": "Flore de Sologne",
-		"datapubliserId" : 1,
+		"dataPublisherId" : 1,
 		"tags":[
 			{
 				"tag": "INPN"
@@ -26,7 +26,7 @@
 		"id":2,
 		"name": "IRD : Herbier de la Guyane",
 		"title": "Herbier de la Guyane",
-		"datapubliserId" : 2,
+		"dataPublisherId" : 2,
 		"tags":[
 			{
 				"tag": "IRD"
@@ -43,7 +43,7 @@
 		"id":3,
 		"name": "Inventaire National du Patrimoine Naturel (I014) : Insectes Orthoptères de France",
 		"title": "Insectes Orthoptères de France",
-		"datapubliserId" : 1,
+		"dataPublisherId" : 1,
 		"tags":[
 			{
 				"tag": "INPN"

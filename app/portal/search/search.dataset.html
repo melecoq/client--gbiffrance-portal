@@ -18,9 +18,8 @@
 				<div class="control">
 					<i class="icon-question-sign" ng-click="isCollapsedDataset = !isCollapsedDataset"></i>
 					<label  class="control-label label-filter" for="dataset">Jeu de données</label>
-					<select ui-select2="" id="dataset" class="input-medium search-query" ng-model="dataset">
-						<option ng-if="!datapublisher" ng-repeat="name in datasetList" value="{{name.id}}">{{name.name}}</option>
-						<option ng-if="datapublisher" ng-repeat="name in datasetList | filter: {datapubliserId:datapublisher}" value="{{name.id}}">{{name.name}}</option>
+					<select ui-select2 id="dataset" class="input-medium search-query" ng-model="dataset">
+						<option ng-repeat="name in datasetListShow" value="{{name.id}}">{{name.name}}</option>
 					</select>
 					<input type="submit" class="btn btn-select" value="Ajouter" >
 	  			</div>
