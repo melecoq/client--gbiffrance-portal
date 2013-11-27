@@ -2,13 +2,29 @@
 	<div ng-include="'portal/search/search.inc.html'"></div>
 	<div class="form-group search-form search-form-date">
 		<form class="form-bottom" ng-submit="addDate()">
-	    	<div class="form-horizontal ">
+			<div class="form-horizontal ">
 				<div class="control">
+					<ul class="timeline">
+						<li class="noyear">NODATE</li>
+						<li class="noyear">PRE</li>
+						<li class="year">1900</li>
+						<li class="year">1910</li>
+						<li class="year">1920</li>
+						<li class="year">1930</li>
+						<li class="year">1940</li>
+						<li class="year">1950</li>
+						<li class="year">1960</li>
+						<li class="year">1970</li>
+						<li class="year">1980</li>
+						<li class="year">1990</li>
+						<li class="year">2000</li>
+						<li class="year">2010</li>
+					</ul>
 					<i class="icon-question-sign" ng-click="isCollapsedDate = !isCollapsedDate"></i>
 					<label class="control-label label-filter" for="date" ng-model="date">Date</label>
-					<input type="text" id="date" class="input-medium" ng-model="date">
-	  				<input type="submit" class="btn" value="Ajouter" >
-	  			</div>
+					<input type="text" id="date" class="input-medium" ng-model="date" />
+					<input type="submit" class="btn" value="Ajouter" />
+				</div>
 			</div>
 			<div class="help-message" collapse="isCollapsedDate"> Il est possible de filtrer en mettant une date précise, une année, une période... </div>
 		</form>

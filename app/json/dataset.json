@@ -1,65 +1,80 @@
-[
-	{
-		"id":1,
-		"name": "Inventaire National du Patrimoine Naturel (I054) : Flore de Sologne",
-		"title": "Flore de Sologne",
-		"dataPublisherId" : 1,
-		"tags":[
-			{
-				"tag": "INPN"
-			},
-			{
-				"tag": "SPN"
-			},
-			{
-				"tag": "inventaire national du patrimoine naturel (i054) : flore de sologne"
-			},
-			{
-				"tag": "flore de sologne"
-			},
-			{
-				"tag": "Service du Patrimoine Naturel"
-			}
-		]
-	},
-	{
-		"id":2,
-		"name": "IRD : Herbier de la Guyane",
-		"title": "Herbier de la Guyane",
-		"dataPublisherId" : 2,
-		"tags":[
-			{
-				"tag": "IRD"
-			},
-			{
-				"tag": "Institut de la Recherche pour le Developpement"
-			},
-			{
-				"tag": "Herbier de Guyane"
-			}
-		]
-	},
-	{
-		"id":3,
-		"name": "Inventaire National du Patrimoine Naturel (I014) : Insectes Orthoptères de France",
-		"title": "Insectes Orthoptères de France",
-		"dataPublisherId" : 1,
-		"tags":[
-			{
-				"tag": "INPN"
-			},
-			{
-				"tag": "SPN"
-			},
-			{
-				"tag": "inventaire national du patrimoine naturel (I014) : insectes orthoptères de france"
-			},
-			{
-				"tag": "insectes orthoptères de france"
-			},
-			{
-				"tag": "Service du Patrimoine Naturel"
-			}
-		]
+curl -XPUT http://localhost:9200/gbiffrance-harvest/Dataset/1 -d '{"_id" : "1", "className" : "models.Dataset", "name" : "Inventaire National du Patrimoine Naturel (I054) : Flore de Sologne", "url" : "http://inpn.mnhn.fr/archives_dwc/out/arch_dwc_inpn_I054.zip", "type" : "ipt", "status" : "TAXONOMIZED", "tempDirectory" : "/tmp/resource-13", "fromOutside" : false, "title" : "Flore de Sologne", "description" : "L''objectif de cet inventaire est de rassembler un jeu exhaustif de données sur l''ensemble des espèces rares et localisées de Sologne. Le réseau a été coordonné par B. Lunais, G. Guillot et P. Maubert. Au 01/01/2002, la base contient environ 4 700 données. Celles-ci couvrent une période allant de 1978 à 1985. Données essentielles (espèce, lieu, date, observateur).", "geographicCoverageDescription" : "Sologne", "tagsText" : "inpn;spn;service du patrimoine naturel;flore de sologne;;inventaire national du patrimoine naturel (i054) : flore de sologne;flore de sologne;;inventaire national du patrimoine naturel (i054) : flore de sologne;flore de sologne;;inventaire national du patrimoine naturel (i054) : flore de sologne", "tags" : ["inpn", "spn", "service du patrimoine naturel", "flore de sologne", "", "inventaire national du patrimoine naturel (i054) : flore de sologne"], "dataPublisherId" : "1"}
+curl -XPUT http://localhost:9200/gbiffrance-harvest/Dataset/2 -d '{"_id" : "2", "className" : "models.Dataset", "name" : "Inventaire National du Patrimoine Naturel (I041) : Insectes Hétéroptères Mirides de France", "url" : "http://inpn.mnhn.fr/archives_dwc/out/arch_dwc_inpn_I041.zip", "type" : "ipt", "status" : "TAXONOMIZED", "tempDirectory" : "/tmp/resource-12", "fromOutside" : false, "title" : "Insectes Hétéroptères Mirides de France", "description" : "L''objectif de cet inventaire est de rassembler un jeu exhaustif de données sur l''ensemble des espèces présentes en France métropolitaine. Le réseau a été coordonné par B. Ehanno (Université de Renne I). Au 01/01/2002, la base contient environ 16 550 données. Celles-ci couvrent une période allant de 1830 à 1986. Outre les données essentielles (espèce, lieu, date, observateur ou référence bibliographique ou référence de collection), les altitudes et les secteurs biogéographiques sont mentionnées.", "tagsText" : "inpn;spn;service du patrimoine naturel;insectes heteropteres mirides de france;;inventaire national du patrimoine naturel (i041) : insectes heteropteres mirides de france;insectes heteropteres mirides de france;;inventaire national du patrimoine naturel (i041) : insectes heteropteres mirides de france;insectes heteropteres mirides de france;;inventaire national du patrimoine naturel (i041) : insectes heteropteres mirides de france","tags" : ["inpn","spn","service du patrimoine naturel","insectes heteropteres mirides de france","","inventaire national du patrimoine naturel (i041) : insectes heteropteres mirides de france"],"dataPublisherId" : "1"}'
+curl -XPUT http://localhost:9200/gbiffrance-harvest/Dataset/3 -d '{"_id" : 3, "className" : "models.Dataset", "name" : "Echinoderm specimens", "url" : "http://coldb.mnhn.fr/DwC/Archive/MNHN/IE/archive.zip", "type" : "ipt", "status" : "TAXONOMIZED", "tempDirectory" : "/tmp/resource-37", "fromOutside" : false, "title" : "Echinodermes du MNHN de Paris", "tagsText" : "mnhn;echinodermes du mnhn de paris;;echinoderm specimens;echinodermes du mnhn de paris;;echinoderm specimens", "tags" : ["mnhn","echinodermes du mnhn de paris","","echinoderm specimens"],"dataPublisherId" : "2" }'
+curl -XPUT http://localhost:9200/gbiffrance-harvest/Dataset/4 -d '{"_id" : 4, "className" : "models.Dataset", "name" : "Molluscs specimens", "url" : "http://coldb.mnhn.fr/DwC/Archive/MNHN/IM/archive.zip", "type" : "ipt", "status" : "TAXONOMIZED", "tempDirectory" : "/tmp/resource-40", "fromOutside" : false, "title" : "Mollusques actuels MNHN", "tagsText" : "mnhn;mollusques actuels mnhn;;molluscs specimens;mollusques actuels mnhn;;molluscs specimens", "tags" : ["mnhn", "mollusques actuels mnhn", "", "molluscs specimens"], "dataPublisherId" : "4"}'
+
+{
+	"_id" : "5",
+	"className" : "models.Dataset",
+	"name" : "observe_tuna_ecoscope",
+	"url" : "http://vmirdgbif-proto.mpl.ird.fr:8080/ipt/archive.do?r=observe_tuna",
+	"type" : "ipt",
+	"status" : "TAXONOMIZED",
+	"tempDirectory" : "/tmp/resource-50",
+	"fromOutside" : false,
+	"title" : "Ecoscope observation tuna",
+	"description" : "Etudes sur les captures effectuées par les pêcheries de thons tropicaux dans des océans Atlantique et Indien. Concerne les espèces capturées par les différentes flottes de senneurs  sur les domaines (France, Espagne, Ghana ..) financé par le programme européen pour collecte de données sur la pêche.",
+	"geographicCoverageDescription" : "océans Atlantique et Indien",
+	"tagsText" : "ird;ecoscope observation tuna;;observe_tuna_ecoscope;ecoscope observation tuna;;observe_tuna_ecoscope",
+	"tags" : [
+		"ird",
+		"ecoscope observation tuna",
+		"observe_tuna_ecoscope",
+	],
+	"dataPublisherId" : "4"
+}
+{
+	"_id" : NumberLong(47),
+	"className" : "models.Dataset",
+	"name" : "ecoscope_observation_database",
+	"url" : "http://vmirdgbif-proto.mpl.ird.fr:8080/ipt/archive.do?r=ecoscope_observation_database",
+	"type" : "ipt",
+	"status" : "TAXONOMIZED",
+	"tempDirectory" : "/tmp/resource-47",
+	"fromOutside" : false,
+	"title" : "Ecoscope observation database",
+	"description" : "Ce jeu de données représente une partie de la base de données commune de l'unité de recherche UMR212-EME (Exploited Marine Ecosystems)(IRD, l'Ifremer, l'Université de Montpellier 2 et des partenaires liés comme YugNIRO: Southern Scientific Research of Marine Fisheries and Oceanography, Ukraine). Cette base de données est utilisé pour gérer  diverses séries de données collectées lors de la pêche de thons tropicaux et les recherches sur le thon et les espèces associées (jusqu'ici principalement YugNIRO et des ensembles de données IRD). La biologie des grands prédateurs dans l'écosystème océanique, y compris les paramètres de la distribution, la taille et le poids, l'écologie trophique, et la maturité sexuelle sont couverts. Dans les années à venir davantage de données seront disponibles.",
+	"resourceLanguage" : "",
+	"basisOfRecord" : "",
+	"resourceContactName" : "",
+	"resourceContactRole" : "",
+	"resourceContactAddress" : "",
+	"resourceContactEmail" : "",
+	"resourceContactTelephone" : "",
+	"resourceCreatorName" : "",
+	"resourceCreatorRole" : "",
+	"resourceCreatorAddress" : "",
+	"resourceCreatorEmail" : "",
+	"resourceCreatorTelephone" : "",
+	"metadataProviderName" : "",
+	"metadataProviderRole" : "",
+	"metadataProviderAddress" : "",
+	"metadataProviderEmail" : "",
+	"metadataProviderTelephone" : "",
+	"geographicCoverageDescription" : "",
+	"geographicCoverageBoundingCoordinates" : "",
+	"taxonomicCoverageDescription" : "",
+	"taxonomicCoverageTaxonList" : "",
+	"temporalCoverageDate" : "",
+	"keywords" : "",
+	"samplingDescription" : "",
+	"qualityControl" : "",
+	"homePageLink" : "",
+	"dwcArchiveLink" : "",
+	"tagsText" : "ecoscope;ird;ecoscope observation database;;ecoscope_observation_database;ecoscope observation database;;ecoscope_observation_database",
+	"tags" : [
+		"ecoscope",
+		"ird",
+		"ecoscope observation database",
+		"",
+		"ecoscope_observation_database",
+		"ecoscope observation database",
+		"",
+		"ecoscope_observation_database"
+	],
+	"dataPublisher" : {
+		"$ref" : "DataPublisher",
+		"$id" : NumberLong(4)
 	}
-]
+}}
+}
