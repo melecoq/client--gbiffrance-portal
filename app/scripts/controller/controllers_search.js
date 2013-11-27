@@ -97,7 +97,6 @@ function CtrlSearch($scope, $route, $routeParams, $http, $q, searchForm){
     var datapublisherName = $scope.dataPublisherList.filter(function(datapublisher){
       return datapublisher.id == $scope.datapublisher;
     })[0];
-    console.log("je suis ici"+datapublisher);
     var datasetName = $scope.datasetList.filter(function(dataset){
       return dataset.id == $scope.dataset;
     })[0];
@@ -118,6 +117,8 @@ function CtrlSearch($scope, $route, $routeParams, $http, $q, searchForm){
   $scope.removeDate = function(index){
     searchForm.removeDate(index);
   };
+
+  //function dedicated to the bounding box
 
   var filterLayers = function(bounds) {
   };
@@ -168,6 +169,7 @@ function CtrlSearch($scope, $route, $routeParams, $http, $q, searchForm){
 
       return filteredLayers.map(function(e){return e.layer;})[0];
     }
+
     filterLayers = function(bounds) {
       layers = layers.filter(function(b){
         if (b.bounds.equals(bounds)) {
@@ -270,6 +272,7 @@ function CtrlSearch($scope, $route, $routeParams, $http, $q, searchForm){
     });
 
 
+  //fonction pour récupérer les données sur les datapublishers et les datasets
   $http.get("/json/datapublisher.json").
     success(function(data, status) {
       $scope.dataPublisherList = data.map(function(taxa){ return {name:taxa.name, id:taxa.id};});
