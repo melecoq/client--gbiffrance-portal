@@ -273,18 +273,17 @@ function CtrlSearch($scope, $route, $routeParams, $http, $q, searchForm){
 
 
   //fonction pour récupérer les données sur les datapublishers et les datasets
-  $http.get("/json/datapublisher.json").
+  $http.get("http://localhost:9000/api/datapublisher").
     success(function(data, status) {
       $scope.dataPublisherList = data.map(function(taxa){ return {name:taxa.name, id:taxa.id};});
-
     }).
     error(function(data, status) {
       $scope.dataPublisherList =["Erreur" + status];
     });
 
-  $http.get("/json/dataset.json").
+  $http.get("http://localhost:9000/api/dataset").
     success(function(data, status) {
-      $scope.datasetList = data.map(function(taxa){ return {name:taxa.name, id:taxa.id, datapubliserId:taxa.datapubliserId};});
+      $scope.datasetList = data.map(function(taxa){ return {name:taxa.name, id:taxa.id, datapubliserId:taxa.dataPublisher.id};});
     }).
     error(function(data, status) {
       $scope.datasetList =["Erreur" + status];
