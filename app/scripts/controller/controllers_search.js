@@ -2,7 +2,7 @@
 
 /* Controllers */
 
-function CtrlSearch($scope, $route, $routeParams, $http, $q, searchForm){
+function CtrlSearch($scope, $route, $routeParams, $http, $q, searchForm, withMap){
   $scope.scientificNames=searchForm.getScientificName();
   $scope.vernacularNames=searchForm.getVernacularName();
   $scope.localities=searchForm.getLocality();
@@ -11,7 +11,6 @@ function CtrlSearch($scope, $route, $routeParams, $http, $q, searchForm){
   $scope.boundingBoxes=searchForm.getBoundingBoxes();
   $scope.datapublishers=searchForm.getDatapublisher();
   $scope.datasets=searchForm.getDataset();
-  $scope.dates=searchForm.getDate();
   $scope.georeferences = searchForm.getGeoreferencedData();
   $scope.datapublisherDataset = searchForm.getDatapublisherDataset();
 
@@ -29,6 +28,13 @@ function CtrlSearch($scope, $route, $routeParams, $http, $q, searchForm){
 
   $scope.latitudeFilter="<";
   $scope.longitudeFilter="<";
+
+  $scope.date = searchForm.getDate();
+  $scope.dateslider = {
+    special: ["NODATE", "PRE"],
+    regular: ["1900", "1910", "1920", "1930", "1940", "1950", "1960", "1970", "1980", "1990", "2000", "2010"],
+    values: searchForm.getDate() || {}
+  };
 
   // Function dedicated to the different filters of the research engine. 
   // Each function add its filter to the searchForm
@@ -95,8 +101,6 @@ function CtrlSearch($scope, $route, $routeParams, $http, $q, searchForm){
 
   // Update dataset field
   $scope.$watch("datapublisher", function(newValue, oldValue) {
-    console.log(newValue);
-    console.log($scope.datasetList);
     if (newValue) {
       $scope.datasetListShow = $scope.datasetList.filter(function(e){
         return e.dataPublisherId == newValue;
@@ -123,13 +127,14 @@ function CtrlSearch($scope, $route, $routeParams, $http, $q, searchForm){
     searchForm.removeDataset(index);
   }
 
-  $scope.addDate = function(){
-    searchForm.addDate($scope.date);
-    $scope.date = '';
+  $scope.setDate = function(){
+    searchForm.setDate($scope.dateslider.values.left, $scope.dateslider.values.right);
+    $scope.date = searchForm.getDate();
   };
 
-  $scope.removeDate = function(index){
-    searchForm.removeDate(index);
+  $scope.removeDate = function(){
+    searchForm.removeDate();
+    $scope.date = searchForm.getDate();
   };
 
   //function dedicated to the bounding box
@@ -154,7 +159,7 @@ function CtrlSearch($scope, $route, $routeParams, $http, $q, searchForm){
 
   // Function dedicated to the map for the bounding box
   // Only initiate the map on the map view
-  if ($route.current.templateUrl == "portal/search/search.geo.html") {
+  if (withMap) {
     var franceMetropolitan = new L.LatLng(47.0176, 2.3427);
 
     var map = L.map('search-map', {
@@ -309,4 +314,4 @@ function CtrlSearch($scope, $route, $routeParams, $http, $q, searchForm){
 }
 
 
-myApp.controller('CtrlSearch', ['$scope', '$route', '$routeParams', '$http', '$q', 'searchForm', CtrlSearch]);
+myApp.controller('CtrlSearch', ['$scope', '$route', '$routeParams', '$http', '$q', 'searchForm', 'withMap', CtrlSearch]);
