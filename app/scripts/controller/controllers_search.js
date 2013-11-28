@@ -95,6 +95,8 @@ function CtrlSearch($scope, $route, $routeParams, $http, $q, searchForm){
 
   // Update dataset field
   $scope.$watch("datapublisher", function(newValue, oldValue) {
+    console.log(newValue);
+    console.log($scope.datasetList);
     if (newValue) {
       $scope.datasetListShow = $scope.datasetList.filter(function(e){
         return e.dataPublisherId == newValue;
@@ -295,7 +297,7 @@ function CtrlSearch($scope, $route, $routeParams, $http, $q, searchForm){
 
   $http.get("http://localhost:9000/api/dataset").
     success(function(data, status) {
-      $scope.datasetList = data.map(function(taxa){ return {name:taxa.name, id:taxa.id, datapublisherId:taxa.dataPublisher.id};});
+      $scope.datasetList = data.map(function(taxa){ return {name:taxa.name, id:taxa.id, dataPublisherId:taxa.dataPublisher.id};});
       $scope.datasetListShow = $scope.datasetList;
     }).
     error(function(data, status) {
