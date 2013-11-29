@@ -7,17 +7,26 @@ var myApp = angular.module('portailApp', ['ngRoute', 'ui.bootstrap', 'ui.select2
 	.config(['$routeProvider', function($routeProvider) {
 		$routeProvider
 			.when('/', {templateUrl: 'portal/index.html'})
-			.when('/search/taxa',      {templateUrl: 'portal/search/search.taxa.html',       controller: 'CtrlSearch'})
-			.when('/search/geography', {templateUrl: 'portal/search/search.geo.html',        controller: 'CtrlSearch'})
-			.when('/search/dataset',   {templateUrl: 'portal/search/search.dataset.html',    controller: 'CtrlSearch'})
-			.when('/search/date',      {templateUrl: 'portal/search/search.date.html',       controller: 'CtrlSearch'})
+			.when('/search/taxa',      {templateUrl: 'portal/search/search.taxa.html',       controller: 'CtrlSearch', resolve: {
+				withMap: function () { return false; }
+			}})
+			.when('/search/geography', {templateUrl: 'portal/search/search.geo.html',        controller: 'CtrlSearch', resolve: {
+				withMap: function () { return true; }
+			}})
+			.when('/search/dataset',   {templateUrl: 'portal/search/search.dataset.html',    controller: 'CtrlSearch', resolve: {
+				withMap: function () { return false; }
+			}})
+			.when('/search/date',      {templateUrl: 'portal/search/search.date.html',       controller: 'CtrlSearch', resolve: {
+				withMap: function () { return false; }
+			}})
 			.when('/dataset',          {templateUrl: 'portal/dataset.html',                  controller: 'CtrlIndex'})
 			.when('/result/taxa',       {templateUrl: 'portal/result/result.taxa.html',       controller: 'CtrlResult'})
 			.when('/result/occurrence', {templateUrl: 'portal/result/result.occurrence.html', controller: 'CtrlResult'})
 			.when('/result/stat',       {templateUrl: 'portal/result/result.stat.html',       controller: 'CtrlResult'})
 			.when('/result/map',        {templateUrl: 'portal/result/result.map.html',        controller: 'CtrlResult'})
 			.otherwise({redirectTo: '/'});
-	}]);
+	}])
+	.directive('dateSlider', dateSlider);;
 
 myApp.factory('searchForm', function(){
 		//initialisation
@@ -29,7 +38,7 @@ myApp.factory('searchForm', function(){
 		var boundingBoxes = [];
 		var datapublishers = [];
 		var datasets = [];
-		var dates = [];
+		var date = undefined;
 		var georeferencedData = false;
 		var datapublisherDataset = [];
 
@@ -129,13 +138,22 @@ myApp.factory('searchForm', function(){
 
 		// Getter and setter for the date part
 		var getDate = function(){
-				return dates;
+			// return a shallow copy
+			if (date) {
+				return {
+					left: date.left,
+					right: date.right
+				};
+			}
 		}
-		var addDate = function(date){
-				dates.push({dateFormat:date});
+		var setDate = function(left, right){
+			date = {
+				left: left,
+				right: right
+			};
 		}
 		var removeDate = function(index){
-			dates.splice(index, 1);
+			date = undefined;
 		}
 
 		var buildJson = function(){
@@ -192,7 +210,7 @@ myApp.factory('searchForm', function(){
 
 			//Return for the date tab
 			getDate : getDate,
-			addDate : addDate,
+			setDate : setDate,
 			removeDate : removeDate,
 
 			buildJson : buildJson
