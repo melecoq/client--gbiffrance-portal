@@ -8,7 +8,7 @@
 				<dt class="label-taxa" ng-if="scientificNames.length>=1"> Nom scientifique </dt>
 				<dd> 
 					<span class="label-taxa" ng-repeat="name in scientificNames ">
-						{{name.text}} <i class="icon-remove" ng-click="removeScientificName($index)"></i> 
+						{{name.text}} - {{name.rank}} <i class="icon-remove" ng-click="removeScientificName($index)"></i> 
 					</span>
 				</dd>
 				<dt class="label-taxa" ng-if="vernacularNames.length>=1"> Nom commun </dt>

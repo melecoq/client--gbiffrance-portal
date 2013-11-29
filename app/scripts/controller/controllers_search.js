@@ -33,7 +33,19 @@ function CtrlSearch($scope, $route, $routeParams, $http, $q, searchForm){
   // Function dedicated to the different filters of the research engine. 
   // Each function add its filter to the searchForm
   $scope.addScientificName = function() {
-    searchForm.addScientificName($scope.scientificName);
+    var url = "http://api.gbif.org/v0.9/species/match?name="+$scope.scientificName;
+    var scientificNameRank = "no rank";
+    var scientificName = $scope.scientificName;
+
+    $http.get(url).
+      success(function(data, status) {
+        scientificNameRank = data.rank;
+        console.log(data.rank);
+        searchForm.addScientificName(scientificName, scientificNameRank);
+      }).
+      error(function(data, status) {
+        searchForm.addScientificName(scientificName, scientificNameRank);
+      });
     $scope.scientificName = '';
   };
 
@@ -95,8 +107,6 @@ function CtrlSearch($scope, $route, $routeParams, $http, $q, searchForm){
 
   // Update dataset field
   $scope.$watch("datapublisher", function(newValue, oldValue) {
-    console.log(newValue);
-    console.log($scope.datasetList);
     if (newValue) {
       $scope.datasetListShow = $scope.datasetList.filter(function(e){
         return e.dataPublisherId == newValue;

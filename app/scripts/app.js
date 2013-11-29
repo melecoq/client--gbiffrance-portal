@@ -37,8 +37,8 @@ myApp.factory('searchForm', function(){
 		var getScientificName = function(){
 			return scientificNames;
 		}
-		var addScientificName = function(name){
-			scientificNames.push({text:name});
+		var addScientificName = function(name, level){
+			scientificNames.push({text:name, rank:level});
 		}
 		var removeScientificName = function(index){
 			scientificNames.splice(index, 1);
@@ -140,10 +140,12 @@ myApp.factory('searchForm', function(){
 
 		var buildJson = function(){
 			var json = {
-				"scientificName": scientificNames.map(function(scientificName){
-					return scientificName.text;
+				"scientificNames": scientificNames.map(function(scientificName){
+					return {scientificName:scientificName.text, rank:scientificName.rank};
 				}),
-				"vernacularName":vernacularNames,
+				"vernacularName":vernacularNames.map(function(vernacularName){
+					return vernacularName.text;
+				}),
 				"locality":localities,
 				"latitude": latitudes,
 				"longitude":longitudes,
