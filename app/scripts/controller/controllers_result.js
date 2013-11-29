@@ -17,7 +17,7 @@ function CtrlResult($scope, searchForm, $http){
   $scope.isCollapsedRecherche = true;
   $scope.json = searchForm.buildJson();
 
-	$http.post("http://localhost:9000/api/search ", $scope.json)
+	$http.post("http://localhost:9000/api/search/occurrences", $scope.json)
 		.success(function(data, status) {
       		$scope.reponse = status;
           $scope.dataJson = data;

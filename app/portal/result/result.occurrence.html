@@ -1,5 +1,4 @@
 <div ng-include="'portal/result/result.inc.html'"></div>
-<pre> {{jsonData}}</pre>
 <div>
 	<table>
 		<tr>
@@ -8,13 +7,13 @@
 			<th>Type d'enregistrement</th>
 			<th>Date</th>
 		</tr>
-		<tr ng-repeat="occurrence in jsonData">
-			<td >{{occurrence.scientificName}}</td>
-			<td>lieu</td>
-			<td>speciment</td>
-			<td>23/11/2013</td>
+		<tr ng-repeat="occurrence in dataJson">
+			<td>{{occurrence.scientificName}} - Cat. {{occurrence.catalogNumber}} - Fournit par {{occurrence.datasetName}} </td>
+			<td>{{occurrence.country}}</td>
+			<td>{{occurrence.basisOfRecord}}</td>
+			<td>{{occurrence.year_interpreted}}</td>
 		</tr>
 
-		
+
 	</table>
 </div>
