@@ -51,7 +51,7 @@
 			<dt class="label-date" ng-if="date != undefined">Date</dt>
 			<dd> 
 				<span class="label-date" ng-if="date != undefined">
-					Entre {{date.left}} et {{date.right}}
+					Entre {{date.beginDate}} et {{date.endDate}}
 					<i class="icon-remove" ng-click="removeDate()"></i> 
 				</span>
 			</dd>
@@ -59,7 +59,7 @@
 		</dl>
 		<div class="form-horizontal">
 			<div class="control">
-				<a ng-href="#/result/taxa" class="btn">Rechercher</a>
+				<a ng-href="#/result/occurrence" class="btn">Rechercher</a>
 			</div>
 		</div>
 	</div>

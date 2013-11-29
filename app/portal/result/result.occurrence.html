@@ -1,18 +1,20 @@
 <div ng-include="'portal/result/result.inc.html'"></div>
-
+<pre> {{jsonData}}</pre>
 <div>
-		<table>
-			<tr>
-				<th></th>
-				<th>Location</th>
-				<th>Type d'enregistrement</th>
-				<th>Date</th>
-			</tr>
-			<tr>
-				<td>taxon</td>
-				<td>lieu</td>
-				<td>speciment</td>
-				<td>23/11/2013</td>
-			</tr>
-		</table>
-	</div>
+	<table>
+		<tr>
+			<th></th>
+			<th>Location</th>
+			<th>Type d'enregistrement</th>
+			<th>Date</th>
+		</tr>
+		<tr ng-repeat="occurrence in jsonData">
+			<td >{{occurrence.scientificName}}</td>
+			<td>lieu</td>
+			<td>speciment</td>
+			<td>23/11/2013</td>
+		</tr>
+
+		
+	</table>
+</div>

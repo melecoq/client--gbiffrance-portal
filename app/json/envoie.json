@@ -16,3 +16,27 @@
  		"geolocalizedData":false,
  		"boundingBox":[]
  }
+
+
+curl -XGET 'http://localhost:9200/gbiffrance-harvest/Occurrence/search?pretty=true' -d '{{
+ 	query:{
+  		"bool" : {
+    		"should" : [ {
+      			"term" : {
+        			"phylum_interpreted" : "Magnoliophyta"
+      			}
+    		}, {
+      			"term" : {
+        			"phylum" : "Magnoliophyta"
+      			}
+    		} ]
+  		}
+	}
+}'
+
+
+curl -XGET 'http://localhost:9200/gbiffrance-harvest/Occurrence/search?pretty=true' -d '{
+ 	"query":{
+		"match_all" : {}
+	}
+}'

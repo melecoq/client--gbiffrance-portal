@@ -141,15 +141,15 @@ myApp.factory('searchForm', function(){
 			// return a shallow copy
 			if (date) {
 				return {
-					left: date.left,
-					right: date.right
+					beginDate: date.beginDate,
+					endDate: date.endDate
 				};
 			}
 		}
 		var setDate = function(left, right){
 			date = {
-				left: left,
-				right: right
+				beginDate: left,
+				endDate: right
 			};
 		}
 		var removeDate = function(index){
@@ -168,7 +168,8 @@ myApp.factory('searchForm', function(){
 				"latitude": latitudes,
 				"longitude":longitudes,
 				"geolocalizedData" : georeferencedData,
-				"boundingBox" : boundingBoxes
+				"boundingBox" : boundingBoxes,
+				"date": date
 			}
 			return json;
 		}

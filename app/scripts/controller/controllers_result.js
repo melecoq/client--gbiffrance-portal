@@ -21,6 +21,7 @@ function CtrlResult($scope, searchForm, $http){
 		.success(function(data, status) {
       		$scope.reponse = status;
           $scope.dataJson = data;
+
     	})
     	.error(function(data, status) {
       		$scope.reponse = status;

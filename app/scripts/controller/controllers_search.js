@@ -31,8 +31,8 @@ function CtrlSearch($scope, $route, $routeParams, $http, $q, searchForm, withMap
 
   $scope.date = searchForm.getDate();
   $scope.dateslider = {
-    special: ["NODATE", "PRE"],
-    regular: ["1900", "1910", "1920", "1930", "1940", "1950", "1960", "1970", "1980", "1990", "2000", "2010"],
+    special: ["PAS DE DATE", "PRE"],
+    regular: ["1700", "1800", "1850", "1900", "1910", "1920", "1930", "1940", "1950", "1960", "1970", "1980", "1985", "1990", "1995", "2000", "2005", "2010", "2015", "2020"],
     values: searchForm.getDate() || {}
   };
 
@@ -46,7 +46,6 @@ function CtrlSearch($scope, $route, $routeParams, $http, $q, searchForm, withMap
     $http.get(url).
       success(function(data, status) {
         scientificNameRank = data.rank;
-        console.log(data.rank);
         searchForm.addScientificName(scientificName, scientificNameRank);
       }).
       error(function(data, status) {

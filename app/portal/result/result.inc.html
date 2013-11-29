@@ -41,10 +41,11 @@
 						{{name.datapublisher.name}}<span ng-if="name.dataset"> - {{name.dataset.name}} </span> <i class="icon-remove" ng-click="removeDataset($index)"></i> 
 					</span>
 				</dd>
-				<dt class="label-date"  ng-if="dates.length>=1"> Date </dt>
+				<dt class="label-date" ng-if="date != undefined">Date</dt>
 				<dd> 
-					<span class="label-date" ng-repeat="date in dates">
-						{{date.dateFormat}} <i class="icon-remove" ng-click="removeDate($index)"></i> 
+					<span class="label-date" ng-if="date != undefined">
+						Entre {{date.beginDate}} et {{date.endDate}}
+						<i class="icon-remove" ng-click="removeDate()"></i> 
 					</span>
 				</dd>
 				<dt class="label-geo"  ng-if="georeferences"> Données géoréférencées</dt>
@@ -64,11 +65,12 @@
 			</div>
 		</div>
 	</div>
+<!--	<pre> {{json | json}} </pre> 
+	<pre> {{dataJson | json}}</pre> -->
 
-	<pre> {{dataJson}}</pre>
 <div> 	
-	<a ng-href="#/result/taxa" class="btn">Taxon</a>
 	<a ng-href="#/result/occurrence" class="btn">Occurrence</a> 
+	<a ng-href="#/result/taxa" class="btn">Taxon</a>
 	<a ng-href="#/result/stat" class="btn">Statistiques</a>
 	<a ng-href="#/result/map" class="btn">Autres cartes</a>                 
 </div>
