@@ -8,12 +8,11 @@
 			<th>Date</th>
 		</tr>
 		<tr ng-repeat="occurrence in dataJson">
-			<td>{{occurrence.scientificName}} - Cat. {{occurrence.catalogNumber}} - Fournit par {{occurrence.datasetName}} </td>
+			
+			<td><a href="#/occurrence/{{occurrence.id}}">{{occurrence.scientificName}} - Cat. {{occurrence.catalogNumber}} - Fournit par {{occurrence.datasetName}}</a> </td>
 			<td>{{occurrence.country}}</td>
 			<td>{{occurrence.basisOfRecord}}</td>
 			<td>{{occurrence.year_interpreted}}</td>
 		</tr>
-
-
 	</table>
 </div>
