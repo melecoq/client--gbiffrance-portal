@@ -19,7 +19,6 @@ var myApp = angular.module('portailApp', ['ngRoute', 'ui.bootstrap', 'ui.select2
 			.when('/search/date',      {templateUrl: 'portal/search/search.date.html',       controller: 'CtrlSearch', resolve: {
 				withMap: function () { return false; }
 			}})
-
 			.when('/metadata',          	{templateUrl: 'portal/metadata/metadata.html',       	controller: 'CtrlMetadata'})
 			.when('/dataset/:id',			{templateUrl: 'portal/dataset/show.html',       	controller: 'CtrlDataset'})
 			.when('/datapublisher/:id', 	{templateUrl: 'portal/datapublisher/show.html',       	controller: 'CtrlDatapublisher'})
@@ -70,7 +69,7 @@ myApp.factory('config', function($q) {
 
 myApp.factory('searchForm', function(){
 		//initialisation
-		var scientificNames = [{text: "Magnoliophyta", rank:"PHYLUM"}];
+		var scientificNames = [];
 		var vernacularNames = [];
 		var localities = [];
 		var latitudes = [];
