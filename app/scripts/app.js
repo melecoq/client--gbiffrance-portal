@@ -20,18 +20,53 @@ var myApp = angular.module('portailApp', ['ngRoute', 'ui.bootstrap', 'ui.select2
 				withMap: function () { return false; }
 			}})
 			.when('/dataset',          {templateUrl: 'portal/dataset.html',                  controller: 'CtrlIndex'})
-			.when('/result/taxa',       {templateUrl: 'portal/result/result.taxa.html',       controller: 'CtrlResult'})
-			.when('/result/occurrence', {templateUrl: 'portal/result/result.occurrence.html', controller: 'CtrlResult'})
-			.when('/result/stat',       {templateUrl: 'portal/result/result.stat.html',       controller: 'CtrlResult'})
-			.when('/result/map',        {templateUrl: 'portal/result/result.map.html',        controller: 'CtrlResult'})
+			.when('/result/taxa',       {templateUrl: 'portal/result/result.taxa.html',       controller: 'CtrlResult', resolve: {
+				withMap: function () { return false; }
+			}})
+			.when('/result/occurrence', {templateUrl: 'portal/result/result.occurrence.html', controller: 'CtrlResult', resolve: {
+				withMap: function () { return true; }
+			}})
+			.when('/result/stat',       {templateUrl: 'portal/result/result.stat.html',       controller: 'CtrlResult', resolve: {
+				withMap: function () { return false; }
+			}})
+			.when('/result/map',        {templateUrl: 'portal/result/result.map.html',        controller: 'CtrlResult', resolve: {
+				withMap: function () { return false; }
+			}})
 			.when('/occurrence/:id',	{templateUrl: 'portal/occurrence/show.html', 			controller:'CtrlOccurrence'})
 			.otherwise({redirectTo: '/'});
 	}])
 	.directive('dateSlider', dateSlider);;
 
+myApp.factory('config', function($q) {
+
+	var defer = $q.defer();
+
+	defer.resolve({
+		map: {
+			franceMetropolitan: {
+				lat: 47.0176, 
+				lon: 2.3427,
+				zoom: 5
+			},
+			layers: {
+				default: {
+					url: 'http://{s}.tiles.mapbox.com/v3/examples.map-dev-fr/{z}/{x}/{y}.png',
+					options:{
+						attribution: 'Map data &copy; <a href="http://mapbox.org">MapBox</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
+    					maxZoom: 18
+    				}
+				}
+			}
+		}
+		
+	});
+
+	return defer.promise;
+});
+
 myApp.factory('searchForm', function(){
 		//initialisation
-		var scientificNames = [];
+		var scientificNames = [{text: "Magnoliophyta", rank:"PHYLUM"}];
 		var vernacularNames = [];
 		var localities = [];
 		var latitudes = [];
