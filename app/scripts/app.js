@@ -19,7 +19,11 @@ var myApp = angular.module('portailApp', ['ngRoute', 'ui.bootstrap', 'ui.select2
 			.when('/search/date',      {templateUrl: 'portal/search/search.date.html',       controller: 'CtrlSearch', resolve: {
 				withMap: function () { return false; }
 			}})
-			.when('/dataset',          {templateUrl: 'portal/dataset.html',                  controller: 'CtrlIndex'})
+
+			.when('/metadata',          	{templateUrl: 'portal/metadata/metadata.html',       	controller: 'CtrlMetadata'})
+			.when('/dataset/:id',			{templateUrl: 'portal/dataset/show.html',       	controller: 'CtrlDataset'})
+			.when('/datapublisher/:id', 	{templateUrl: 'portal/datapublisher/show.html',       	controller: 'CtrlDatapublisher'})
+			.when('/occurrence/:id',		{templateUrl: 'portal/occurrence/show.html', 			controller:'CtrlOccurrence'})
 			.when('/result/taxa',       {templateUrl: 'portal/result/result.taxa.html',       controller: 'CtrlResult', resolve: {
 				withMap: function () { return false; }
 			}})
@@ -165,8 +169,9 @@ myApp.factory('searchForm', function(){
 		var getDatapublisherDataset = function(){
 			return datapublisherDataset;
 		}
-		var addDatapublisherDataset = function(nameDatapublisher, nameDataset){
-			datapublisherDataset.push({datapublisher:nameDatapublisher, dataset:nameDataset});
+		var addDatapublisherDataset = function(nameDatapublisher, nameDataset, datasetId){
+			console.log(datasetId);
+			datapublisherDataset.push({datapublisher:nameDatapublisher, dataset:nameDataset, datasetId:datasetId});
 		}
 		var removeDataset = function(index){
 			datapublisherDataset.splice(index, 1);
@@ -205,8 +210,13 @@ myApp.factory('searchForm', function(){
 				"longitude":longitudes,
 				"geolocalizedData" : georeferencedData,
 				"boundingBox" : boundingBoxes,
-				"date": date
+				"date": date,
+				"dataset": datapublisherDataset.map(function(datasets){
+					return datasets.datasetId
+				})
 			}
+
+			console.log(json);
 			return json;
 		}
 

@@ -129,7 +129,7 @@ function CtrlSearch($scope, $route, $routeParams, $http, $q, config, searchForm,
       return dataset.id == $scope.dataset;
     })[0];
 
-    searchForm.addDatapublisherDataset(datapublisherName, datasetName);
+    searchForm.addDatapublisherDataset(datapublisherName, datasetName, $scope.dataset);
     $scope.datapublisher = '';
     $scope.dataset = '';
   }
