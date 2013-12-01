@@ -1,142 +1,85 @@
-<div>
-	<h1>{{jsonOccurrence.scientificName}}</h1>
-	<h2>correspond à {{jsonOccurrence.specificEpithet_interpreted}}</h2>
-	<h3>fournit par dataPublisher dans {{jsonOccurrence.datasetName}}</h3>
-</div>
+<article class="occurrence">
+	<section class="info">
+		<h1>{{jsonOccurrence.scientificName}}</h1>
+		<h2>correspond à {{jsonOccurrence.specificEpithet_interpreted}}</h2>
+		<h3>fournit par dataPublisher dans {{jsonOccurrence.datasetName}}</h3>
+	</section>
 
-<div>
-	<table>
-		<tr>
-			<th>Occurrence</th>
-		</tr>
-		<tr>
-			<th>Numéro de catalogue</th>
-			<td>{{jsonOccurrence.catalogNumber}}</td>
-		</tr>
-		<tr>
-			<th>Type d'enregistrement</th>
-			<td>{{jsonOccurrence.basisOfRecord}}</td>
-		</tr>
-		<tr>
-			<th>Préparation</th>
-			<td>{{jsonOccurrence.preparation}}</td>
-		</tr>
-		<tr>
-			<th>Date de collect</th>
-			<td>{{jsonOccurrence.eventDate}}</td>
-		</tr>
-	</table>
-</div>
-<div>
-	<table>
-		<tr>
-			<th>Enregistrement</th>
-		</tr>
-		<tr>
-			<th>Code de l'institution</th>
-			<td>{{jsonOccurrence.collectionCode}}</td>
-		</tr>
-		<tr>
-			<th>Code de la collection</th>
-			<td>{{jsonOccurrence.collectionCode}}</td>
-		</tr>
-		<tr>
-			<th>Fournisseur de données</th>
-			<td>Fournisseur de données</td>
-		</tr>
-		<tr>
-			<th>Jeu de données</th>
-			<td>{{jsonOccurrence.datasetName}}</td>
-		</tr>
-	</table>
-</div>
-<div>
-	<table>
-		<tr>
-			<th>Taxon</th>
-		</tr>
-		<tr>
-			<th>Royaume</th>
-			<td>{{jsonOccurrence.kingdom_interpreted}}</td>
-		</tr>
-		<tr>
-			<th>Domaine</th>
-			<td>{{jsonOccurrence.phylum_interpreted}}</td>
-		</tr>
-		<tr>
-			<th>Classe</th>
-			<td>{{jsonOccurrence.classs_interpreted}}</td>
-		</tr>
-		<tr>
-			<th>Ordre</th>
-			<td>{{jsonOccurrence.orderr_interpreted}}</td>
-		</tr>
-		<tr>
-			<th>Famille</th>
-			<td>{{jsonOccurrence.family_interpreted}}</td>
-		</tr>
-		<tr>
-			<th>Genus</th>
-			<td>{{jsonOccurrence.genus_interpreted}}</td>
-		</tr>
-		<tr>
-			<th>Nom scientifique</th>
-			<td>{{jsonOccurrence.scientificName}}</td>
-		</tr>
-		<tr>
-			<th>Statut du taxon</th>
-			<td>{{jsonOccurrence.taxonStatus}}</td>
-		</tr>
-		<tr>
-			<th>Identifiant API GBIF</th>
-			<td>{{jsonOccurrence.ecatConceptId}}</td>
-		</tr>
-	</table>
-</div>
-<div>
-	<table>
-		<tr>
-			<th>Identification</th>
-		</tr>
-		<tr>
-			<th>Identifié par</th>
-			<td>{{jsonOccurrence.identifiedBy}}</td>
-		</tr>
-		<tr>
-			<th>Remarque</th>
-			<td>{{jsonOccurrence.identificationRemarks}}</td>
-		</tr>
-	</table>
-</div>
-<div>
-	<table>
-		<tr>
-			<th>Lieu</th>
-		</tr>
-		<tr>
-			<th>Pays</th>
-			<td>{{jsonOccurrence.countryCode}} - {{jsonOccurrence.country}}</td>
-		</tr>
-		<tr>
-			<th>Région</th>
-			<td>{{jsonOccurrence.stateProvince}}</td>
-		</tr>
-		<tr>
-			<th>Département</th>
-			<td>{{jsonOccurrence.county}}</td>
-		</tr>
-		<tr>
-			<th>Latitude - Longitude</th>
-			<td>{{jsonOccurrence.decimalLatitude}} - {{jsonOccurrence.decimalLongitude}}</td>
-		</tr>
-		<tr>
-			<th>Altitude</th>
-			<td>{{jsonOccurrence.decimalLatitude}}</td>
-		</tr>
-		<tr>
-			<th>Profondeur</th>
-			<td>{{jsonOccurrence.verbatimDepth}}</td>
-		</tr>
-	</table>
-</div>
+	<section class="details">
+		<h2>Occurrence</h2>
 
+		<dl>
+			<dt>Numéro de catalogue</dt>
+			<dd>{{jsonOccurrence.catalogNumber}}</dd>
+			<dt>Type d'enregistrement</dt>
+			<dd>{{jsonOccurrence.basisOfRecord}}</dd>
+			<dt>Préparation</dt>
+			<dd>{{jsonOccurrence.preparation}}</dd>
+			<dt>Date de collection</dt>
+			<dd>{{jsonOccurrence.eventDate}}</dd>
+		</dl>
+	</section>
+	<section class="source">
+		<h2>Enregistrement</h2>
+		<dl>
+			<dt>Code de l'institution</dt>
+			<dd>{{jsonOccurrence.collectionCode}}</dd>
+			<dt>Code de la collection</dt>
+			<dd>{{jsonOccurrence.collectionCode}}</dd>
+			<dt>Fournisseur de données</dt>
+			<dd>Fournisseur de données</dd>
+			<dt>Jeu de données</dt>
+			<dd>{{jsonOccurrence.datasetName}}</dd>
+		</dl>
+	</section>
+	<section class="taxonomy">
+		<h2>Taxon</h2>
+		<dl>
+			<dt>Royaume</dt>
+			<dd>{{jsonOccurrence.kingdom_interpreted}}</dd>
+			<dt>Domaine</dt>
+			<dd>{{jsonOccurrence.phylum_interpreted}}</dd>
+			<dt>Classe</dt>
+			<dd>{{jsonOccurrence.classs_interpreted}}</dd>
+			<dt>Ordre</dt>
+			<dd>{{jsonOccurrence.orderr_interpreted}}</dd>
+			<dt>Famille</dt>
+			<dd>{{jsonOccurrence.family_interpreted}}</dd>
+			<dt>Genus</dt>
+			<dd>{{jsonOccurrence.genus_interpreted}}</dd>
+			<dt>Nom scientifique</dt>
+			<dd>{{jsonOccurrence.scientificName}}</dd>
+			<dt>Statut du taxon</dt>
+			<dd>{{jsonOccurrence.taxonStatus}}</dd>
+			<dt>Identifiant API GBIF</dt>
+			<dd>{{jsonOccurrence.ecatConceptId}}</dd>
+		</dl>
+	</section>
+	<section class="identification">
+		<h2>Identification</h2>
+		<dl>
+			<dt>Identifié par</dt>
+			<dd>{{jsonOccurrence.identifiedBy}}</dd>
+			<dt>Remarque</dt>
+			<dd>{{jsonOccurrence.identificationRemarks}}</dd>
+		</dl>
+	</section>
+	<section class="location">
+		<h2>Lieu</h2>
+		<dl>
+			<dt>Pays</dt>
+			<dd>{{jsonOccurrence.countryCode}} - {{jsonOccurrence.country}}</dd>
+			<dt>Région</dt>
+			<dd>{{jsonOccurrence.stateProvince}}</dd>
+			<dt>Département</dt>
+			<dd>{{jsonOccurrence.county}}</dd>
+			<dt>Latitude - Longitude</dt>
+			<dd>{{jsonOccurrence.decimalLatitude}} - {{jsonOccurrence.decimalLongitude}}</dd>
+			<dt>Altitude</dt>
+			<dd>{{jsonOccurrence.decimalLatitude}}</dd>
+			<dt>Profondeur</dt>
+			<dd>{{jsonOccurrence.verbatimDepth}}</dd>
+		</dl>
+	</section>
+
+</article>
