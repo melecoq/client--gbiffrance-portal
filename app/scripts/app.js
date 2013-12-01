@@ -19,12 +19,14 @@ var myApp = angular.module('portailApp', ['ngRoute', 'ui.bootstrap', 'ui.select2
 			.when('/search/date',      {templateUrl: 'portal/search/search.date.html',       controller: 'CtrlSearch', resolve: {
 				withMap: function () { return false; }
 			}})
-			.when('/dataset',          {templateUrl: 'portal/dataset.html',                  controller: 'CtrlIndex'})
-			.when('/result/taxa',       {templateUrl: 'portal/result/result.taxa.html',       controller: 'CtrlResult'})
-			.when('/result/occurrence', {templateUrl: 'portal/result/result.occurrence.html', controller: 'CtrlResult'})
-			.when('/result/stat',       {templateUrl: 'portal/result/result.stat.html',       controller: 'CtrlResult'})
-			.when('/result/map',        {templateUrl: 'portal/result/result.map.html',        controller: 'CtrlResult'})
-			.when('/occurrence/:id',	{templateUrl: 'portal/occurrence/show.html', 			controller:'CtrlOccurrence'})
+			.when('/metadata',          	{templateUrl: 'portal/metadata/metadata.html',       	controller: 'CtrlMetadata'})
+			.when('/dataset/:id',			{templateUrl: 'portal/dataset/show.html',       	controller: 'CtrlDataset'})
+			.when('/datapublisher/:id', 	{templateUrl: 'portal/datapublisher/show.html',       	controller: 'CtrlDatapublisher'})
+			.when('/result/taxa',       	{templateUrl: 'portal/result/result.taxa.html',       	controller: 'CtrlResult'})
+			.when('/result/occurrence', 	{templateUrl: 'portal/result/result.occurrence.html', 	controller: 'CtrlResult'})
+			.when('/result/stat',       	{templateUrl: 'portal/result/result.stat.html',       	controller: 'CtrlResult'})
+			.when('/result/map',        	{templateUrl: 'portal/result/result.map.html',        	controller: 'CtrlResult'})
+			.when('/occurrence/:id',		{templateUrl: 'portal/occurrence/show.html', 			controller:'CtrlOccurrence'})
 			.otherwise({redirectTo: '/'});
 	}])
 	.directive('dateSlider', dateSlider);;
