@@ -2,7 +2,7 @@
 
 /* Controllers */
 
-function CtrlSearch($scope, $route, $routeParams, $http, $q, searchForm, withMap){
+function CtrlSearch($scope, $route, $routeParams, $http, $q, config, searchForm, withMap){
   $scope.scientificNames=searchForm.getScientificName();
   $scope.vernacularNames=searchForm.getVernacularName();
   $scope.localities=searchForm.getLocality();
@@ -171,95 +171,102 @@ function CtrlSearch($scope, $route, $routeParams, $http, $q, searchForm, withMap
   // Function dedicated to the map for the bounding box
   // Only initiate the map on the map view
   if (withMap) {
-    var franceMetropolitan = new L.LatLng(47.0176, 2.3427);
+    config.then(function(config){
 
-    var map = L.map('search-map', {
-      zoomControl: true,
-      dragging: false,
-      center: franceMetropolitan,
-      zoom: 5
-    });
+      var franceMetropolitan = new L.LatLng(
+        config.map.franceMetropolitan.lat,
+        config.map.franceMetropolitan.lon);
 
-    var layers = [];
-    var addBoundingBox = function(bounds) {
-      var layer = L.rectangle(bounds, {
-        color: '#d62727',
-        fill: false
-      })
-      layer.addTo(map);
-
-      // Store layers in case we want to remove them
-      layers.push({bounds: bounds, layer: layer});
-    }
-
-    lookupLayers = function(bounds) {
-      var filteredLayers = layers.filter(function(b) {
-        return b.bounds.equals(bounds);
+      var map = L.map('search-map', {
+        zoomControl: true,
+        dragging: false,
+        center: franceMetropolitan,
+        zoom: config.map.franceMetropolitan.zoom
       });
 
-      return filteredLayers.map(function(e){return e.layer;})[0];
-    }
+      var layers = [];
+      var addBoundingBox = function(bounds) {
+        var layer = L.rectangle(bounds, {
+          color: '#d62727',
+          fill: false
+        })
+        layer.addTo(map);
 
-    filterLayers = function(bounds) {
-      layers = layers.filter(function(b){
-        if (b.bounds.equals(bounds)) {
-          map.removeLayer(b.layer);
-          return false;
-        } else {
-          return true;
-        }
-      });
-    };
+        // Store layers in case we want to remove them
+        layers.push({bounds: bounds, layer: layer});
+      }
 
-    // Bounding box controls
-    var drawControl = new L.Control.Draw({
-      position: 'topleft',
-      draw: {
-        // Disable all controls
-        polyline: false,
-        polygon: false,
-        marker: false,
-        circle: false,
-        // Activate rectangle
-        rectangle: {
-          allowIntersection: false,
-          drawError: {
-            color: '#b00b00',
-            timeout: 1000
-          },
-          shapeOptions: {
-            color: '#d62727',
-            clickable: false
+      lookupLayers = function(bounds) {
+        var filteredLayers = layers.filter(function(b) {
+          return b.bounds.equals(bounds);
+        });
+
+        return filteredLayers.map(function(e){return e.layer;})[0];
+      }
+
+      filterLayers = function(bounds) {
+        layers = layers.filter(function(b){
+          if (b.bounds.equals(bounds)) {
+            map.removeLayer(b.layer);
+            return false;
+          } else {
+            return true;
+          }
+        });
+      };
+
+      // Bounding box controls
+      var drawControl = new L.Control.Draw({
+        position: 'topleft',
+        draw: {
+          // Disable all controls
+          polyline: false,
+          polygon: false,
+          marker: false,
+          circle: false,
+          // Activate rectangle
+          rectangle: {
+            allowIntersection: false,
+            drawError: {
+              color: '#b00b00',
+              timeout: 1000
+            },
+            shapeOptions: {
+              color: '#d62727',
+              clickable: false
+            }
           }
         }
-      }
-    });
+      });
 
-    map.addControl(drawControl);
-    map.on('draw:created', function (e) {
-      var type = e.layerType,
-          layer = e.layer;
+      map.addControl(drawControl);
+      map.on('draw:created', function (e) {
+        var type = e.layerType,
+            layer = e.layer;
 
-      // Only add rectangle layer types
-      if (type === 'rectangle') {
-        // Store bounding box in service
-        searchForm.addBoundingBox(layer.getBounds());
+        // Only add rectangle layer types
+        if (type === 'rectangle') {
+          // Store bounding box in service
+          searchForm.addBoundingBox(layer.getBounds());
 
-        addBoundingBox(layer.getBounds());
-        // Trigger the reload of layers
-        $scope.$digest();
-      }
-    });
+          addBoundingBox(layer.getBounds());
+          // Trigger the reload of layers
+          $scope.$digest();
+        }
+      });
 
-    // Fond de carte
-    L.tileLayer('http://{s}.tiles.mapbox.com/v3/examples.map-dev-fr/{z}/{x}/{y}.png', {
-        attribution: 'Map data &copy; <a href="http://mapbox.org">MapBox</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
-        maxZoom: 18,
+      // Fond de carte
+      var options = {};
+      angular.extend(options, config.map.layers.default.options);
+      angular.extend(options, {
         noWrap: true
-    }).addTo(map);
+      });
+      L.tileLayer(config.map.layers.default.url, options).addTo(map);
 
-    $scope.boundingBoxes.map(function(e){
-      addBoundingBox(e.bounds);
+      $scope.boundingBoxes.map(function(e){
+        addBoundingBox(e.bounds);
+      });
+
     });
   }
 
@@ -325,4 +332,4 @@ function CtrlSearch($scope, $route, $routeParams, $http, $q, searchForm, withMap
 }
 
 
-myApp.controller('CtrlSearch', ['$scope', '$route', '$routeParams', '$http', '$q', 'searchForm', 'withMap', CtrlSearch]);
+myApp.controller('CtrlSearch', ['$scope', '$route', '$routeParams', '$http', '$q', 'config', 'searchForm', 'withMap', CtrlSearch]);
