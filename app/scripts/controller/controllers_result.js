@@ -8,23 +8,23 @@ function CtrlResult($scope, searchForm, $http, config, withMap){
   $scope.localities=searchForm.getLocality();
   $scope.latitudes=searchForm.getLatitude();
   $scope.longitudes=searchForm.getLongitude();
-  $scope.boundingBoxes=searchForm.getBoundingBoxes(); 
+  $scope.boundingBoxes=searchForm.getBoundingBoxes();
   $scope.dates=searchForm.getDate();
-	$scope.georeferences = searchForm.getGeoreferencedData();
+  $scope.georeferences = searchForm.getGeoreferencedData();
   $scope.datapublisherDataset = searchForm.getDatapublisherDataset();
   $scope.isCollapsedRecherche = true;
   $scope.json = searchForm.buildJson();
 
-	$http.post("http://localhost:9000/api/search/occurrences", $scope.json)
-		.success(function(data, status) {
-      		$scope.reponse = status;
-          $scope.dataJson = data;
+  $http.post('http://localhost:9000/api/search/occurrences', $scope.json)
+    .success(function(data, status) {
+      $scope.reponse = status;
+      $scope.dataJson = data;
 
-    	})
-    	.error(function(data, status) {
-      		$scope.reponse = status;
-          $scope.dataJson = data;
-    	});
+    })
+    .error(function(data, status) {
+      $scope.reponse = status;
+      $scope.dataJson = data;
+  	});
 
   $scope.removeScientificName = function(index){
     searchForm.removeScientificName(index);
@@ -40,11 +40,11 @@ function CtrlResult($scope, searchForm, $http, config, withMap){
 
   $scope.removeLatitude = function(index){
     searchForm.removeLatitude(index);
-  }; 
+  };
 
   $scope.removeLongitude= function(index){
     searchForm.removeLongitude(index);
-  }; 
+  };
 
   $scope.removeDataset = function(index){
     searchForm.removeDataset(index);
@@ -89,14 +89,14 @@ function CtrlResult($scope, searchForm, $http, config, withMap){
         var nwCoord = map.unproject(nwPoint, zoom, true);
         var seCoord = map.unproject(sePoint, zoom, true);
 
-        $http.post("http://localhost:9000/api/search/occurrences/tile/"
-          + nwCoord.lat + "/"
-          + nwCoord.lng + "/"
-          + seCoord.lat + "/"
+        $http.post('http://localhost:9000/api/search/occurrences/tile/'
+          + nwCoord.lat + '/'
+          + nwCoord.lng + '/'
+          + seCoord.lat + '/'
           + seCoord.lng, $scope.json)
           .success(function(data, status, h) {
             var content = {
-              max: parseInt(h("X-Max-Hits") || 0, 10) * 2,
+              max: parseInt(h('X-Max-Hits') || 0, 10) * 2,
               data: data.filter(function(e) {return e.count > 0;}).map(function(e) {
                 var x = (e.lng - nwCoord.lng) / (seCoord.lng - nwCoord.lng) * $(canvas).width();
                 var y = $(canvas).height() - (e.lat - seCoord.lat ) / (nwCoord.lat - seCoord.lat) * $(canvas).height();
@@ -109,20 +109,20 @@ function CtrlResult($scope, searchForm, $http, config, withMap){
               })
             };
 
-            var doc = $("<div></div>");
-            doc.attr("style", $(canvas).attr("style"));
-            doc.attr("class", $(canvas).attr("class"));
+            var doc = $('<div></div>');
+            doc.attr('style', $(canvas).attr('style'));
+            doc.attr('class', $(canvas).attr('class'));
             doc.height($(canvas).height());
             doc.width($(canvas).width());
-            doc.attr("data-nw", nwCoord);
-            doc.attr("data-se", seCoord);
+            doc.attr('data-nw', nwCoord);
+            doc.attr('data-se', seCoord);
             var elem = $(canvas).replaceWith(doc);
 
             var heatmap = h337.create({
               element: doc[0],
               radius: 30,
               opacity: 100,
-              "visible": true
+              'visible': true
             });
 
             heatmap.store.setDataSet(content);

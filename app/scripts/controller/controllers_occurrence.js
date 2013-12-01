@@ -4,15 +4,15 @@
 
 function CtrlOccurrence($scope, $routeParams, $http){
 
-	$http.get("http://localhost:9000/api/occurrence/" + $routeParams.id)
+	$http.get('http://localhost:9000/api/occurrence/' + $routeParams.id)
 		.success(function(data, status) {
-      		$scope.reponse = status;
-          	$scope.jsonOccurrence = data;
-    	})
-    	.error(function(data, status) {
-      		$scope.reponse = status;
-          	$scope.jsonOccurrence = data;
-    	});
+			$scope.reponse = status;
+			$scope.jsonOccurrence = data;
+		})
+		.error(function(data, status) {
+			$scope.reponse = status;
+			$scope.jsonOccurrence = data;
+		});
 
 }
 

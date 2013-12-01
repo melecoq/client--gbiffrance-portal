@@ -23,23 +23,23 @@ var dateSlider = function() {
 				var left = values.left || specialDates[0] || regularDates[0];
 				var right = values.right || regularDates[regularDates.length - 1] || specialDates[specialDates.length - 1];
 
-				
 				var li = [];
 				angular.forEach(specialDates, function(el){
-					this.push("<li class=\"noyear\">" + el + "</li>");
+					this.push('<li class="noyear">' + el + '</li>');
 				}, li);
 				angular.forEach(regularDates, function(el){
-					this.push("<li class=\"year\">" + el + "</li>");
+					this.push('<li class="year">' + el + '</li>');
 				}, li);
 
-			    return '<div class="slider">\
+				/*jshint multistr: true */
+				return '<div class="slider">\
 				    <div class="tipsy"><span></span><div class="arrow"></div></div>\
 				    <div class="time">\
 				        <div class="trail">\
 				            <div class="handle left"></div>\
 				            <div class="handle right"></div>\
 				        </div>\
-				        <ul class="years">' + li.join("") + '</ul>\
+				        <ul class="years">' + li.join('') + '</ul>\
 				        <div class="range">\
 				            <div class="line"></div>\
 				        </div>\
@@ -51,6 +51,7 @@ var dateSlider = function() {
 				</div>';
 			}
 
+			/*jshint unused: vars */
 			scope.$watch(dates, function(dates, oldValue) {
 				if (dates) {
 					var specialDates = dates.special || [];
@@ -59,35 +60,35 @@ var dateSlider = function() {
 					var left = values.left || specialDates[0] || regularDates[0];
 					var right = values.right || regularDates[regularDates.length - 1] || specialDates[specialDates.length - 1];
 
-					element.html(template(newValue));
-					$(element).dateSlider({	
-				        onChange: function (l, r) {
-				            scope.ngModel.values.left = l;
-				            scope.ngModel.values.right = r;
-				        },
-				        initial: {
-				        	left: left,
-				        	right: right
-				        }
-				    });
+					element.html(template(dates));
+					$(element).dateSlider({
+						onChange: function (l, r) {
+							scope.ngModel.values.left = l;
+							scope.ngModel.values.right = r;
+						},
+						initial: {
+							left: left,
+							right: right
+						}
+					});
 				}
-			})
+			});
 
 			element.html(template(dates));
 
-            scope.ngModel.values.left = left;
-            scope.ngModel.values.right = right;
+			scope.ngModel.values.left = left;
+			scope.ngModel.values.right = right;
 
-			$(element).dateSlider({	
-		        onChange: function (l, r) {
-		            scope.ngModel.values.left = l;
-		            scope.ngModel.values.right = r;
-		        },
-		        initial: {
-		        	left: left,
-		        	right: right
-		        }
-		    });
+			$(element).dateSlider({
+				onChange: function (l, r) {
+					scope.ngModel.values.left = l;
+					scope.ngModel.values.right = r;
+				},
+				initial: {
+					left: left,
+					right: right
+				}
+			});
 		}
-    };
+	};
 };
