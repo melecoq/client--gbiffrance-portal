@@ -132,8 +132,9 @@ myApp.factory('searchForm', function(){
 		var getDatapublisherDataset = function(){
 			return datapublisherDataset;
 		}
-		var addDatapublisherDataset = function(nameDatapublisher, nameDataset){
-			datapublisherDataset.push({datapublisher:nameDatapublisher, dataset:nameDataset});
+		var addDatapublisherDataset = function(nameDatapublisher, nameDataset, datasetId){
+			console.log(datasetId);
+			datapublisherDataset.push({datapublisher:nameDatapublisher, dataset:nameDataset, datasetId:datasetId});
 		}
 		var removeDataset = function(index){
 			datapublisherDataset.splice(index, 1);
@@ -172,8 +173,13 @@ myApp.factory('searchForm', function(){
 				"longitude":longitudes,
 				"geolocalizedData" : georeferencedData,
 				"boundingBox" : boundingBoxes,
-				"date": date
+				"date": date,
+				"dataset": datapublisherDataset.map(function(datasets){
+					return datasets.datasetId
+				})
 			}
+
+			console.log(json);
 			return json;
 		}
 
