@@ -1,0 +1,16 @@
+<div class="hero-unit"> PLOP PLOP PLOP AJOUT CARTE PERE</div>
+
+<accordion close-others="false">
+	<accordion-group ng-repeat="datapublisher in jsonDatapublisher" is-open="isopen">
+	<accordion-heading>
+	          {{datapublisher.name}}
+	          <i class="pull-right" ng-class="{'icon-chevron-down': isopen, 'icon-chevron-right': !isopen}"></i>
+	</accordion-heading>
+		<table>
+			<a href="#/datapublisher/{{datapublisher.id}}">Aller sur la page de {{datapublisher.name}}</a> 
+			<tr ng-repeat="dataset in jsonDataset|filter: {dataPublisher.id : datapublisher.id}">
+				<td><a href="#/dataset/{{dataset.id}}">{{dataset.title}}</a></td>
+			</tr>
+		</table>
+	</accordion-group>
+</accordion>
