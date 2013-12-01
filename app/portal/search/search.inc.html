@@ -42,11 +42,16 @@
 					<input ng-if="inputBoundingBoxName" ng-model="box.name" value="{{box.name}}" />
 				</span>
 			</dd>
-			<dt class="label-dataset" ng-if="datapublisherDataset.length>=1"> Jeux de données </dt>
+			<dt class="label-dataset" ng-if="!datapublisherDataset.empty()">Jeux de données</dt>
 			<dd>
-				<span class="label-dataset"  ng-repeat="name in datapublisherDataset">
-					{{name.datapublisher.name}}<span ng-if="name.dataset"> - {{name.dataset.name}} </span> <i class="icon-remove" ng-click="removeDataset($index)"></i> 
-				</span>
+				<div ng-repeat="(dpId, dp) in datapublisherDataset">
+					<span class="label-dataset" ng-if="dp.includeAll">
+						{{dp.name}} <i class="icon-remove" ng-click="removeDatapublisher(dpId)"></i> 
+					</span>
+					<span class="label-dataset" ng-if="dp.includeAll == false" ng-repeat="(dsId, ds) in dp.datasets">
+						{{dp.name}} - {{ds.name}}<i class="icon-remove" ng-click="removeDataset(dsId)"></i>
+					</span>
+				</div>
 			</dd>
 			<dt class="label-date" ng-if="date != undefined">Date</dt>
 			<dd> 

@@ -80,7 +80,11 @@ myApp.factory('searchForm', function(){
 		var datasets = [];
 		var date = undefined;
 		var georeferencedData = false;
-		var datapublisherDataset = [];
+		var datapublisherDataset = {empty: function() {
+			var self = this;
+
+			return Object.keys(self).length <= 1;
+		}};
 
 		// Getter and setter for the taxa part
 		var getScientificName = function(){
@@ -150,31 +154,43 @@ myApp.factory('searchForm', function(){
 		}
 
 		// Getter and setter for the dataset part
-		//DEPRECIED
-		var getDatapublisher = function(){
-				return datapublishers;
-		}
-		//DEPRECIED
-		var addDatapublisher = function(name){
-				datapublishers.push({text:name});
-		}
-		//DEPRECIED
-		var getDataset = function(){
-				return datasets;
-		}
-		//DEPRECIED
-		var addDataset = function(name){
-				datasets.push({text:name});
-		}
 		var getDatapublisherDataset = function(){
 			return datapublisherDataset;
 		}
-		var addDatapublisherDataset = function(nameDatapublisher, nameDataset, datasetId){
-			console.log(datasetId);
-			datapublisherDataset.push({datapublisher:nameDatapublisher, dataset:nameDataset, datasetId:datasetId});
+		var addDatapublisher = function(datapublisherId, datapublisherName, datasets) {
+			var datapublisher = datapublisherDataset[datapublisherId] || {};
+			datapublisher.id = datapublisherId;
+			datapublisher.includeAll = true;
+			datapublisher.name = datapublisherName;
+			datapublisher.datasets = {};
+			datasets.map(function(el) {
+				datapublisher.datasets[el.id] = el;
+			});
+
+			datapublisherDataset[datapublisherId] = datapublisher;
 		}
-		var removeDataset = function(index){
-			datapublisherDataset.splice(index, 1);
+		var addDataset = function(datapublisherId, datapublisherName, datasetId, datasetName) {
+			var datapublisher = datapublisherDataset[datapublisherId] || {};
+			datapublisher.datasets = datapublisher.datasets || {};
+
+			datapublisher.id = datapublisherId;
+			datapublisher.includeAll = datapublisher.includeAll || false;
+			datapublisher.name = datapublisherName;
+			datapublisher.datasets[datasetId] = datasetName;
+
+			datapublisherDataset[datapublisherId] = datapublisher;
+		}
+		var removeDataset = function(id){
+			for (var key in datapublisherDataset) {
+				if (typeof(datapublisherDataset[key]) == "object") {
+					delete datapublisherDataset[key].datasets[id];
+					if (Object.keys(datapublisherDataset[key].datasets).length == 0 && !datapublisherDataset[key].includeAll)
+						delete datapublisherDataset[key];
+				}
+			}
+		}
+		var removeDatapublisher = function(id){
+			delete datapublisherDataset[id];
 		}
 
 		// Getter and setter for the date part
@@ -198,6 +214,16 @@ myApp.factory('searchForm', function(){
 		}
 
 		var buildJson = function(){
+			var dsets = [];
+
+			for (var key in datapublisherDataset) {
+				if (typeof(datapublisherDataset[key]) == "object") {
+					for (var subkey in datapublisherDataset[key].datasets) {
+						dsets.push(subkey);
+					}
+				}
+			}
+
 			var json = {
 				"scientificNames": scientificNames.map(function(scientificName){
 					return {scientificName:scientificName.text, rank:scientificName.rank};
@@ -211,12 +237,8 @@ myApp.factory('searchForm', function(){
 				"geolocalizedData" : georeferencedData,
 				"boundingBox" : boundingBoxes,
 				"date": date,
-				"dataset": datapublisherDataset.map(function(datasets){
-					return datasets.datasetId
-				})
+				"dataset": dsets
 			}
-
-			console.log(json);
 			return json;
 		}
 
@@ -247,13 +269,11 @@ myApp.factory('searchForm', function(){
 			removeBoundingBox: removeBoundingBox,
 
 			// Return for the dataset tab
-			getDatapublisher : getDatapublisher,
-			addDatapublisher : addDatapublisher,
-			getDataset : getDataset,
-			addDataset : addDataset,
-			addDatapublisherDataset:addDatapublisherDataset,
 			getDatapublisherDataset:getDatapublisherDataset,
+			addDatapublisher : addDatapublisher,
+			addDataset: addDataset,
 			removeDataset : removeDataset, 
+			removeDatapublisher : removeDatapublisher, 
 
 			//Return for the date tab
 			getDate : getDate,

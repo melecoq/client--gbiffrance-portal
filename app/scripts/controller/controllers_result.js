@@ -8,9 +8,7 @@ function CtrlResult($scope, searchForm, $http, config, withMap){
   $scope.localities=searchForm.getLocality();
   $scope.latitudes=searchForm.getLatitude();
   $scope.longitudes=searchForm.getLongitude();
-  $scope.boundingBoxes=searchForm.getBoundingBoxes();
-  $scope.datapublishers=searchForm.getDatapublisher();
-  $scope.datasets=searchForm.getDataset();
+  $scope.boundingBoxes=searchForm.getBoundingBoxes(); 
   $scope.dates=searchForm.getDate();
 	$scope.georeferences = searchForm.getGeoreferencedData();
   $scope.datapublisherDataset = searchForm.getDatapublisherDataset();

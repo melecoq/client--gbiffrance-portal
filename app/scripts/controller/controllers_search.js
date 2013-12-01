@@ -9,8 +9,6 @@ function CtrlSearch($scope, $route, $routeParams, $http, $q, config, searchForm,
   $scope.latitudes=searchForm.getLatitude();
   $scope.longitudes=searchForm.getLongitude();
   $scope.boundingBoxes=searchForm.getBoundingBoxes();
-  $scope.datapublishers=searchForm.getDatapublisher();
-  $scope.datasets=searchForm.getDataset();
   $scope.georeferences = searchForm.getGeoreferencedData();
   $scope.datapublisherDataset = searchForm.getDatapublisherDataset();
 
@@ -122,20 +120,32 @@ function CtrlSearch($scope, $route, $routeParams, $http, $q, config, searchForm,
   });
 
   $scope.addDatapublisherDataset = function(){
-    var datapublisherName = $scope.dataPublisherList.filter(function(datapublisher){
-      return datapublisher.id == $scope.datapublisher;
-    })[0];
     var datasetName = $scope.datasetList.filter(function(dataset){
       return dataset.id == $scope.dataset;
     })[0];
+    var datapublisher = $scope.dataPublisherList.filter(function(datapublisher){
+      return datapublisher.id == $scope.datapublisher;
+    })[0] || $scope.dataPublisherList.filter(function(datapublisher){
+      return datapublisher.id == datasetName.dataPublisherId;
+    })[0];
 
-    searchForm.addDatapublisherDataset(datapublisherName, datasetName, $scope.dataset);
+    if (datasetName) {
+      searchForm.addDataset(datapublisher.id, datapublisher.name, $scope.dataset, datasetName);
+    } else {
+      searchForm.addDatapublisher(datapublisher.id, datapublisher.name, $scope.datasetList.filter(function(dataset){
+        return dataset.dataPublisherId == datapublisher.id;
+      }));
+    }
+
     $scope.datapublisher = '';
     $scope.dataset = '';
   }
 
-  $scope.removeDataset = function(index){
-    searchForm.removeDataset(index);
+  $scope.removeDataset = function(id){
+    searchForm.removeDataset(id);
+  }
+  $scope.removeDatapublisher = function(id){
+    searchForm.removeDatapublisher(id);
   }
 
   $scope.setDate = function(){
