@@ -1,2 +1,33 @@
-<pre>{{jsonDatapublisher | json}}</pre>
+<article class="datapublisher">
+	<section class="info">
+		<h1>{{jsonDatapublisher.name}}</h1>
+		<p>{{jsonDatapublisher.description}}</p>
+	</section>
+	<section class="informations">
+		<h2>Informations</h2>
+
+		<div class="contacts">
+			<h3>Contacts</h3>
+			<ul>
+				<li>
+					<h4>Administratif</h4>
+					<p>{{jsonDatapublisher.administrativeContact}}</p>
+				</li>
+				<li>
+					<h4>Technique</h4>
+					<p>{{jsonDatapublisher.technicalContact}}</p>
+				</li>
+			</ul>
+		</div>
+	</section>
+
+	<section class="tags">
+
+		<h2>Tags</h2>
+		<ul>
+			<li ng-repeat="tag in jsonDatapublisher.tags">{{tag}}</li>
+	    </ul>
+	</section>
+
+</article>
 
