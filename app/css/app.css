@@ -151,6 +151,12 @@ footer{
 	margin-right: auto;
 }
 
+#occurrence-map{
+  height: 360px;
+  width:100%;
+  margin-left: auto;
+  margin-right: auto;
+}
 #search-tabs {
 	margin-bottom: 20px;
 	width: 100%;

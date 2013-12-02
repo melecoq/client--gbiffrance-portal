@@ -18,8 +18,8 @@
 					<i class="icon-question-sign" ng-click="isCollapsedLatitude = !isCollapsedLatitude"></i>
 					<label  class="control-label label-filter" for="latitude">Latitude</label>
 					<select class="lt-gt-filter" ng-model="latitudeFilter">
-						<option value="<" selected>&lt;</option>
-						<option value=">">&gt;</option>
+						<option value="inf" selected>&lt;</option>
+						<option value="sup">&gt;</option>
 					</select>
 					<input type="text" id="latitude" class="input-medium" ng-model="latitude">
 	  				<input type="submit" class="btn" value="Ajouter" >
@@ -33,8 +33,8 @@
 					<i class="icon-question-sign" ng-click="isCollapsedLongitude = !isCollapsedLongitude"></i>
 					<label  class="control-label label-filter" for="Longitude">Longitude</label>
 					<select class="lt-gt-filter" ng-model="longitudeFilter">
-						<option value="<" selected>&lt;</option>
-						<option value=">">&gt;</option>
+						<option value="inf" selected>&lt;</option>
+						<option value="sup">&gt;</option>
 					</select>
 					<input type="text" id="Longitude" class="input-medium" ng-model="longitude">
 	  				<input type="submit" class="btn" value="Ajouter" >

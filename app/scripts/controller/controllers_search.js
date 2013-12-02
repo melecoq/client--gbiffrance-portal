@@ -66,7 +66,20 @@ function CtrlSearch($scope, $route, $routeParams, $http, $q, config, searchForm,
 	};
 
 	$scope.addLocality = function(){
-		searchForm.addLocality($scope.locality);
+    var url = 'http://nominatim.openstreetmap.org/search/?format=json&limit=10&q='+$scope.locality;
+    var bounds =[];
+    var locality = $scope.locality;
+
+    $http.get(url)
+    .success(function(data, status) {
+      bounds = data[0].boundingbox;
+      searchForm.addLocality(locality, bounds);
+      console.log(bounds);
+
+    })
+    .error(function(data, status) {
+
+    });
 		$scope.locality = '';
 	};
 

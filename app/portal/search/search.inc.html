@@ -25,13 +25,13 @@
 			<dt class="label-geo" ng-if="latitudes.length>=1"> Latitude </dt>
 			<dd> 
 				<span class="label-geo" ng-repeat="number in latitudes">
-					{{number.filter}} {{number.latitude}} <i class="icon-remove" ng-click="removeLatitude($index)"></i> 
+					{{number.filter}} {{number.bound}} <i class="icon-remove" ng-click="removeLatitude($index)"></i> 
 				</span>
 			</dd>
 			<dt class="label-geo" ng-if="longitudes.length>=1"> Longitude </dt>
 			<dd> 
 				<span class="label-geo" ng-repeat="number in longitudes">
-					{{number.filter}} {{number.longitude}} <i class="icon-remove" ng-click="removeLongitude($index)"></i> 
+					{{number.filter}} {{number.bound}} <i class="icon-remove" ng-click="removeLongitude($index)"></i> 
 				</span>
 			</dd>
 			<dt class="label-geo" ng-if="boundingBoxes.length>=1"> Bounding box </dt>
