@@ -10,7 +10,28 @@ function CtrlOccurrence($scope, $routeParams, $http, config){
 			$scope.jsonOccurrence = data;
 			var latitude = data.decimalLatitude;
 			var longitude = data.decimalLongitude;
-			console.log(latitude +" - "+ longitude +"-"+$scope.jsonOccurrence.decimalLongitude);
+			var url = "http://api.gbif.org/v0.9/species/"+data.ecatConceptId;
+			$scope.genusKey = "";
+			$scope.familyKey ="";
+			$scope.orderKey="";
+			$scope.classKey="";
+			$scope.phylumKey="";
+			$scope.kingdomKey="";
+
+
+			$http.get(url)
+				.success(function(data, status) {
+					$scope.genusKey = data.genusKey;
+					$scope.familyKey = data.familyKey;
+					$scope.orderKey = data.orderKey;
+					$scope.classKey = data.classKey;
+					$scope.phylumKey = data.phylumKey;
+					$scope.kingdomKey = data.kingdomKey;
+
+				})
+				.error(function(data, status) {
+					nameList.resolve(['Erreur ' + status]);
+				});
 
 			config.then(function(config){
 
@@ -39,7 +60,9 @@ function CtrlOccurrence($scope, $routeParams, $http, config){
 				if (typeof(latitude) !== 'undefined' && typeof(longitude) !== 'undefined') {
 					var latlng=new L.LatLng(latitude,longitude);
 
-					L.marker(latlng).addTo(map)
+					L.marker(latlng).addTo(map);
+
+					map.setView([latitude, longitude], config.map.franceMetropolitan.zoom);
 				}
 			});
 			
@@ -48,11 +71,6 @@ function CtrlOccurrence($scope, $routeParams, $http, config){
 			$scope.reponse = status;
 			$scope.jsonOccurrence = data;
 		});
-
-
-
-	
-
 
 }
 
