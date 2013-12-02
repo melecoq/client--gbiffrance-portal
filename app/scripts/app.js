@@ -108,8 +108,8 @@ myApp.factory('searchForm', function(){
 	var getLocality = function(){
 		return localities;
 	};
-	var addLocality = function(name){
-		localities.push({text:name});
+	var addLocality = function(name, bound){
+		localities.push({text:name, bounds:bound});
 	};
 	var removeLocality = function(index){
 		localities.splice(index, 1);
@@ -118,7 +118,7 @@ myApp.factory('searchForm', function(){
 		return latitudes;
 	};
 	var addLatitude = function(number, filter){
-		latitudes.push({latitude:number, filter: filter});
+		latitudes.push({bound:number, filter: filter});
 	};
 	var removeLatitude = function(index){
 		latitudes.splice(index, 1);
@@ -127,7 +127,7 @@ myApp.factory('searchForm', function(){
 		return longitudes;
 	};
 	var addLongitude = function(number, filter){
-		longitudes.push({longitude:number, filter: filter});
+		longitudes.push({bound:number, filter: filter});
 	};
 	var removeLongitude = function(index){
 		longitudes.splice(index, 1);
@@ -230,7 +230,9 @@ myApp.factory('searchForm', function(){
 			'vernacularName': vernacularNames.map(function(vernacularName){
 				return vernacularName.text;
 			}),
-			'locality':localities,
+			'localities':localities.map(function(locality){
+				return{name:locality.text, bounds:locality.bounds};
+			}),
 			'latitude': latitudes,
 			'longitude':longitudes,
 			'geolocalizedData': georeferencedData,
