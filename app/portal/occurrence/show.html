@@ -36,19 +36,19 @@
 		<h2>Taxon</h2>
 		<dl>
 			<dt>Royaume</dt>
-			<dd>{{jsonOccurrence.kingdom_interpreted}}</dd>
-			<dt>Domaine</dt>
-			<dd>{{jsonOccurrence.phylum_interpreted}}</dd>
+			<dd><a href="http://www.gbif.org/species/{{kingdomKey}}">{{jsonOccurrence.kingdom_interpreted}}</a></dd>
+			<dt>Phylum</dt>
+			<dd><a href="http://www.gbif.org/species/{{phylumKey}}">{{jsonOccurrence.phylum_interpreted}}</a></dd>
 			<dt>Classe</dt>
-			<dd>{{jsonOccurrence.classs_interpreted}}</dd>
+			<dd><a href="http://www.gbif.org/species/{{classKey}}">{{jsonOccurrence.classs_interpreted}}</a></dd>
 			<dt>Ordre</dt>
-			<dd>{{jsonOccurrence.orderr_interpreted}}</dd>
+			<dd><a href="http://www.gbif.org/species/{{orderKey}}">{{jsonOccurrence.orderr_interpreted}}</a></dd>
 			<dt>Famille</dt>
-			<dd>{{jsonOccurrence.family_interpreted}}</dd>
+			<dd><a href="http://www.gbif.org/species/{{familyKey}}">{{jsonOccurrence.family_interpreted}}</a></dd>
 			<dt>Genus</dt>
-			<dd>{{jsonOccurrence.genus_interpreted}}</dd>
+			<dd><a href="http://www.gbif.org/species/{{genusKey}}">{{jsonOccurrence.genus_interpreted}}</a></dd>
 			<dt>Nom scientifique</dt>
-			<dd>{{jsonOccurrence.scientificName}}</dd>
+			<dd><a href="http://www.gbif.org/species/{{json.ecatConceptId}}">{{jsonOccurrence.scientificName}}</a></dd>
 			<dt>Statut du taxon</dt>
 			<dd>{{jsonOccurrence.taxonStatus}}</dd>
 			<dt>Identifiant API GBIF</dt>

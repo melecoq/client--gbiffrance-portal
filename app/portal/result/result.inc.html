@@ -32,7 +32,7 @@
 				<dt class="label-geo" ng-if="longitudes.length>=1"> Longitude </dt>
 				<dd> 
 					<span class="label-geo" ng-repeat="number in longitudes">
-						{{number.filter}} {{number.bound}} <i class="icon-remove" ng-click="removeLongitude($index)"></i> 
+						{{number.filter}} {{number.bounda}} <i class="icon-remove" ng-click="removeLongitude($index)"></i> 
 					</span>
 				</dd>
 				<dt class="label-dataset" ng-if="!datapublisherDataset.empty()">Jeux de données</dt>
@@ -62,13 +62,14 @@
 		  				</div>
 				</div>
 			</form>
-			<div class="btn-group" id="search-tabs"> 	
-				<a ng-href="#/search/taxa" class="btn btn-info">Taxon</a>
-				<a ng-href="#/search/geography" class="btn btn-warning">Géographie</a> 
-				<a ng-href="#/search/dataset" class="btn btn-success">Jeu de données</a>
-				<a ng-href="#/search/date" class="btn btn-danger">Date</a>                 
-			</div>
 		</div>
+</div>
+
+<div class="btn-group" id="search-tabs"> 	
+		<a ng-href="#/search/taxa" class="btn btn-info">Taxon</a>		
+		<a ng-href="#/search/geography" class="btn btn-warning">Géographie</a> 
+		<a ng-href="#/search/dataset" class="btn btn-success">Jeu de données</a>
+		<a ng-href="#/search/date" class="btn btn-danger">Date</a>                 
 	</div>
 <!--	<pre> {{json | json}} </pre> 
 	<pre> {{dataJson | json}}</pre> -->
