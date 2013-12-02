@@ -14,6 +14,13 @@ function CtrlDatapublisher($scope, $routeParams, $http){
 			$scope.jsonDatapublisher = data;
 		});
 
+	$http.get('http://localhost:9000/api/dataset')
+		.success(function(data, status) {
+			$scope.datasets = data.filter(function(el) {
+				return el.dataPublisher.id == $routeParams.id;
+			});
+		})
+
 }
 
 myApp.controller('CtrlDatapublisher', ['$scope', '$routeParams', '$http', CtrlDatapublisher]);
