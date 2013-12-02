@@ -3,18 +3,59 @@
 
 /* Controllers */
 
-function CtrlDataset($scope, $routeParams, $http){
+function CtrlDataset($scope, $routeParams, $http, config){
 
-	$http.get('http://localhost:9000/api/dataset/' + $routeParams.id)
-		.success(function(data, status) {
-			$scope.reponse = status;
-			$scope.jsonDataset = data;
-		})
-		.error(function(data, status) {
-			$scope.reponse = status;
-			$scope.jsonDataset = data;
+	var datasetId = $routeParams.id;
+
+	var dataset = $http.get('http://localhost:9000/api/dataset/' + $routeParams.id);
+
+	dataset.then(function(dataset){
+		console.log("blah");
+		$scope.jsonDataset = dataset.data;
+
+		$http.get('http://localhost:9000/api/datapublisher/'+ $scope.jsonDataset.dataPublisherId)
+			.success(function(data, status) {
+				$scope.dataPublisherName = data.name;
+			});
+	});
+
+	// Once we get config, display the map
+	config.then(function(config){
+
+		dataset.then(function(dataset){
+
+			var franceMetropolitan = new L.LatLng(
+				config.map.franceMetropolitan.lat,
+				config.map.franceMetropolitan.lon);
+
+			// Generate map
+			var map = L.map('map', {
+				zoomControl: true,
+				dragging: true,
+				center: franceMetropolitan,
+				zoom: config.map.franceMetropolitan.zoom
+			});
+
+
+			// Map background
+			var options = {};
+			angular.extend(options, config.map.layers.default.options);
+			angular.extend(options, {
+				noWrap: true
+			});
+			var baseLayer = L.tileLayer(config.map.layers.default.url, options)
+			baseLayer.addTo(map);
+
+
+			// Dataset information
+			var layer = L.tileLayer("http://www.gbif.fr/mbtiles/datasets/dataset_{datasetId}/{z}/{x}/{y}.png", {
+				datasetId: datasetId
+			});
+			layer.addTo(map);
+
 		});
+	});
 
-}
+};
 
-myApp.controller('CtrlDataset', ['$scope', '$routeParams', '$http', CtrlDataset]);
+myApp.controller('CtrlDataset', ['$scope', '$routeParams', '$http', 'config', CtrlDataset]);

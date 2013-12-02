@@ -1,1 +1,30 @@
-<pre>{{jsonDataset|json}}</pre>
+
+
+<article class="dataset">	
+	<div id="map"></div>
+
+	<section class="info">
+		<h1>{{jsonDataset.name}}</h1>
+		<p>{{jsonDataset.title}}</p>
+	</section>
+
+	<section class="informations">
+		<h2>Informations</h2>
+
+		<dl>
+			<dt>Url</dt>
+			<dd>{{jsonDataset.url}}</dd>
+			<dt>Fournisseur de donnees</dt>
+			<dd><a href="#/datapublisher/{{jsonDataset.dataPublisherId}}">{{dataPublisherName}}</a></dd>
+		</dl>
+
+	</section>
+
+	<section class="tags">
+		<h2>Tags</h2>
+		<ul>
+			<li ng-repeat="tag in jsonDataset.tags">{{tag}}</li>
+	    </ul>
+	</section>
+
+</article>
