@@ -2,16 +2,18 @@
 <div id="result-map"></div>
 
 <div>
-	<table>
+	<table class ="table table-hover table-condensed">
 		<tr>
-			<th></th>
+			<th>Nom scientifique</th>
+			<th>Jeu de données</th>
 			<th>Location</th>
 			<th>Type d'enregistrement</th>
 			<th>Date</th>
 		</tr>
 		<tr ng-repeat="occurrence in dataJson">
 			
-			<td><a href="#/occurrence/{{occurrence.id}}">{{occurrence.scientificName}} - Cat. {{occurrence.catalogNumber}} - Fournit par {{occurrence.datasetName}}</a> </td>
+			<td><a href="#/occurrence/{{occurrence.id}}">{{occurrence.scientificName}} <br> Cat. {{occurrence.catalogNumber}}</td>
+			<td>{{occurrence.datasetName}}</td>
 			<td>{{occurrence.country}}</td>
 			<td>{{occurrence.basisOfRecord}}</td>
 			<td>{{occurrence.year_interpreted}}</td>
