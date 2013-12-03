@@ -54,6 +54,15 @@ function CtrlResult($scope, searchForm, $http, config, withMap){
     searchForm.removeDate(index);
   };
 
+  var loadMarkerPopup = function(marker, element) {
+    return function() {
+      $http.get('http://localhost:9000/api/occurrence/' + element.id)
+        .success(function(data, status){
+          marker.bindPopup('<a href="#/occurrence/'+element.id+'">'+data.scientificName+'</a>').openPopup()
+        });
+    };
+  };
+
   if(withMap) {
     config.then(function(config){
       var franceMetropolitan = new L.LatLng(
@@ -109,25 +118,60 @@ function CtrlResult($scope, searchForm, $http, config, withMap){
               })
             };
 
-            var doc = $('<div></div>');
-            doc.attr('style', $(canvas).attr('style'));
-            doc.attr('class', $(canvas).attr('class'));
-            doc.height($(canvas).height());
-            doc.width($(canvas).width());
-            doc.attr('data-nw', nwCoord);
-            doc.attr('data-se', seCoord);
-            var elem = $(canvas).replaceWith(doc);
-
-            var heatmap = h337.create({
-              element: doc[0],
-              radius: 30,
-              opacity: 100,
-              'visible': true
+            // Get total of content
+            var total = 0;
+            content.data.map(function(e){
+              total += e.count;
             });
 
-            heatmap.store.setDataSet(content);
-            //heatmap.store.generateRandomDataSet();
-            //canvasTiles.tileDrawn(doc[0]);
+            if (total >= 500 || total >= 15 * (18 - map.getZoom())) {
+              // We have too many elements in there. We need to display them as squares ...
+
+              var doc = $('<div></div>');
+              doc.attr('style', $(canvas).attr('style'));
+              doc.attr('class', $(canvas).attr('class'));
+              doc.height($(canvas).height());
+              doc.width($(canvas).width());
+              doc.attr('data-nw', nwCoord);
+              doc.attr('data-se', seCoord);
+              var elem = $(canvas).replaceWith(doc);
+
+              var heatmap = h337.create({
+                element: doc[0],
+                radius: 30,
+                opacity: 100,
+                'visible': true
+              });
+
+              heatmap.store.setDataSet(content);
+            } else {
+              $http.post('http://localhost:9000/api/search/occurrences/markers/'
+                + nwCoord.lat + '/'
+                + nwCoord.lng + '/'
+                + seCoord.lat + '/'
+                + seCoord.lng, $scope.json)
+                .success(function(data, status){
+                  var lg = L.layerGroup();
+                  data.map(function(element) {
+                    var marker = L.marker([element.lat, element.lng]);
+
+                    // Bind popup to the marker
+                    marker.on('click', loadMarkerPopup(marker, element));
+                    lg.addLayer(marker);
+                  });
+
+                  var originalZoom = map.getZoom();
+                  lg.addTo(map);
+
+                  // If we load another zoom, remove those markers
+                  map.on('zoomend', function(){
+                    if (map.getZoom() != originalZoom) {
+                      map.removeLayer(lg);
+                    }
+                  });
+                });
+
+            }
           });
       }
 
