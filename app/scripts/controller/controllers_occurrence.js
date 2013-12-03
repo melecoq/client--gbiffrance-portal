@@ -2,7 +2,7 @@
 
 /* Controllers */
 
-function CtrlOccurrence($scope, $routeParams, $http){
+function CtrlOccurrence($scope, $routeParams, $http, config){
 
 	$http.get('http://localhost:9000/api/occurrence/' + $routeParams.id)
 		.success(function(data, status) {
@@ -33,28 +33,39 @@ function CtrlOccurrence($scope, $routeParams, $http){
 					nameList.resolve(['Erreur ' + status]);
 				});
 
-			if(typeof(latitude) === 'undefined' || typeof(longitude) === 'undefined'){
-				var map = L.map('occurrence-map', {zoomControl:true, dragging:false}).setView([47.3, -0.89], 5);
+			config.then(function(config){
 
-				L.tileLayer('http://{s}.tiles.mapbox.com/v3/timrobertson100.map-x2mlizjd/{z}/{x}/{y}.png', {
-					attribution: 'Map data &copy; <a href="http://mapbox.org">MapBox</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
-					maxZoom: 18,
+
+				var franceMetropolitan = new L.LatLng(
+					config.map.franceMetropolitan.lat,
+					config.map.franceMetropolitan.lon);
+
+				// Generate map
+				var map = L.map('map', {
+					zoomControl: true,
+					dragging: true,
+					center: franceMetropolitan,
+					zoom: config.map.franceMetropolitan.zoom
+				});
+
+				// Map background
+				var options = {};
+				angular.extend(options, config.map.layers.default.options);
+				angular.extend(options, {
 					noWrap: true
-				}).addTo(map);
-			} else {
-				var map = L.map('occurrence-map', {zoomControl:true, dragging:false}).setView([latitude, longitude], 5);
+				});
+				var baseLayer = L.tileLayer(config.map.layers.default.url, options)
+				baseLayer.addTo(map);
 
-				// Fond de carte
-				L.tileLayer('http://{s}.tiles.mapbox.com/v3/timrobertson100.map-x2mlizjd/{z}/{x}/{y}.png', {
-					attribution: 'Map data &copy; <a href="http://mapbox.org">MapBox</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
-					maxZoom: 18,
-					noWrap: true
-				}).addTo(map);
+				if (typeof(latitude) !== 'undefined' && typeof(longitude) !== 'undefined') {
+					var latlng=new L.LatLng(latitude,longitude);
 
-				var latlng=new L.LatLng(latitude,longitude);
+					L.marker(latlng).addTo(map);
 
-				L.marker(latlng).addTo(map)
-			}
+					map.setView([latitude, longitude], config.map.franceMetropolitan.zoom);
+				}
+			});
+			
 		})
 		.error(function(data, status) {
 			$scope.reponse = status;
@@ -63,4 +74,4 @@ function CtrlOccurrence($scope, $routeParams, $http){
 
 }
 
-myApp.controller('CtrlOccurrence', ['$scope', '$routeParams', '$http', CtrlOccurrence]);
+myApp.controller('CtrlOccurrence', ['$scope', '$routeParams', '$http', 'config', CtrlOccurrence]);
