@@ -3,20 +3,32 @@
 
 <div>
 	<table class ="table table-hover table-condensed">
-		<tr>
-			<th>Nom scientifique</th>
-			<th>Jeu de données</th>
-			<th>Location</th>
-			<th>Type d'enregistrement</th>
-			<th>Date</th>
-		</tr>
-		<tr ng-repeat="occurrence in dataJson">
-			
-			<td><a href="#/occurrence/{{occurrence.id}}">{{occurrence.scientificName}} <br> Cat. {{occurrence.catalogNumber}}</td>
-			<td>{{occurrence.datasetName}}</td>
-			<td>{{occurrence.country}}</td>
-			<td>{{occurrence.basisOfRecord}}</td>
-			<td>{{occurrence.year_interpreted}}</td>
-		</tr>
+		<thead>
+			<tr>
+				<th>Nom scientifique</th>
+				<th>Jeu de données</th>
+				<th>Location</th>
+				<th>Type d'enregistrement</th>
+				<th>Date</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="occurrence in dataJson">
+				<td><a href="#/occurrence/{{occurrence.id}}">{{occurrence.scientificName}} <br> Cat. {{occurrence.catalogNumber}}</td>
+				<td>{{occurrence.datasetName}}</td>
+				<td>{{occurrence.country}}</td>
+				<td>{{occurrence.basisOfRecord}}</td>
+				<td>{{occurrence.year_interpreted}}</td>
+			</tr>
+		</tbody>
 	</table>
+
+	<ul class="pager">
+		<li class="previous" ng-class="{disabled: pageId==0}">
+			<a href="#/result/occurrence/{{pageId - 1}}/{{pageSize}}">&larr; Older</a>
+		</li>
+		<li class="next" ng-class="{disabled: dataJson.length <= 0}">
+			<a href="#/result/occurrence/{{pageId + 1}}/{{pageSize}}">Newer &rarr;</a>
+		</li>
+	</ul>
 </div>

@@ -41,14 +41,14 @@ function CtrlSearch($scope, $route, $routeParams, $http, $q, config, searchForm,
 		var scientificNameRank = 'no rank';
 		var scientificName = $scope.scientificName;
 
-		$http.get(url).
-		success(function(data, status) {
-			scientificNameRank = data.rank;
-			searchForm.addScientificName(scientificName, scientificNameRank);
-		}).
-		error(function(data, status) {
-			searchForm.addScientificName(scientificName, scientificNameRank);
-		});
+		if (scientificName.trim()) {
+			$http.get(url)
+				.success(function(data, status) {
+					scientificNameRank = data.rank;
+					searchForm.addScientificName(scientificName.trim(), scientificNameRank);
+				});
+		}
+
 		$scope.scientificName = '';
 	};
 
@@ -57,7 +57,10 @@ function CtrlSearch($scope, $route, $routeParams, $http, $q, config, searchForm,
 	};
 
 	$scope.addVernacularName = function() {
-		searchForm.addVernacularName($scope.vernacularName);
+		if($scope.vernacularName.trim()){
+
+			searchForm.addVernacularName($scope.vernacularName.trim());
+		}
 		$scope.vernacularName = '';
 	};
 
@@ -66,20 +69,15 @@ function CtrlSearch($scope, $route, $routeParams, $http, $q, config, searchForm,
 	};
 
 	$scope.addLocality = function(){
-    var url = 'http://nominatim.openstreetmap.org/search/?format=json&limit=10&q='+$scope.locality;
-    var bounds =[];
-    var locality = $scope.locality;
+		var url = 'http://nominatim.openstreetmap.org/search/?format=json&limit=10&q='+$scope.locality;
+		var bounds =[];
+		var locality = $scope.locality;
 
-    $http.get(url)
-    .success(function(data, status) {
-      bounds = data[0].boundingbox;
-      searchForm.addLocality(locality, bounds);
-      console.log(bounds);
-
-    })
-    .error(function(data, status) {
-
-    });
+		$http.get(url)
+			.success(function(data, status) {
+				bounds = data[0].boundingbox;
+				searchForm.addLocality(locality, bounds);
+			});
 		$scope.locality = '';
 	};
 

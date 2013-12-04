@@ -29,6 +29,9 @@ var myApp = angular.module('portailApp', ['ngRoute', 'ui.bootstrap', 'ui.select2
 			.when('/result/occurrence', {templateUrl: 'portal/result/result.occurrence.html', controller: 'CtrlResult', resolve: {
 				withMap: function () { return true; }
 			}})
+			.when('/result/occurrence/:pageId/:pageSize', {templateUrl: 'portal/result/result.occurrence.html', controller: 'CtrlResult', resolve: {
+				withMap: function () { return true; }
+			}})
 			.when('/result/stat',       {templateUrl: 'portal/result/result.stat.html',       controller: 'CtrlResultStat'})
 			.when('/result/map',        {templateUrl: 'portal/result/result.map.html',        controller: 'CtrlResult', resolve: {
 				withMap: function () { return false; }

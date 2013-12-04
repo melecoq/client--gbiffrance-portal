@@ -2,7 +2,7 @@
 
 /* Controllers */
 
-function CtrlResult($scope, searchForm, $http, config, withMap){
+function CtrlResult($scope, $routeParams, searchForm, $http, config, withMap){
   $scope.scientificNames=searchForm.getScientificName();
   $scope.vernacularNames=searchForm.getVernacularName();
   $scope.localities=searchForm.getLocality();
@@ -15,7 +15,17 @@ function CtrlResult($scope, searchForm, $http, config, withMap){
   $scope.isCollapsedRecherche = true;
   $scope.json = searchForm.buildJson();
 
-  $http.post('http://localhost:9000/api/search/occurrences', $scope.json)
+  var url = 'http://localhost:9000/api/search/occurrences';
+  if ($routeParams.pageId) {
+    url = url + "?page=" + $routeParams.pageId + "&size=" + $routeParams.pageSize;
+    $scope.pageId = parseInt($routeParams.pageId, 10);
+    $scope.pageSize = parseInt($routeParams.pageSize, 10);
+  } else {
+    $scope.pageId = 0;
+    $scope.pageSize = 10;
+  }
+
+  $http.post(url, $scope.json)
     .success(function(data, status) {
       $scope.reponse = status;
       $scope.dataJson = data;
@@ -182,4 +192,4 @@ function CtrlResult($scope, searchForm, $http, config, withMap){
 
 }
 
-myApp.controller('CtrlResult', ['$scope', 'searchForm', '$http', 'config', 'withMap', CtrlResult]);
+myApp.controller('CtrlResult', ['$scope', '$routeParams', 'searchForm', '$http', 'config', 'withMap', CtrlResult]);
