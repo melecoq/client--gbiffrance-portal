@@ -15,6 +15,8 @@ function CtrlResultStat($scope, searchForm, $http, config, withMap){
   $scope.isCollapsedRecherche = true;
   $scope.json = searchForm.buildJson();
 
+  $scope.exampleData = [10, 20, 30, 40, 50, 60, 80, 20, 50];
+
   $http.post('http://localhost:9000/api/search/statistics', $scope.json)
     .success(function(data, status) {
       $scope.reponse = status;
