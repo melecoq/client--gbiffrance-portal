@@ -3,7 +3,7 @@
 
 /* App Module */
 
-var myApp = angular.module('portailApp', ['ngRoute', 'ui.bootstrap', 'ui.select2', 'nvd3ChartDirectives'])
+var myApp = angular.module('portailApp', ['ngRoute', 'ui.bootstrap', 'ui.select2'])
 	.config(['$routeProvider', function($routeProvider) {
 		$routeProvider
 			.when('/', {templateUrl: 'portal/index.html'})
