@@ -297,11 +297,11 @@ function CtrlSearch($scope, $route, $routeParams, $http, $q, config, searchForm,
 		// Create the promise box 
 		var nameList = $q.defer();
 
-		$http.get(url+name).
-			success(function(data, status) {
+		$http.get(url+name)
+			.success(function(data, status) {
 				nameList.resolve([].concat.apply([], data.map(mapper)));
-			}).
-			error(function(data, status) {
+			})
+			.error(function(data, status) {
 				nameList.resolve(['Erreur ' + status]);
 			});
 
@@ -332,23 +332,23 @@ function CtrlSearch($scope, $route, $routeParams, $http, $q, config, searchForm,
 
 
 	//fonction pour récupérer les données sur les datapublishers et les datasets
-	$http.get('http://localhost:9000/api/datapublisher').
-	success(function(data, status) {
-		$scope.dataPublisherList = data.map(function(taxa){ return {name:taxa.name, id:taxa.id};});
-	}).
-	error(function(data, status) {
-		$scope.dataPublisherList = ['Erreur ' + status];
-	});
+	$http.get('http://localhost:9000/api/datapublisher')
+		.success(function(data, status) {
+			$scope.dataPublisherList = data.map(function(taxa){ return {name:taxa.name, id:taxa.id};});
+		})
+		.error(function(data, status) {
+			$scope.dataPublisherList = ['Erreur ' + status];
+		});
 
-	$http.get('http://localhost:9000/api/dataset').
-	success(function(data, status) {
-		$scope.datasetList = data.map(function(taxa){ return {name:taxa.name, id:taxa.id, dataPublisherId:taxa.dataPublisher.id};});
-		$scope.datasetListShow = $scope.datasetList;
-	}).
-	error(function(data, status) {
-		$scope.datasetList = ['Erreur ' + status];
-		$scope.datasetListShow = $scope.datasetList;
-	});
+	$http.get('http://localhost:9000/api/dataset')
+		.success(function(data, status) {
+			$scope.datasetList = data.map(function(taxa){ return {name:taxa.name, id:taxa.id, dataPublisherId:taxa.dataPublisher.id};});
+			$scope.datasetListShow = $scope.datasetList;
+		})
+		.error(function(data, status) {
+			$scope.datasetList = ['Erreur ' + status];
+			$scope.datasetListShow = $scope.datasetList;
+		});
 
 
 }
