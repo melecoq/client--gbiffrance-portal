@@ -26,9 +26,10 @@ function CtrlResult($scope, $routeParams, searchForm, $http, config, withMap){
   }
 
   $http.post(url, $scope.json)
-    .success(function(data, status) {
+    .success(function(data, status, headers) {
       $scope.reponse = status;
       $scope.dataJson = data;
+      $scope.totalHits = parseInt(headers('X-Max-Hits') || 0, 10);
 
     })
     .error(function(data, status) {
