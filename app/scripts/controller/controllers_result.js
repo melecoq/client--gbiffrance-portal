@@ -135,26 +135,38 @@ function CtrlResult($scope, $routeParams, searchForm, $http, config, withMap){
               total += e.count;
             });
 
+            function color(x) {
+              function red(x) {
+                return 255;
+              }
+              function green(x) {
+                return Math.floor(244 - (x / 100 * (244 - 76)));
+              }
+              function blue(x) {
+                return 50;
+              }
+              return red(x)+','+green(x)+','+blue(x);
+            }
+
             if (total >= 500 || total >= 15 * (18 - map.getZoom())) {
               // We have too many elements in there. We need to display them as squares ...
 
-              var doc = $('<div></div>');
-              doc.attr('style', $(canvas).attr('style'));
-              doc.attr('class', $(canvas).attr('class'));
-              doc.height($(canvas).height());
-              doc.width($(canvas).width());
-              doc.attr('data-nw', nwCoord);
-              doc.attr('data-se', seCoord);
-              var elem = $(canvas).replaceWith(doc);
+              var ctx = canvas.getContext("2d");
+              var divider = parseInt(h("X-Map-Divider"), 10);
+              var width = $(canvas).width();
+              var height = $(canvas).height();
 
-              var heatmap = h337.create({
-                element: doc[0],
-                radius: 30,
-                opacity: 100,
-                'visible': true
+              var blockWidth = width / divider;
+              var blockHeight = height / divider;
+
+              content.data.map(function(el){
+                var x = Math.floor(el.x / blockWidth) * blockWidth;
+                var y = Math.floor(el.y / blockHeight) * blockHeight;
+
+                ctx.fillStyle='rgba(' + color(el.count / total * 100) + ',0.5)';
+                ctx.fillRect(x, y, width / divider, height / divider);
               });
 
-              heatmap.store.setDataSet(content);
             } else {
               $http.post('http://localhost:9000/api/search/occurrences/markers/'
                 + nwCoord.lat + '/'
