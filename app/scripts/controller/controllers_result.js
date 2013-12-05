@@ -84,7 +84,7 @@ function CtrlResult($scope, $routeParams, searchForm, $http, config, withMap){
         zoomControl: true,
         dragging: true,
         center: franceMetropolitan,
-        zoom: config.map.franceMetropolitan.zoom
+        zoom: 2
       });
 
       // Fond de carte
@@ -167,7 +167,7 @@ function CtrlResult($scope, $routeParams, searchForm, $http, config, withMap){
                 ctx.fillRect(x, y, width / divider, height / divider);
               });
 
-            } else {
+            } else if (total > 0) {
               $http.post('http://localhost:9000/api/search/occurrences/markers/'
                 + nwCoord.lat + '/'
                 + nwCoord.lng + '/'
