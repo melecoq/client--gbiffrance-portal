@@ -61,8 +61,8 @@ function CtrlResultStat($scope, searchForm, $http, config){
     var datasets = data.filter(function(el) { return el.typeFilter== 'dataset';});
 
 
-    var width = 960,
-      height = 500,
+    var width = 400,
+      height = 250,
       radius = Math.min(width, height) / 2;
 
     var color = d3.scale.ordinal()
@@ -112,8 +112,8 @@ function CtrlResultStat($scope, searchForm, $http, config){
 
 
     var margin = {top: 40, right: 20, bottom: 30, left: 40},
-        width = 960 - margin.left - margin.right,
-        height = 500 - margin.top - margin.bottom;
+        width = 400 - margin.left - margin.right,
+        height = 250 - margin.top - margin.bottom;
 
 
     var x = d3.scale.ordinal()
