@@ -220,6 +220,9 @@ module.exports = function (grunt) {
             src: [
               '*.{ico,txt}',
               '.htaccess',
+              'css/**/*',
+              'scripts/**/*',
+              'lib/**/*',
               'components/**/*',
               'images/{,*/}*.{gif,webp}'
             ]
@@ -248,7 +251,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('build', [
       'clean:dist',
-      'jshint',
+      //'jshint',
       //'test',
       'less:dist',
       'useminPrepare',
