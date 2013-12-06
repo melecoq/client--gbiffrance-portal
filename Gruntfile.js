@@ -103,7 +103,8 @@ module.exports = function (grunt) {
         },
         dist: {
           options: {
-            yuicompress: true
+            yuicompress: true,
+            syncImport: true
           },
           files: {
             '<%= yeoman.tmp %>/styles/main.css': '<%= yeoman.app %>/styles/main.less'
@@ -223,6 +224,9 @@ module.exports = function (grunt) {
               'css/**/*',
               'scripts/**/*',
               'lib/**/*',
+              'styles/**/*',
+              'portal/**/*',
+              'img/**/*',
               'components/**/*',
               'images/{,*/}*.{gif,webp}'
             ]
@@ -250,7 +254,7 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('build', [
-      'clean:dist',
+      //'clean:dist',
       //'jshint',
       //'test',
       'less:dist',
