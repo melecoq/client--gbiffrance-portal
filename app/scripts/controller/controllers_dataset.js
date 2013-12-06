@@ -7,20 +7,19 @@ function CtrlDataset($scope, $routeParams, $http, config){
 
 	var datasetId = $routeParams.id;
 
-	var dataset = $http.get('http://localhost:9000/api/dataset/' + $routeParams.id);
-
-	dataset.then(function(dataset){
-		console.log("blah");
-		$scope.jsonDataset = dataset.data;
-
-		$http.get('http://localhost:9000/api/datapublisher/'+ $scope.jsonDataset.dataPublisherId)
-			.success(function(data, status) {
-				$scope.dataPublisherName = data.name;
-			});
-	});
-
 	// Once we get config, display the map
 	config.then(function(config){
+		var dataset = $http.get(config.api.endpoint + '/dataset/' + $routeParams.id);
+
+		dataset.then(function(dataset){
+			$scope.jsonDataset = dataset.data;
+
+			$http.get(config.api.endpoint + '/datapublisher/'+ $scope.jsonDataset.dataPublisherId)
+				.success(function(data, status) {
+					$scope.dataPublisherName = data.name;
+				});
+		});
+
 
 		dataset.then(function(dataset){
 

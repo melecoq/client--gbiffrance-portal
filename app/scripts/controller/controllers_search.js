@@ -331,25 +331,26 @@ function CtrlSearch($scope, $route, $routeParams, $http, $q, config, searchForm,
 		});
 
 
-	//fonction pour récupérer les données sur les datapublishers et les datasets
-	$http.get('http://localhost:9000/api/datapublisher')
-		.success(function(data, status) {
-			$scope.dataPublisherList = data.map(function(taxa){ return {name:taxa.name, id:taxa.id};});
-		})
-		.error(function(data, status) {
-			$scope.dataPublisherList = ['Erreur ' + status];
-		});
+	config.then(function(config){
+		//fonction pour récupérer les données sur les datapublishers et les datasets
+		$http.get(config.api.endpoint + '/datapublisher')
+			.success(function(data, status) {
+				$scope.dataPublisherList = data.map(function(taxa){ return {name:taxa.name, id:taxa.id};});
+			})
+			.error(function(data, status) {
+				$scope.dataPublisherList = ['Erreur ' + status];
+			});
 
-	$http.get('http://localhost:9000/api/dataset')
-		.success(function(data, status) {
-			$scope.datasetList = data.map(function(taxa){ return {name:taxa.name, id:taxa.id, dataPublisherId:taxa.dataPublisher.id};});
-			$scope.datasetListShow = $scope.datasetList;
-		})
-		.error(function(data, status) {
-			$scope.datasetList = ['Erreur ' + status];
-			$scope.datasetListShow = $scope.datasetList;
-		});
-
+		$http.get(config.api.endpoint + '/dataset')
+			.success(function(data, status) {
+				$scope.datasetList = data.map(function(taxa){ return {name:taxa.name, id:taxa.id, dataPublisherId:taxa.dataPublisher.id};});
+				$scope.datasetListShow = $scope.datasetList;
+			})
+			.error(function(data, status) {
+				$scope.datasetList = ['Erreur ' + status];
+				$scope.datasetListShow = $scope.datasetList;
+			});
+	});
 
 }
 

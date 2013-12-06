@@ -4,27 +4,31 @@
 
 function CtrlDatapublisher($scope, $routeParams, $http, config){
 
-	$http.get('http://localhost:9000/api/datapublisher/' + $routeParams.id)
-		.success(function(data, status) {
-			$scope.reponse = status;
-			$scope.jsonDatapublisher = data;
-		})
-		.error(function(data, status) {
-			$scope.reponse = status;
-			$scope.jsonDatapublisher = data;
-		});
 
-	var datasets = $http.get('http://localhost:9000/api/dataset');
 
-	var filteredDatasets = datasets.then(function(data, status) {
-		$scope.datasets = data.data.filter(function(el) {
-			return el.dataPublisher.id == $routeParams.id;
-		});
-		return $scope.datasets;
-	})
 
 
 	config.then(function(config){
+		$http.get(config.api.endpoint + '/datapublisher/' + $routeParams.id)
+			.success(function(data, status) {
+				$scope.reponse = status;
+				$scope.jsonDatapublisher = data;
+			})
+			.error(function(data, status) {
+				$scope.reponse = status;
+				$scope.jsonDatapublisher = data;
+			});
+
+		var datasets = $http.get(config.api.endpoint + '/dataset');
+
+		var filteredDatasets = datasets.then(function(data, status) {
+			$scope.datasets = data.data.filter(function(el) {
+				return el.dataPublisher.id == $routeParams.id;
+			});
+			return $scope.datasets;
+		});
+
+
 		filteredDatasets.then(function(filteredDatasets){
 
 			var franceMetropolitan = new L.LatLng(

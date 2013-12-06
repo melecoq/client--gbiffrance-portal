@@ -41,28 +41,38 @@ var myApp = angular.module('portailApp', ['ngRoute', 'ui.bootstrap', 'ui.select2
 	}])
 	.directive('dateSlider', dateSlider);
 
-myApp.factory('config', function($q) {
-
+myApp.factory('config', function($q, $http) {
 	var defer = $q.defer();
 
-	defer.resolve({
-		map: {
-			franceMetropolitan: {
-				lat: 47.0176,
-				lon: 2.3427,
-				zoom: 5
-			},
-			layers: {
-				default: {
-					url: 'http://{s}.tiles.mapbox.com/v3/examples.map-dev-fr/{z}/{x}/{y}.png',
-					options:{
-						attribution: 'Map data &copy; <a href="http://mapbox.org">MapBox</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
-						maxZoom: 18
+	$http.get("config.json")
+		.success(function(data, status) {
+			defer.resolve(data);
+		})
+		.error(function(data, status) {
+			defer.resolve({
+				api: {
+					endpoint: "http://localhost:9000/api"
+				},
+				map: {
+					franceMetropolitan: {
+						lat: 47.0176,
+						lon: 2.3427,
+						zoom: 5
+					},
+					layers: {
+						default: {
+							url: 'http://{s}.tiles.mapbox.com/v3/examples.map-dev-fr/{z}/{x}/{y}.png',
+							options:{
+								attribution: 'Map data &copy; <a href="http://mapbox.org">MapBox</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
+								maxZoom: 18
+							}
+						}
 					}
 				}
-			}
-		}
-	});
+			});
+
+		});
+
 
 	return defer.promise;
 });

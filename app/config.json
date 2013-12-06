@@ -1,0 +1,21 @@
+{
+	"api": {
+		"endpoint": "http://www.gbif.fr/api"
+	},
+	"map": {
+		"franceMetropolitan": {
+			"lat": 47.0176,
+			"lon": 2.3427,
+			"zoom": 5
+		},
+		"layers": {
+			"default": {
+				"url": "http://{s}.tiles.mapbox.com/v3/examples.map-dev-fr/{z}/{x}/{y}.png",
+				"options": {
+					"attribution": "Map data &copy; <a href=\"http://mapbox.org\">MapBox</a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"http://cloudmade.com\">CloudMade</a>",
+ 					"maxZoom": 18
+				}
+			}
+		}
+	}
+}

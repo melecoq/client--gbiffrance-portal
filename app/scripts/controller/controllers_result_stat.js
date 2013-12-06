@@ -17,12 +17,15 @@ function CtrlResultStat($scope, searchForm, $http, config){
 
   $scope.exampleData = [10, 20, 30, 40, 50, 60, 80, 20, 50];
 
-  $http.post('http://localhost:9000/api/search/statistics', $scope.json)
-    .success(function(data, status) {
-      $scope.reponse = status;
-      $scope.jsonStat = data;
+  config.then(function(config){
 
-    });
+    $http.post(config.api.endpoint + '/search/statistics', $scope.json)
+      .success(function(data, status) {
+        $scope.reponse = status;
+        $scope.jsonStat = data;
+
+      });
+  });
 
   $scope.removeScientificName = function(index){
     searchForm.removeScientificName(index);

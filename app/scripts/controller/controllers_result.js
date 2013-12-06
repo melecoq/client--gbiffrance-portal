@@ -15,27 +15,31 @@ function CtrlResult($scope, $routeParams, searchForm, $http, config, withMap){
   $scope.isCollapsedRecherche = true;
   $scope.json = searchForm.buildJson();
 
-  var url = 'http://localhost:9000/api/search/occurrences';
-  if ($routeParams.pageId) {
-    url = url + "?page=" + $routeParams.pageId + "&size=" + $routeParams.pageSize;
-    $scope.pageId = parseInt($routeParams.pageId, 10);
-    $scope.pageSize = parseInt($routeParams.pageSize, 10);
-  } else {
-    $scope.pageId = 0;
-    $scope.pageSize = 10;
-  }
+  config.then(function(config){
 
-  $http.post(url, $scope.json)
-    .success(function(data, status, headers) {
-      $scope.reponse = status;
-      $scope.dataJson = data;
-      $scope.totalHits = parseInt(headers('X-Max-Hits') || 0, 10);
+    var url = config.api.endpoint + '/search/occurrences';
+    if ($routeParams.pageId) {
+      url = url + "?page=" + $routeParams.pageId + "&size=" + $routeParams.pageSize;
+      $scope.pageId = parseInt($routeParams.pageId, 10);
+      $scope.pageSize = parseInt($routeParams.pageSize, 10);
+    } else {
+      $scope.pageId = 0;
+      $scope.pageSize = 10;
+    }
 
-    })
-    .error(function(data, status) {
-      $scope.reponse = status;
-      $scope.dataJson = data;
-  	});
+    $http.post(url, $scope.json)
+      .success(function(data, status, headers) {
+        $scope.reponse = status;
+        $scope.dataJson = data;
+        $scope.totalHits = parseInt(headers('X-Max-Hits') || 0, 10);
+
+      })
+      .error(function(data, status) {
+        $scope.reponse = status;
+        $scope.dataJson = data;
+    	});
+
+  });
 
   $scope.removeScientificName = function(index){
     searchForm.removeScientificName(index);
@@ -65,17 +69,18 @@ function CtrlResult($scope, $routeParams, searchForm, $http, config, withMap){
     searchForm.removeDate(index);
   };
 
-  var loadMarkerPopup = function(marker, element) {
-    return function() {
-      $http.get('http://localhost:9000/api/occurrence/' + element.id)
-        .success(function(data, status){
-          marker.bindPopup('<a href="#/occurrence/'+element.id+'">'+data.scientificName+'</a>').openPopup()
-        });
-    };
-  };
+
 
   if(withMap) {
     config.then(function(config){
+      var loadMarkerPopup = function(marker, element) {
+        return function() {
+          $http.get(config.api.endpoint + '/occurrence/' + element.id)
+            .success(function(data, status){
+              marker.bindPopup('<a href="#/occurrence/'+element.id+'">'+data.scientificName+'</a>').openPopup()
+            });
+        };
+      };
       var franceMetropolitan = new L.LatLng(
         config.map.franceMetropolitan.lat,
         config.map.franceMetropolitan.lon);
@@ -109,7 +114,7 @@ function CtrlResult($scope, $routeParams, searchForm, $http, config, withMap){
         var nwCoord = map.unproject(nwPoint, zoom, true);
         var seCoord = map.unproject(sePoint, zoom, true);
 
-        $http.post('http://localhost:9000/api/search/occurrences/tile/'
+        $http.post(config.api.endpoint + '/search/occurrences/tile/'
           + nwCoord.lat + '/'
           + nwCoord.lng + '/'
           + seCoord.lat + '/'
@@ -168,7 +173,7 @@ function CtrlResult($scope, $routeParams, searchForm, $http, config, withMap){
               });
 
             } else if (total > 0) {
-              $http.post('http://localhost:9000/api/search/occurrences/markers/'
+              $http.post(config.api.endpoint + '/search/occurrences/markers/'
                 + nwCoord.lat + '/'
                 + nwCoord.lng + '/'
                 + seCoord.lat + '/'
