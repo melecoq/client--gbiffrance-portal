@@ -44,7 +44,7 @@ nav > ul > li
 
 .text-block{
 	display: inline-block;
-	width: 600px;
+	width: 100%;
 	vertical-align: middle;
 	text-align: left;
 }

@@ -1,9 +1,11 @@
 
-@green: #43a628;
+@green: #bdce0e;
 @darkgreen: #3F8A2B;
 
 body {
 	height: 100%;
+
+	background-color: #efefef;
 }
 
 header{
@@ -108,13 +110,28 @@ header{
 	margin-bottom: 115px;
 }
 
-#entete:extend(.container):extend(.hero-unit) {
-	text-align: center;
+#entete:extend(.row all):extend(.container):extend(.hero-unit) {
+	//text-align: center;
 
 	margin-bottom: 20px;
 	margin-top: 20px;
 
 	padding: 0;
+
+	vertical-align: middle;
+
+	p {
+		&:extend([class*="span"]);
+		#grid > .core .span(9);
+
+		padding: 32px 0;
+	}
+
+	img {
+		&:extend([class*="span"]);
+		margin-left: 50px;
+		#grid > .core .span(2);
+	}
 }
 
 footer{

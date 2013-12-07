@@ -1,15 +1,16 @@
 <article class="occurrence">
 	
-	<div id="map"></div>
 	<section class="info">
-		<h1>{{jsonOccurrence.scientificName}}</h1>
-		<h2>correspond à {{jsonOccurrence.specificEpithet_interpreted}}</h2>
-		<h3>fournit par {{jsonOccurrence.datasetName}}</h3>
+		<h2>{{jsonOccurrence.scientificName}}</h2>
+		<h3>correspond à {{jsonOccurrence.specificEpithet_interpreted}}</h3>
+		<h4>fournit par {{jsonOccurrence.datasetName}}</h4>
 	</section>
-	<section class="details">
-		<h2>Occurrence</h2>
 
-		<dl>
+	<div id="map"></div>
+
+	<section class="details row">
+		<h2>Occurrence</h2>
+		<dl class="span5">
 			<dt>Numéro de catalogue
 				<i class="icon-question-sign" ng-click="isCollapsedCatalog = !isCollapsedCatalog"></i>
 			</dt>
@@ -44,10 +45,7 @@
 				La date-heure ou l'intervalle pendant lequel le sujet a été récolté/observé. Ne convient pas pour un temps dans un contexte géologique. Il est recommandé d'utiliser un schéma de codage, tels que l'ISO 8601:2004 (E)
 			</div>	
 		</dl>
-	</section>
-	<section class="source">
-		<h2>Enregistrement</h2>
-		<dl>
+		<dl class="span5 offset1">
 			<dt>Code de l'institution 
 				<i class="icon-question-sign" ng-click="isCollapsedInstitution = !isCollapsedInstitution"></i>
 			</dt>
@@ -77,9 +75,9 @@
 			</div>	
 		</dl>
 	</section>
-	<section class="taxonomy">
+	<section class="taxonomy row">
 		<h2>Taxon</h2>
-		<dl>
+		<dl class="span5">
 			<dt>Royaume
 				<i class="icon-question-sign" ng-click="isCollapsedRoyaume = !isCollapsedRoyaume"></i>
 			</dt>
@@ -128,37 +126,45 @@
 			<dt>Genus
 				<i class="icon-question-sign" ng-click="isCollapsedGenus = !isCollapsedGenus"></i>
 			</dt>
-			<dd><a href="http://www.gbif.org/species/{{genusKey}}">{{jsonOccurrence.genus_interpreted}}</a></dd>
-			<div class="help-message" collapse="isCollapsedGenus">
-				Le nom scientifique complet  du genre dans lequel le taxon est classé
-			</div>	
+			<dd>
+				<a href="http://www.gbif.org/species/{{genusKey}}">{{jsonOccurrence.genus_interpreted}}</a>
+				<div class="help-message" collapse="isCollapsedGenus">
+					Le nom scientifique complet  du genre dans lequel le taxon est classé
+				</div>
+			</dd>
 			<dt>Nom scientifique
 				<i class="icon-question-sign" ng-click="isCollapsedScientificName = !isCollapsedScientificName"></i>
 			</dt>
 			<dd><a href="http://www.gbif.org/species/{{json.ecatConceptId}}">{{jsonOccurrence.scientificName}}</a></dd>
 			<div class="help-message" collapse="isCollapsedScientificName">
 				Le nom scientifique complet avec l'information sur le nom d'auteur (paternité) et la date si connus. (genus + specificEpithet + scientificNameRank + infraspecificEpithet + scientificNameAuthorship).  Quand ca fait partie d'une identification, cela devrait être le nom du plus bas rang taxonomique qui puisse être déterminé. Ce champs ne devrait pas contenir de qualifications d'identification (information qui doit être inscrite dans le champs IdentificationQualifier) 
-			</div>	
-			<dt>Statut du taxon
-				<i class="icon-question-sign" ng-click="isCollapsedTaxonStatus = !isCollapsedTaxonStatus"></i>
-			</dt>
-			<dd>{{jsonOccurrence.taxonStatus}}</dd>
-			<div class="help-message" collapse="isCollapsedTaxonStatus">
-				Le statut du taxon : valide ou invalide.
 			</div>
-			<dt>Identifiant API GBIF
-				<i class="icon-question-sign" ng-click="isCollapsedEcatConceptId = !isCollapsedEcatConceptId"></i>
-			</dt>
-			<dd>{{jsonOccurrence.ecatConceptId}}</dd>
-			<div class="help-message" collapse="isCollapsedEcatConceptId">
-				L'identifiant qui permet de faire des recherches sur l'espèce via les API webservice du GBIF international
-			</div>	
+			
 		</dl>
-		<img ng-if="imageUrl" src="{{imageUrl}}"/>
+		<div class="span5">
+			<img ng-if="imageUrl" src="{{imageUrl}}"/>
+
+			<dl>
+
+				<dt>Statut du taxon
+					<i class="icon-question-sign" ng-click="isCollapsedTaxonStatus = !isCollapsedTaxonStatus"></i>
+				</dt>
+				<dd>{{jsonOccurrence.taxonStatus}}</dd>
+				<div class="help-message" collapse="isCollapsedTaxonStatus">
+					Le statut du taxon : valide ou invalide.
+				</div>
+				<dt>Identifiant API GBIF
+					<i class="icon-question-sign" ng-click="isCollapsedEcatConceptId = !isCollapsedEcatConceptId"></i>
+				</dt>
+				<dd>{{jsonOccurrence.ecatConceptId}}</dd>
+				<div class="help-message" collapse="isCollapsedEcatConceptId">
+					L'identifiant qui permet de faire des recherches sur l'espèce via les API webservice du GBIF international
+				</div>	
+			</dl>		</div>
 	</section>
-	<section class="location">
+	<section class="location row">
 		<h2>Lieu</h2>
-		<dl>
+		<dl class="span5">
 			<dt>Pays
 				<i class="icon-question-sign" ng-click="isCollapsedCountry = !isCollapsedCountry"></i>
 			</dt>
@@ -188,6 +194,8 @@
 				La latitude géographique (en degré décimal) du centre géographique de la localisation. Valeurs positives pour le nord de l'équateur, valeurs négatives pour le sud. Valeurs entre -90 et 90 inclus. La virgule est symbolisée par un point (système anglosaxon)
 				La longitude géographique (en degré décimal) du centre géographique de la localisation. Valeurs positives pour l'est du méridien de greenwich, valeurs négatives pour l'ouest. Valeurs entre -180 et 180 inclus. La virgule est symbolisée par un point (système anglosaxon)
 			</div>	
+		</dl>
+		<dl class="span5">
 			<dt>Altitude
 				<i class="icon-question-sign" ng-click="isCollapsedElevation = !isCollapsedElevation"></i>
 			</dt>

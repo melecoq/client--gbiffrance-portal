@@ -24,7 +24,7 @@ function CtrlResult($scope, $routeParams, searchForm, $http, config, withMap){
       $scope.pageSize = parseInt($routeParams.pageSize, 10);
     } else {
       $scope.pageId = 0;
-      $scope.pageSize = 10;
+      $scope.pageSize = 20;
     }
 
     $http.post(url, $scope.json)
@@ -96,7 +96,7 @@ function CtrlResult($scope, $routeParams, searchForm, $http, config, withMap){
       var options = {};
       angular.extend(options, config.map.layers.default.options);
       angular.extend(options, {
-        noWrap: true
+        noWrap: false
       });
       L.tileLayer(config.map.layers.default.url, options).addTo(map);
 

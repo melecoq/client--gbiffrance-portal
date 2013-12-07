@@ -14,10 +14,10 @@
 
 			<i class="icon-question-sign" ng-click="isCollapsedCommun = !isCollapsedCommun"></i>
 			<label for="vernacularName">Nom commun</label>
-			<input type="text" id="vernacularName" class="input-medium" ng-model="vernacularName" typeahead="name for name in autocompleteVernacularName($viewValue)" />
+			<input type="text" id="vernacularName" class="input-medium" ng-model="vernacularName" typeahead="name for name in autocompleteVernacularName($viewValue)" disabled="disabled"/>
 			<input type="submit" value="Ajouter" />
 
-			<div class="help-message" collapse="isCollapsedCommun"> Faire une recherche en utilisant le nom commun de l'occurrence. Par exemple : loup (toujours en cours de développement). </div>
+			<div class="help-message" collapse="isCollapsedCommun"> Faire une recherche en utilisant le nom commun de l'occurrence. Par exemple : loup <b>(en cours de développement)</b>. </div>
 		</form>
 	</div>	
 </div>

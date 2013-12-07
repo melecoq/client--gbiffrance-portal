@@ -1,12 +1,12 @@
 <div ng-include="'portal/result/result.inc.html'"></div>
 <div id="result-map"></div>
 
-<div ng-if="totalHits==0">
+<div id="results" class="no-result" ng-if="totalHits==0">
 	Pas de résultat
 </div>
-<div ng-if="totalHits > 0">
-	<p ng-if="totalHits"> {{totalHits}} occurrences </p>
-	<table class ="table table-hover table-condensed">
+<div id="results" ng-if="totalHits > 0">
+	<p ng-if="totalHits">{{totalHits}} occurrences</p>
+	<table>
 		<thead>
 			<tr>
 				<th>Nom scientifique</th>
@@ -18,7 +18,10 @@
 		</thead>
 		<tbody>
 			<tr ng-repeat="occurrence in dataJson">
-				<td><a href="#/occurrence/{{occurrence.id}}">{{occurrence.scientificName}} <br> Cat. {{occurrence.catalogNumber}}</td>
+				<td>
+					<a href="#/occurrence/{{occurrence.id}}" class="catalog">Cat. {{occurrence.catalogNumber}}</a>
+					<a href="#/occurrence/{{occurrence.id}}" class="species">{{occurrence.scientificName}}</a> 
+				</td>
 				<td>{{occurrence.datasetName}}</td>
 				<td>{{occurrence.country}}</td>
 				<td>{{occurrence.basisOfRecord}}</td>
@@ -29,10 +32,10 @@
 
 	<ul class="pager">
 		<li class="previous" ng-class="{disabled: pageId==0}">
-			<a href="#/result/occurrence/{{pageId - 1}}/{{pageSize}}">&larr; Older</a>
+			<a href="#/result/occurrence/{{pageId - 1}}/{{pageSize}}">&larr; Pr&eacute;c&eacute;dents</a>
 		</li>
 		<li class="next" ng-class="{disabled: dataJson.length <= 0}">
-			<a href="#/result/occurrence/{{pageId + 1}}/{{pageSize}}">Newer &rarr;</a>
+			<a href="#/result/occurrence/{{pageId + 1}}/{{pageSize}}">Suivants &rarr;</a>
 		</li>
 	</ul>
 </div>
