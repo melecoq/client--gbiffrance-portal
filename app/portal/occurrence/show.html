@@ -23,8 +23,12 @@
 	<section class="source">
 		<h2>Enregistrement</h2>
 		<dl>
-			<dt>Code de l'institution</dt>
+			<dt>Code de l'institution 
+				<i class="icon-question-sign" ng-click="isCollapsedSInstitution = !isCollapsedInstitution"></i>
+			</dt>
 			<dd>{{jsonOccurrence.collectionCode}}</dd>
+			<div class="help-message" collapse="isCollapsedSInstitution">
+			Le nom (ou l'acronyme) de l'institution ayant la garde de l'occurrence </div>	
 			<dt>Code de la collection</dt>
 			<dd>{{jsonOccurrence.collectionCode}}</dd>
 			<dt>Fournisseur de données</dt>
@@ -55,6 +59,7 @@
 			<dt>Identifiant API GBIF</dt>
 			<dd>{{jsonOccurrence.ecatConceptId}}</dd>
 		</dl>
+		<img ng-if="imageUrl" src="{{imageUrl}}"/>
 	</section>
 	<section class="location">
 		<h2>Lieu</h2>

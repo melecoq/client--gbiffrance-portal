@@ -1,7 +1,10 @@
 <div ng-include="'portal/result/result.inc.html'"></div>
 <div id="result-map"></div>
 
-<div>
+<div ng-if="totalHits==0">
+	Pas de résultat
+</div>
+<div ng-if="totalHits > 0">
 	<p ng-if="totalHits"> {{totalHits}} occurrences </p>
 	<table class ="table table-hover table-condensed">
 		<thead>

@@ -4,6 +4,8 @@
 
 function CtrlOccurrence($scope, $routeParams, $http, config){
 
+	$scope.isCollapsedSInstitution = false;
+
 	config.then(function(config){
 
 		$http.get(config.api.endpoint + '/occurrence/' + $routeParams.id)
@@ -13,6 +15,7 @@ function CtrlOccurrence($scope, $routeParams, $http, config){
 				var latitude = data.decimalLatitude;
 				var longitude = data.decimalLongitude;
 				var url = "http://api.gbif.org/v0.9/species/"+data.ecatConceptId;
+				var urlImage = "http://api.gbif.org/v0.9/species/"+data.ecatConceptId+"/images";
 				$scope.genusKey = "";
 				$scope.familyKey ="";
 				$scope.orderKey="";
@@ -30,6 +33,18 @@ function CtrlOccurrence($scope, $routeParams, $http, config){
 						$scope.phylumKey = data.phylumKey;
 						$scope.kingdomKey = data.kingdomKey;
 
+					})
+					.error(function(data, status) {
+						nameList.resolve(['Erreur ' + status]);
+					});
+
+				$http.get(urlImage)
+					.success(function(data, status) {
+						var imageObject = data.results[0];
+						if(imageObject){
+							$scope.imageUrl = data.results[0].image;
+							console.log($scope.imageUrl);
+						}
 					})
 					.error(function(data, status) {
 						nameList.resolve(['Erreur ' + status]);
