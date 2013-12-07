@@ -8,12 +8,29 @@
 
 	.forms:extend(form-group) {
 		padding: 20px;
+		.border-radius(4px);
 
 		form {
 			padding-right: 40px;
-		}
-		form:last-child:extend(.form-bottom) {
 
+			label:extend(.form-horizontal .control-label) {	
+				margin-right: 5px;
+			}
+
+			input:extend(.form-horizontal input):extend(.input-medium) {
+			}
+			select:extend(.form-horizontal select):extend(.input-medium) {
+			}
+			select.lt-gt-filter {
+				width: 3em;
+			}
+
+			input[type="submit"]:extend(.btn) {
+				width: auto;
+			}
+		}
+		form:last-child {
+			margin-bottom: 0px;
 		}
 
 

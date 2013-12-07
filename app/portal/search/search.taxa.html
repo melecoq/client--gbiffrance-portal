@@ -3,27 +3,20 @@
 
 	<div class="forms">
 		<form ng-submit="addScientificName()">
-			<label  class="control-label label-filter" for="scientificName">Nom scientifique </label>
 			<i class="icon-question-sign" ng-click="isCollapsedScientific = !isCollapsedScientific"></i>
-			<input type="text" id="scientificName" class="input-medium" ng-model="scientificName" typeahead="name for name in autocompleteScientificName($viewValue)">
-			<input type="submit" class="btn" value="Ajouter" >
+			<label  for="scientificName">Nom scientifique </label>
+			<input type="text" id="scientificName" ng-model="scientificName" typeahead="name for name in autocompleteScientificName($viewValue)" />
+			<input type="submit" value="Ajouter" />
 
-	    	<!--div class="form-horizontal">
-				<div class="control">
-
-	  			</div>
-			</div-->
 			<div class="help-message" collapse="isCollapsedScientific">Faire une recherche en utilisant le nom scientifique de l'occurrence. Par exemple : canis lupus.</div>	
 		</form>
 		<form class="" ng-submit="addVernacularName()">
-	    	<div class="form-horizontal">
-				<div class="control">
-					<i class="icon-question-sign" ng-click="isCollapsedCommun = !isCollapsedCommun"></i>
-					<label  class="control-label label-filter" for="vernacularName">Nom commun</label>
-					<input type="text" id="vernacularName" class="input-medium" ng-model="vernacularName" typeahead="name for name in autocompleteVernacularName($viewValue)">
-	  				<input type="submit" class="btn" value="Ajouter" >
-	  			</div>
-			</div>
+
+			<i class="icon-question-sign" ng-click="isCollapsedCommun = !isCollapsedCommun"></i>
+			<label for="vernacularName">Nom commun</label>
+			<input type="text" id="vernacularName" class="input-medium" ng-model="vernacularName" typeahead="name for name in autocompleteVernacularName($viewValue)" />
+			<input type="submit" value="Ajouter" />
+
 			<div class="help-message" collapse="isCollapsedCommun"> Faire une recherche en utilisant le nom commun de l'occurrence. Par exemple : loup (toujours en cours de développement). </div>
 		</form>
 	</div>	
