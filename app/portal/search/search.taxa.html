@@ -1,18 +1,21 @@
-<div id="search-form">
+<div id="search-form" class="taxa">
 	<div ng-include="'portal/search/search.inc.html'"></div>
-	<div class="form-group search-form search-form-taxa">
-		<form  ng-submit="addScientificName()">
-	    	<div class="form-horizontal">
+
+	<div class="forms">
+		<form ng-submit="addScientificName()">
+			<label  class="control-label label-filter" for="scientificName">Nom scientifique </label>
+			<i class="icon-question-sign" ng-click="isCollapsedScientific = !isCollapsedScientific"></i>
+			<input type="text" id="scientificName" class="input-medium" ng-model="scientificName" typeahead="name for name in autocompleteScientificName($viewValue)">
+			<input type="submit" class="btn" value="Ajouter" >
+
+	    	<!--div class="form-horizontal">
 				<div class="control">
-					<i class="icon-question-sign" ng-click="isCollapsedScientific = !isCollapsedScientific"></i>
-					<label  class="control-label label-filter" for="scientificName">Nom scientifique </label>
-					<input type="text" id="scientificName" class="input-medium" ng-model="scientificName" typeahead="name for name in autocompleteScientificName($viewValue)">
-	  				<input type="submit" class="btn" value="Ajouter" >
+
 	  			</div>
-			</div>
-			<div class="help-message" collapse="isCollapsedScientific"> Faire une recherche en utilisant le nom scientifique de l'occurrence. Par exemple : canis lupus. </div>	
+			</div-->
+			<div class="help-message" collapse="isCollapsedScientific">Faire une recherche en utilisant le nom scientifique de l'occurrence. Par exemple : canis lupus.</div>	
 		</form>
-		<form class="form-bottom" ng-submit="addVernacularName()">
+		<form class="" ng-submit="addVernacularName()">
 	    	<div class="form-horizontal">
 				<div class="control">
 					<i class="icon-question-sign" ng-click="isCollapsedCommun = !isCollapsedCommun"></i>
