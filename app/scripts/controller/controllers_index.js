@@ -1,21 +1,34 @@
 'use strict';
 
-function CtrlIndex() {
+function CtrlIndex(config) {
 
-	var map = L.map('index-map', {zoomControl:false, dragging:false}).setView([47.3, -0.89], 1);
+	var map = L.map('index-map', {
+		zoomControl:false,
+		dragging:false,
+		scrollWheelZoom: false,
+		doubleClickZoom: false,
+		boxZoom: false
+	}).setView([47.3, -0.89], 2);
 
-	// Fond de carte
-	L.tileLayer('http://{s}.tiles.mapbox.com/v3/timrobertson100.map-x2mlizjd/{z}/{x}/{y}.png', {
-		attribution: 'Map data &copy; <a href="http://mapbox.org">MapBox</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
-		maxZoom: 18,
-		noWrap: true
-	}).addTo(map);
 
-	// Layer GBIF
-	L.tileLayer('http://api.gbif.org/v0.9/map/density/tile?key=FR&x={x}&y={y}&z={z}&type=PUBLISHING_COUNTRY&palette=greens', {
-		attribution: 'GBIF',
-		maxZoom: 9
-	}).addTo(map);
+	config.then(function(config) {
+
+		// Fond de carte
+		var options = {};
+		angular.extend(options, config.map.layers.default.options);
+		angular.extend(options, {
+			noWrap: true,
+		});
+		var baseLayer = L.tileLayer(config.map.layers.default.url, options);
+		baseLayer.addTo(map);
+
+		// Layer GBIF
+		L.tileLayer('http://api.gbif.org/v0.9/map/density/tile?key=FR&x={x}&y={y}&z={z}&type=PUBLISHING_COUNTRY&palette=red', {
+			attribution: 'GBIF',
+			maxZoom: 9
+		}).addTo(map);
+
+	});
 }
 
 myApp.controller('CtrlIndex', CtrlIndex);
