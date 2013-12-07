@@ -130,20 +130,6 @@ footer{
 	margin-right: auto;
 }
 
-#search-tabs {
-	margin-bottom: 20px;
-	width: 100%;
-}
-#search-tabs .btn {
-	width: 25%;
-	/* Cancel the border effect */
-	margin-left: -2px;
-	padding: 4px 0;
-}
-#search-tabs .btn:first-child{
-	/* No margin left for the lefter element */
-	margin-left: 0;
-}
 
 #georeferenced-data input[type="checkbox"] {
 	margin-left: 10px;
@@ -162,7 +148,6 @@ footer{
 	width: 100%;
 }
 #search-form form > .btn{
-	text-align: left;
 }
 
 #search-form .help-message {

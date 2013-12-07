@@ -84,17 +84,13 @@
 			</dd>
 			<dt class="geo" ng-if="georeferences">Données géoréférencées</dt>
 		</dl>
-		<div class="form-horizontal">
-			<div class="control">
-				<a ng-href="#/result/occurrence" class="btn">Rechercher</a>
-			</div>
-		</div>
+		<a ng-href="#/result/occurrence" class="submit">Rechercher</a>
 	</div>
 </div>
 
-<div class="btn-group" id="search-tabs"> 	
-	<a ng-href="#/search/taxa" class="btn btn-info">Taxon</a>
-	<a ng-href="#/search/geography" class="btn btn-warning">Géographie</a> 
-	<a ng-href="#/search/dataset" class="btn btn-success">Jeu de données</a>
-	<a ng-href="#/search/date" class="btn btn-danger">Date</a>                 
+<div id="search-tabs"> 	
+	<a ng-href="#/search/taxa" class="taxa">Taxon</a>
+	<a ng-href="#/search/geography" class="geo">Géographie</a> 
+	<a ng-href="#/search/dataset" class="dataset">Jeu de données</a>
+	<a ng-href="#/search/date" class="date">Date</a>                 
 </div>

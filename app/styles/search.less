@@ -35,6 +35,8 @@
 		}
 
 
+
+
 	}
 
 	#summary:extend(.hero-unit) {
@@ -52,6 +54,7 @@
 		}
 		.dataset{
 			color : #468847;
+
 		}
 		.date{
 			color : #b94a48;
@@ -118,6 +121,10 @@
 			dd:extend(.dl-horizontal dd) {
 			}
 		}
+
+		a.submit:extend(.btn) {
+
+		}
 	}
 }
 
@@ -137,6 +144,9 @@
 	background-color: #dff0d8;
     border-color: #d6e9c6;
     color:#468847;
+
+	.search-query:extend(.input-xlarge) {
+	}
 }
 
 #search-form.geo .forms {
@@ -144,3 +154,33 @@
 	border-color: #fbeed5;
 	color:#c09853;
 }
+
+
+
+#search-tabs:extend(.btn-group) {
+	margin-bottom: 20px;
+	width: 100%;
+
+	a:extend(.btn):extend(.btn-group>.btn) {
+		width: 25%;
+		/* Cancel the border effect */
+		margin-left: -2px;
+		padding: 4px 0;
+	}
+
+	a:last-child{
+		&:extend(.btn-group>.btn:last-child);
+	}
+	a:first-child{
+		&:extend(.btn-group>.btn:first-child);
+		/* No margin left for the lefter element */
+		margin-left: 0;
+	}
+
+	a.taxa:extend(.btn-info) {}
+	a.geo:extend(.btn-warning) {}
+	a.dataset:extend(.btn-success) {}
+	a.date:extend(.btn-danger) {}
+
+}
+

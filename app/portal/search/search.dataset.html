@@ -4,7 +4,7 @@
 		<form ng-submit="addDatapublisherDataset()">
 			<i class="icon-question-sign" ng-click="isCollapsedDatapublisher = !isCollapsedDatapublisher"></i>
 			<label for="datapublisher">Fournisseur de données </label>
-			<select ui-select2="{allowClear: true}" data-placeholder="Select a data publisher" id="datapublisher" class="input-medium search-query"  ng-model="datapublisher">
+			<select ui-select2="{allowClear: true}" data-placeholder="Select a data publisher" id="datapublisher" class="search-query"  ng-model="datapublisher">
 				<option ng-repeat="taxa in dataPublisherList" value="{{taxa.id}}">{{taxa.name}}</option>
 			</select>
 
@@ -14,7 +14,7 @@
 
 			<i class="icon-question-sign" ng-click="isCollapsedDataset = !isCollapsedDataset"></i>
 			<label for="dataset">Jeu de données</label>
-			<select ui-select2 id="dataset" class="input-medium search-query" ng-model="dataset">
+			<select ui-select2 id="dataset" class="search-query" ng-model="dataset">
 				<option ng-repeat="name in datasetListShow" value="{{name.id}}">{{name.name}}</option>
 			</select>
 			<input type="submit" class="btn-select" value="Ajouter" />
