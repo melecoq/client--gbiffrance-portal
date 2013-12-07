@@ -10,9 +10,9 @@
 		},
 		"layers": {
 			"default": {
-				"url": "http://{s}.tiles.mapbox.com/v3/examples.map-dev-fr/{z}/{x}/{y}.png",
+				"url": "http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
 				"options": {
-					"attribution": "Map data &copy; <a href=\"http://mapbox.org\">MapBox</a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"http://cloudmade.com\">CloudMade</a>",
+					"attribution": "&mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community",
  					"maxZoom": 18
 				}
 			}
