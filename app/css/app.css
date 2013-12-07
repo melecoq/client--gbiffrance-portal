@@ -185,22 +185,6 @@ footer{
 
 }
 
-.label-taxa{
-	color : #3a87ad;
-}
-
-.label-geo{
-	color : #c09853;
-}
-
-.label-dataset{
-	color : #468847;
-}
-
-.label-date{
-	color : #b94a48;
-}
-
 .lt-gt-filter {
 }
 
@@ -238,35 +222,7 @@ footer{
 }
 /* Recapitulatif recherche */
 
-dl{
-	list-style-type: none;
-	margin: 0px;
-	padding: 0px;
-}
 
-.search-summary h3{
-	font-size: 17px;
-	margin: 0px;
-	text-decoration: underline;
-}
-
-.search-summary{
-	font-size: 15px;
-	padding: 15px 20px 15px 20px;
-	color: #000000;
-}
-
-.search-summary span{
-	border: 1px solid gray;
-	padding-left: 5px;
-	padding-right: 5px;
-	margin-left: 3px;
-	font-style: italic;
-}
-
-.search-summary-field{
-	padding-bottom: 1px;
-}
 
 nav {
 

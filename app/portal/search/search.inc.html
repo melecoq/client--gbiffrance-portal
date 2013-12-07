@@ -1,66 +1,88 @@
-<div class="hero-unit search-summary">
-	<div ng-click="isCollapsedRecherche = !isCollapsedRecherche">
-		<h3> Votre recherche </h3>
-	</div>
-	<div class="search-summary-field" collapse="isCollapsedRecherche">
+<div id="summary" >
+	<h3 ng-click="isCollapsedRecherche = !isCollapsedRecherche"> Votre recherche </h3>
+
+	<div collapse="isCollapsedRecherche">
 		<dl>
-			<dt class="label-taxa" ng-if="scientificNames.length>=1"> Nom scientifique </dt>
-			<dd> 
-				<span class="label-taxa" ng-repeat="name in scientificNames ">
-					{{name.text}} <i class="icon-remove" ng-click="removeScientificName($index)"></i> 
-				</span>
+			<dt class="taxa" ng-if="scientificNames.length>=1"> Nom scientifique </dt>
+			<dd class="taxa">
+				<ul>
+					<li ng-repeat="name in scientificNames ">
+						<i class="icon-remove" ng-click="removeScientificName($index)"></i>
+						{{name.text}}
+					</li>
+				</ul>
 			</dd>
-			<dt class="label-taxa" ng-if="vernacularNames.length>=1"> Nom commun </dt>
-			<dd> 
-				<span class="label-taxa" ng-repeat="name in vernacularNames">
-					{{name.text}} <i class="icon-remove" ng-click="removeVernacularName($index)"></i> 
-				</span>
+			<dt class="taxa" ng-if="vernacularNames.length>=1"> Nom commun </dt>
+			<dd class="taxa">
+				<ul>
+					<li ng-repeat="name in vernacularNames">
+						<i class="icon-remove" ng-click="removeVernacularName($index)"></i>
+						{{name.text}}
+					</li>
+				</ul>
 			</dd>
-			<dt class="label-geo" ng-if="localities.length>=1"> Lieu </dt>
-			<dd> 
-				<span class="label-geo" ng-repeat="name in localities">
-					{{name.text}} <i class="icon-remove" ng-click="removeLocality($index)"></i> 
-				</span>
+			<dt class="geo" ng-if="localities.length>=1"> Lieu </dt>
+			<dd class="geo">
+				<ul>
+					<li ng-repeat="name in localities">
+						<i class="icon-remove" ng-click="removeLocality($index)"></i>
+						{{name.text}}
+					</li>
+				</ul>
 			</dd>
-			<dt class="label-geo" ng-if="latitudes.length>=1"> Latitude </dt>
-			<dd> 
-				<span class="label-geo" ng-repeat="number in latitudes">
-					{{number.filter}} {{number.bound}} <i class="icon-remove" ng-click="removeLatitude($index)"></i> 
-				</span>
+			<dt class="geo" ng-if="latitudes.length>=1"> Latitude </dt>
+			<dd class="geo">
+				<ul>
+					<li ng-repeat="number in latitudes">
+						<i class="icon-remove" ng-click="removeLatitude($index)"></i>
+						{{number.filter}} {{number.bound}} 
+					</li>
+				</ul>
 			</dd>
-			<dt class="label-geo" ng-if="longitudes.length>=1"> Longitude </dt>
-			<dd> 
-				<span class="label-geo" ng-repeat="number in longitudes">
-					{{number.filter}} {{number.bound}} <i class="icon-remove" ng-click="removeLongitude($index)"></i> 
-				</span>
+			<dt class="geo" ng-if="longitudes.length>=1"> Longitude </dt>
+			<dd class="geo">
+				<ul>
+					<li ng-repeat="number in longitudes">
+						<i class="icon-remove" ng-click="removeLongitude($index)"></i>
+						{{number.filter}} {{number.bound}}
+					</li>
+				</ul>
 			</dd>
-			<dt class="label-geo" ng-if="boundingBoxes.length>=1"> Bounding box </dt>
-			<dd>
-				<span class="label-geo" ng-repeat="box in boundingBoxes" ng-mouseenter="highlightBoundingBox(true, box); inputBoundingBoxName = true;" ng-mouseleave="highlightBoundingBox(false, box); inputBoundingBoxName = false;">
-					<i class="icon-remove" ng-click="removeBoundingBox(box)"></i> 
-					<span ng-if="!inputBoundingBoxName">{{box.name}}</span>
-					<input ng-if="inputBoundingBoxName" ng-model="box.name" value="{{box.name}}" />
-				</span>
+			<dt class="geo" ng-if="boundingBoxes.length>=1"> Bounding box </dt>
+			<dd class="geo">
+				<ul>
+					<li ng-repeat="box in boundingBoxes" ng-mouseenter="highlightBoundingBox(true, box); inputBoundingBoxName = true;" ng-mouseleave="highlightBoundingBox(false, box); inputBoundingBoxName = false;">
+						<i class="icon-remove" ng-click="removeBoundingBox(box)"></i> 
+						<span ng-if="!inputBoundingBoxName">{{box.name}}</span>
+						<input ng-if="inputBoundingBoxName" ng-model="box.name" value="{{box.name}}" />
+					</li>
+				</ul>
 			</dd>
-			<dt class="label-dataset" ng-if="!datapublisherDataset.empty()">Jeux de données</dt>
-			<dd>
-				<div ng-repeat="(dpId, dp) in datapublisherDataset">
-					<span class="label-dataset" ng-if="dp.includeAll">
-						{{dp.name}} <i class="icon-remove" ng-click="removeDatapublisher(dpId)"></i> 
-					</span>
-					<span class="label-dataset" ng-if="dp.includeAll == false" ng-repeat="(dsId, ds) in dp.datasets">
-						{{dp.name}} - {{ds.name}}<i class="icon-remove" ng-click="removeDataset(dsId)"></i>
-					</span>
-				</div>
+			<dt class="dataset" ng-if="!datapublisherDataset.empty()">Jeux de données</dt>
+			<dd class="dataset">
+				<ul>
+					<li ng-if="!datapublisherDataset.empty()" ng-repeat="(dpId, dp) in datapublisherDataset">
+						<span ng-if="dp.includeAll">
+							<i class="icon-remove" ng-click="removeDatapublisher(dpId)"></i>
+							{{dp.name}}
+						</span>
+						<span ng-if="dp.includeAll == false" ng-repeat="(dsId, ds) in dp.datasets">
+							<i class="icon-remove" ng-click="removeDataset(dsId)"></i>
+							{{dp.name}} - {{ds.name}}
+						</span>
+					</li>
+				</ul>
 			</dd>
-			<dt class="label-date" ng-if="date != undefined">Date</dt>
-			<dd> 
-				<span class="label-date" ng-if="date != undefined">
-					Entre {{date.beginDate}} et {{date.endDate}}
-					<i class="icon-remove" ng-click="removeDate()"></i> 
-				</span>
+			<dt class="date" ng-if="date != undefined">Date</dt>
+			<dd class="date">
+				<ul>
+					<li ng-if="date != undefined">
+						<i class="icon-remove" ng-click="removeDate()"></i>
+						Entre {{date.beginDate}} et {{date.endDate}}
+					</li>
+				</ul>
 			</dd>
-			<dt class="label-geo"  ng-if="georeferences"> Données géoréférencées</dt>
+			<dt class="geo" ng-if="georeferences">Données géoréférencées</dt>
 		</dl>
 		<div class="form-horizontal">
 			<div class="control">
