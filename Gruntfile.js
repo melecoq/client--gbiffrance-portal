@@ -97,6 +97,9 @@ module.exports = function (grunt) {
       },
       less: {
         server: {
+          options: {
+            syncImport: true
+          },
           files: {
             '<%= yeoman.tmp %>/styles/main.css': '<%= yeoman.app %>/styles/main.less'
           }

@@ -10,74 +10,200 @@
 		<h2>Occurrence</h2>
 
 		<dl>
-			<dt><a href="http://darwincore.googlecode.com/svn/trunk/terms/index.htm#catalogNumber">Numéro de catalogue</a></dt>
+			<dt>Numéro de catalogue
+				<i class="icon-question-sign" ng-click="isCollapsedCatalog = !isCollapsedCatalog"></i>
+			</dt>
 			<dd>{{jsonOccurrence.catalogNumber}}</dd>
-			<dt><a href="http://darwincore.googlecode.com/svn/trunk/terms/index.htm#basisOfRecord">Type d'enregistrement</a></dt>
+			<div class="help-message" collapse="isCollapsedCatalog">
+				Un identifiant (de préférence unique), pour l'occurrence dans le jeu de données ou la collection.
+			</div>	
+			<dt>Type d'enregistrement
+				<i class="icon-question-sign" ng-click="isCollapsedEnregistrement = !isCollapsedEnregistrement"></i>
+			</dt>
 			<dd>{{jsonOccurrence.basisOfRecord}}</dd>
-			<dt><a href="http://darwincore.googlecode.com/svn/trunk/terms/index.htm#preparations">Préparation</a></dt>
+			<div class="help-message" collapse="isCollapsedEnregistrement">
+				La nature spécifique de l'enregistrement. 
+				* Observation : Un rapport par un observateur connu
+				* Specimen : Un objet physique représentant un ou plusieurs organismes
+				* Living : Un organisme prélevé de son milieu naturel et maintenant vivant en captivité ou culture
+				* Germplasm : Matériel génétique végétal, animal ou bactérien utilisé dans la production de nouveaux organismes
+				* Fossil : Un objet physique représentant un ou plusieurs organisme fossile 
+			</div>	
+			<dt>Préparation
+				<i class="icon-question-sign" ng-click="isCollapsedPreparation = !isCollapsedPreparation"></i>
+			</dt>
 			<dd>{{jsonOccurrence.preparation}}</dd>
-			<dt><a href="http://darwincore.googlecode.com/svn/trunk/terms/index.htm#eventDate">Date d'évenement</a></dt>
+			<div class="help-message" collapse="isCollapsedPreparation">
+				Etat du spécimen
+			</div>	
+			<dt>Date d'évenement
+				<i class="icon-question-sign" ng-click="isCollapsedDateEvent = !isCollapsedDateEvent"></i>
+			</dt>
 			<dd>{{jsonOccurrence.eventDate}}</dd>
+			<div class="help-message" collapse="isCollapsedDateEvent">
+				La date-heure ou l'intervalle pendant lequel le sujet a été récolté/observé. Ne convient pas pour un temps dans un contexte géologique. Il est recommandé d'utiliser un schéma de codage, tels que l'ISO 8601:2004 (E)
+			</div>	
 		</dl>
 	</section>
 	<section class="source">
 		<h2>Enregistrement</h2>
 		<dl>
 			<dt>Code de l'institution 
-				<i class="icon-question-sign" ng-click="isCollapsedSInstitution = !isCollapsedInstitution"></i>
+				<i class="icon-question-sign" ng-click="isCollapsedInstitution = !isCollapsedInstitution"></i>
 			</dt>
 			<dd>{{jsonOccurrence.collectionCode}}</dd>
-			<div class="help-message" collapse="isCollapsedSInstitution">
-			Le nom (ou l'acronyme) de l'institution ayant la garde de l'occurrence </div>	
-			<dt>Code de la collection</dt>
+			<div class="help-message" collapse="isCollapsedInstitution">
+				Le nom (ou l'acronyme) de l'institution ayant la garde de l'occurrence 
+			</div>	
+			<dt>Code de la collection
+				<i class="icon-question-sign" ng-click="isCollapsedCollection = !isCollapsedCollection"></i>
+			</dt>
 			<dd>{{jsonOccurrence.collectionCode}}</dd>
-			<dt>Fournisseur de données</dt>
+			<div class="help-message" collapse="isCollapsedCollection">
+				Le nom, l'acronyme, le code ou les initiales identifiant la collection ou le jeu de données dont l'occurrence provient 
+			</div>	
+			<dt>Fournisseur de données
+				<i class="icon-question-sign" ng-click="isCollapsedFournisseur = !isCollapsedFournisseur"></i>
+			</dt>
 			<dd>Fournisseur de données</dd>
-			<dt>Jeu de données</dt>
+			<div class="help-message" collapse="isCollapsedFournisseur">
+			Le nom du fournisseur de données de l'occurrence </div>	
+			<dt>Jeu de données
+				<i class="icon-question-sign" ng-click="isCollapsedDataset = !isCollapsedDataset"></i>
+			</dt>
 			<dd><a href="#/dataset/{{jsonOccurrence.datasetId}}">{{jsonOccurrence.datasetName}}</a></dd>
+			<div class="help-message" collapse="isCollapsedDataset">
+				Le nom du jeu de données de l'occurrence
+			</div>	
 		</dl>
 	</section>
 	<section class="taxonomy">
 		<h2>Taxon</h2>
 		<dl>
-			<dt>Royaume</dt>
-			<dd><a href="http://www.gbif.org/species/{{kingdomKey}}">{{jsonOccurrence.kingdom_interpreted}}</a></dd>
-			<dt>Phylum</dt>
-			<dd><a href="http://www.gbif.org/species/{{phylumKey}}">{{jsonOccurrence.phylum_interpreted}}</a></dd>
-			<dt>Classe</dt>
-			<dd><a href="http://www.gbif.org/species/{{classKey}}">{{jsonOccurrence.classs_interpreted}}</a></dd>
-			<dt>Ordre</dt>
-			<dd><a href="http://www.gbif.org/species/{{orderKey}}">{{jsonOccurrence.orderr_interpreted}}</a></dd>
-			<dt>Famille</dt>
-			<dd><a href="http://www.gbif.org/species/{{familyKey}}">{{jsonOccurrence.family_interpreted}}</a></dd>
-			<dt>Genus</dt>
+			<dt>Royaume
+				<i class="icon-question-sign" ng-click="isCollapsedRoyaume = !isCollapsedRoyaume"></i>
+			</dt>
+			<dd>
+				<a href="http://www.gbif.org/species/{{kingdomKey}}">{{jsonOccurrence.kingdom_interpreted}}</a>
+			</dd>
+			<div class="help-message" collapse="isCollapsedRoyaume">
+				Le nom scientifique complet  du règne dans lequel le taxon est classé
+			</div>	
+			<dt>Phylum
+				<i class="icon-question-sign" ng-click="isCollapsedPhylum = !isCollapsedPhylum"></i>
+			</dt>
+			<dd>
+				<a href="http://www.gbif.org/species/{{phylumKey}}">{{jsonOccurrence.phylum_interpreted}}</a>
+			</dd>
+			<div class="help-message" collapse="isCollapsedPhylum">
+				Le nom scientifique complet du phylum ou embranchement dans lequel le taxon est classé
+			</div>	
+			<dt>Classe
+				<i class="icon-question-sign" ng-click="isCollapsedClasse = !isCollapsedClasse"></i>
+			</dt>
+			<dd>
+				<a href="http://www.gbif.org/species/{{classKey}}">{{jsonOccurrence.classs_interpreted}}</a>
+			</dd>
+			<div class="help-message" collapse="isCollapsedClasse">
+				Le nom scientifique complet de la classe dans laquelle le taxon est classé
+			</div>
+			<dt>Ordre
+				<i class="icon-question-sign" ng-click="isCollapsedOrdre = !isCollapsedOrdre"></i>
+			</dt>	
+			<dd>
+				<a href="http://www.gbif.org/species/{{orderKey}}">{{jsonOccurrence.orderr_interpreted}}</a>
+			</dd>
+			<div class="help-message" collapse="isCollapsedOrdre">
+				Le nom scientifique complet de l'ordre dans lequel le taxon est classé
+			</div>
+			<dt>Famille
+				<i class="icon-question-sign" ng-click="isCollapsedFamille= !isCollapsedFamille"></i>
+			</dt>
+			<dd>
+				<a href="http://www.gbif.org/species/{{familyKey}}">{{jsonOccurrence.family_interpreted}}</a>
+			</dd>
+			<div class="help-message" collapse="isCollapsedFamille">
+				Le nom scientifique complet  de la famille dans laquelle le taxon est classé
+			</div>	
+			<dt>Genus
+				<i class="icon-question-sign" ng-click="isCollapsedGenus = !isCollapsedGenus"></i>
+			</dt>
 			<dd><a href="http://www.gbif.org/species/{{genusKey}}">{{jsonOccurrence.genus_interpreted}}</a></dd>
-			<dt>Nom scientifique</dt>
+			<div class="help-message" collapse="isCollapsedGenus">
+				Le nom scientifique complet  du genre dans lequel le taxon est classé
+			</div>	
+			<dt>Nom scientifique
+				<i class="icon-question-sign" ng-click="isCollapsedScientificName = !isCollapsedScientificName"></i>
+			</dt>
 			<dd><a href="http://www.gbif.org/species/{{json.ecatConceptId}}">{{jsonOccurrence.scientificName}}</a></dd>
-			<dt>Statut du taxon</dt>
+			<div class="help-message" collapse="isCollapsedScientificName">
+				Le nom scientifique complet avec l'information sur le nom d'auteur (paternité) et la date si connus. (genus + specificEpithet + scientificNameRank + infraspecificEpithet + scientificNameAuthorship).  Quand ca fait partie d'une identification, cela devrait être le nom du plus bas rang taxonomique qui puisse être déterminé. Ce champs ne devrait pas contenir de qualifications d'identification (information qui doit être inscrite dans le champs IdentificationQualifier) 
+			</div>	
+			<dt>Statut du taxon
+				<i class="icon-question-sign" ng-click="isCollapsedTaxonStatus = !isCollapsedTaxonStatus"></i>
+			</dt>
 			<dd>{{jsonOccurrence.taxonStatus}}</dd>
-			<dt>Identifiant API GBIF</dt>
+			<div class="help-message" collapse="isCollapsedTaxonStatus">
+				Le statut du taxon : valide ou invalide.
+			</div>
+			<dt>Identifiant API GBIF
+				<i class="icon-question-sign" ng-click="isCollapsedEcatConceptId = !isCollapsedEcatConceptId"></i>
+			</dt>
 			<dd>{{jsonOccurrence.ecatConceptId}}</dd>
+			<div class="help-message" collapse="isCollapsedEcatConceptId">
+				L'identifiant qui permet de faire des recherches sur l'espèce via les API webservice du GBIF international
+			</div>	
 		</dl>
 		<img ng-if="imageUrl" src="{{imageUrl}}"/>
 	</section>
 	<section class="location">
 		<h2>Lieu</h2>
 		<dl>
-			<dt>Pays</dt>
+			<dt>Pays
+				<i class="icon-question-sign" ng-click="isCollapsedCountry = !isCollapsedCountry"></i>
+			</dt>
 			<dd>{{jsonOccurrence.countryCode}} - {{jsonOccurrence.country}}</dd>
-			<dt>Région</dt>
+			<div class="help-message" collapse="isCollapsedCountry">
+				Le nom du pays ou de l'unité administrative principale où a été localisé le sujet. Il est conseillé d'utiliser un vocabulaire contrôlé tel que le Thésaurus Getty des noms géographiques.
+			</div>	
+			<dt>Région
+				<i class="icon-question-sign" ng-click="isCollapsedState = !isCollapsedState"></i>
+			</dt>
 			<dd>{{jsonOccurrence.stateProvince}}</dd>
-			<dt>Département</dt>
+			<div class="help-message" collapse="isCollapsedState">
+				Le nom de la région administrative qui vient juste après le pays (état, province, canton, département, région)  où a été localisé le sujet.
+			</div>	
+			<dt>Département
+				<i class="icon-question-sign" ng-click="isCollapsedCounty = !isCollapsedCounty"></i>
+			</dt>
 			<dd>{{jsonOccurrence.county}}</dd>
-			<dt>Latitude - Longitude</dt>
+			<div class="help-message" collapse="isCollapsedCounty">
+				Le nom du département où a été localisé le sujet.
+			</div>	
+			<dt>Latitude - Longitude
+				<i class="icon-question-sign" ng-click="isCollapsedLatLong= !isCollapsedLatLong"></i>
+			</dt>
 			<dd>{{jsonOccurrence.decimalLatitude}} - {{jsonOccurrence.decimalLongitude}}</dd>
-			<dt>Altitude</dt>
+			<div class="help-message" collapse="isCollapsedLatLong">
+				La latitude géographique (en degré décimal) du centre géographique de la localisation. Valeurs positives pour le nord de l'équateur, valeurs négatives pour le sud. Valeurs entre -90 et 90 inclus. La virgule est symbolisée par un point (système anglosaxon)
+				La longitude géographique (en degré décimal) du centre géographique de la localisation. Valeurs positives pour l'est du méridien de greenwich, valeurs négatives pour l'ouest. Valeurs entre -180 et 180 inclus. La virgule est symbolisée par un point (système anglosaxon)
+			</div>	
+			<dt>Altitude
+				<i class="icon-question-sign" ng-click="isCollapsedElevation = !isCollapsedElevation"></i>
+			</dt>
 			<dd>Minimale : {{jsonOccurrence.minimumElevationInMeters}} mètre(s)</dd>
 			<dd>Maximale : {{jsonOccurrence.maximumElevationInMeters}} mètre(s)</dd>
-			<dt>Profondeur</dt>
+			<div class="help-message" collapse="isCollapsedElevation">
+				La limite inférieure et supérieur de la fourchette d'élévation (altitude, généralement au-dessus du niveau des mers), en mètres.
+			</div>	
+			<dt>Profondeur
+				<i class="icon-question-sign" ng-click="isCollapsedDepth = !isCollapsedDepth"></i>
+			</dt>
 			<dd>Minimale : {{jsonOccurrence.minimumDepthInMeters}} mètre(s)</dd>
 			<dd>Maximale : {{jsonOccurrence.maximumDepthInMeters}} mètre(s)</dd>
+			<div class="help-message" collapse="isCollapsedDepth">
+				La profondeur minimum et maximum d'une fourchette de profondeur sous la surface, en mètre.
+			</div>	
 		</dl>
 	</section>
 
