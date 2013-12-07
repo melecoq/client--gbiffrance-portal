@@ -1,0 +1,33 @@
+
+
+#results {
+	&.no-result, > p {
+		margin: 10px 0;
+		font-size: 1.3em;
+	}
+	> p {
+		text-align: right;
+	}
+
+	table {
+		&:extend(.table all);
+		&:extend(.table-hover all);
+		&:extend(.table-condensed all);
+		&:extend(.table-striped all);
+		//&:extend(.table-bordered all);
+
+		td{
+			vertical-align: middle;
+
+			.catalog {
+				color: #9E9E9E;
+				font-size: 0.85em;
+				display: block;
+			}
+			.species {
+
+				font-weight: bold;
+			}
+		}
+	}
+}
