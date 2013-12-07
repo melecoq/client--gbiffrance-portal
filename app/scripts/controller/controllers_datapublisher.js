@@ -4,26 +4,20 @@
 
 function CtrlDatapublisher($scope, $routeParams, $http, config){
 
-
-
-
-
 	config.then(function(config){
 		$http.get(config.api.endpoint + '/datapublisher/' + $routeParams.id)
-			.success(function(data, status) {
-				$scope.reponse = status;
+			.success(function(data) {
 				$scope.jsonDatapublisher = data;
 			})
-			.error(function(data, status) {
-				$scope.reponse = status;
+			.error(function(data) {
 				$scope.jsonDatapublisher = data;
 			});
 
 		var datasets = $http.get(config.api.endpoint + '/dataset');
 
-		var filteredDatasets = datasets.then(function(data, status) {
+		var filteredDatasets = datasets.then(function(data) {
 			$scope.datasets = data.data.filter(function(el) {
-				return el.dataPublisher.id == $routeParams.id;
+				return el.dataPublisher.id === $routeParams.id;
 			});
 			return $scope.datasets;
 		});
@@ -50,13 +44,13 @@ function CtrlDatapublisher($scope, $routeParams, $http, config){
 			angular.extend(options, {
 				noWrap: true
 			});
-			var baseLayer = L.tileLayer(config.map.layers.default.url, options)
+			var baseLayer = L.tileLayer(config.map.layers.default.url, options);
 			baseLayer.addTo(map);
 
 
 			// Dataset information
 			filteredDatasets.map(function(dataset){
-				var layer = L.tileLayer("http://www.gbif.fr/mbtiles/datasets/dataset_{datasetId}/{z}/{x}/{y}.png", {
+				var layer = L.tileLayer('http://www.gbif.fr/mbtiles/datasets/dataset_{datasetId}/{z}/{x}/{y}.png', {
 					datasetId: dataset.id
 				});
 				layer.addTo(map);

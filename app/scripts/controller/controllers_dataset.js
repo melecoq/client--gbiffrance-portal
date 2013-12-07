@@ -15,7 +15,7 @@ function CtrlDataset($scope, $routeParams, $http, config){
 			$scope.jsonDataset = dataset.data;
 
 			$http.get(config.api.endpoint + '/datapublisher/'+ $scope.jsonDataset.dataPublisherId)
-				.success(function(data, status) {
+				.success(function(data) {
 					$scope.dataPublisherName = data.name;
 				});
 		});
@@ -42,12 +42,12 @@ function CtrlDataset($scope, $routeParams, $http, config){
 			angular.extend(options, {
 				noWrap: true
 			});
-			var baseLayer = L.tileLayer(config.map.layers.default.url, options)
+			var baseLayer = L.tileLayer(config.map.layers.default.url, options);
 			baseLayer.addTo(map);
 
 
 			// Dataset information
-			var layer = L.tileLayer("http://www.gbif.fr/mbtiles/datasets/dataset_{datasetId}/{z}/{x}/{y}.png", {
+			var layer = L.tileLayer('http://www.gbif.fr/mbtiles/datasets/dataset_{datasetId}/{z}/{x}/{y}.png', {
 				datasetId: datasetId
 			});
 			layer.addTo(map);
@@ -55,6 +55,6 @@ function CtrlDataset($scope, $routeParams, $http, config){
 		});
 	});
 
-};
+}
 
 myApp.controller('CtrlDataset', ['$scope', '$routeParams', '$http', 'config', CtrlDataset]);

@@ -19,7 +19,7 @@ function CtrlResult($scope, $routeParams, searchForm, $http, config, withMap){
 
     var url = config.api.endpoint + '/search/occurrences';
     if ($routeParams.pageId) {
-      url = url + "?page=" + $routeParams.pageId + "&size=" + $routeParams.pageSize;
+      url = url + '?page=' + $routeParams.pageId + '&size=' + $routeParams.pageSize;
       $scope.pageId = parseInt($routeParams.pageId, 10);
       $scope.pageSize = parseInt($routeParams.pageSize, 10);
     } else {
@@ -37,7 +37,7 @@ function CtrlResult($scope, $routeParams, searchForm, $http, config, withMap){
       .error(function(data, status) {
         $scope.reponse = status;
         $scope.dataJson = data;
-    	});
+      });
 
   });
 
@@ -76,8 +76,8 @@ function CtrlResult($scope, $routeParams, searchForm, $http, config, withMap){
       var loadMarkerPopup = function(marker, element) {
         return function() {
           $http.get(config.api.endpoint + '/occurrence/' + element.id)
-            .success(function(data, status){
-              marker.bindPopup('<a href="#/occurrence/'+element.id+'">'+data.scientificName+'</a>').openPopup()
+            .success(function(data){
+              marker.bindPopup('<a href="#/occurrence/'+element.id+'">'+data.scientificName+'</a>').openPopup();
             });
         };
       };
@@ -141,13 +141,13 @@ function CtrlResult($scope, $routeParams, searchForm, $http, config, withMap){
             });
 
             function color(x) {
-              function red(x) {
+              function red() {
                 return 255;
               }
               function green(x) {
                 return Math.floor(244 - (x / 100 * (244 - 76)));
               }
-              function blue(x) {
+              function blue() {
                 return 50;
               }
               return red(x)+','+green(x)+','+blue(x);
@@ -156,8 +156,8 @@ function CtrlResult($scope, $routeParams, searchForm, $http, config, withMap){
             if (total >= 500 || total >= 15 * (18 - map.getZoom())) {
               // We have too many elements in there. We need to display them as squares ...
 
-              var ctx = canvas.getContext("2d");
-              var divider = parseInt(h("X-Map-Divider"), 10);
+              var ctx = canvas.getContext('2d');
+              var divider = parseInt(h('X-Map-Divider'), 10);
               var width = $(canvas).width();
               var height = $(canvas).height();
 
@@ -193,7 +193,7 @@ function CtrlResult($scope, $routeParams, searchForm, $http, config, withMap){
 
                   // If we load another zoom, remove those markers
                   map.on('zoomend', function(){
-                    if (map.getZoom() != originalZoom) {
+                    if (map.getZoom() !== originalZoom) {
                       map.removeLayer(lg);
                     }
                   });
@@ -201,7 +201,7 @@ function CtrlResult($scope, $routeParams, searchForm, $http, config, withMap){
 
             }
           });
-      }
+      };
 
       canvasTiles.addTo(map);
 
