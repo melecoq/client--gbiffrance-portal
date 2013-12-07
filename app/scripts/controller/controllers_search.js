@@ -343,7 +343,7 @@ function CtrlSearch($scope, $route, $routeParams, $http, $q, config, searchForm,
 
 		$http.get(config.api.endpoint + '/dataset')
 			.success(function(data, status) {
-				$scope.datasetList = data.map(function(taxa){ return {name:taxa.name, id:taxa.id, dataPublisherId:taxa.dataPublisher.id};});
+				$scope.datasetList = data.map(function(taxa){ return {name:taxa.title, id:taxa.id, dataPublisherId:taxa.dataPublisher.id};});
 				$scope.datasetListShow = $scope.datasetList;
 			})
 			.error(function(data, status) {
