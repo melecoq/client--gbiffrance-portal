@@ -1,6 +1,6 @@
 {
 	"api": {
-		"endpoint": "http://www.gbif.fr/api"
+		"endpoint": "http://localhost:9000/api"
 	},
 	"map": {
 		"franceMetropolitan": {

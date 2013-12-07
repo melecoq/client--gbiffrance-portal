@@ -1,6 +1,6 @@
 'use strict';
 
-function CtrlIndex($scope) {
+function CtrlIndex() {
 
 	var map = L.map('index-map', {zoomControl:false, dragging:false}).setView([47.3, -0.89], 1);
 
@@ -18,4 +18,4 @@ function CtrlIndex($scope) {
 	}).addTo(map);
 }
 
-myApp.controller('CtrlIndex', ['$scope', '$routeParams', CtrlIndex]);
+myApp.controller('CtrlIndex', CtrlIndex);

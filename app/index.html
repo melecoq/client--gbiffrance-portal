@@ -4,20 +4,27 @@
     <meta charset="utf-8">
     <title>Le Portail du GBIF France</title>
     
-    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css">
     <link rel="stylesheet" href="//cdn.leafletjs.com/leaflet-0.6.4/leaflet.css">
+
+
+    <!-- build:css styles/vendors.css -->
     <link rel="stylesheet" href="lib/leaflet.draw-0.2.2/leaflet.draw.css" />
     <link rel="stylesheet" href="lib/select2-3.4.5/select2.css" />
-    <!--[if lte IE 8]><link rel="stylesheet" href="../lib/leaflet.draw-0.2.2/leaflet.draw.ie.css" /><![endif]-->
-  
+    <!-- endbuild -->
+    <!--[if lte IE 8]><link rel="stylesheet" href="lib/leaflet.draw-0.2.2/leaflet.draw.ie.css" /><![endif]-->
+
     <link rel="stylesheet" type="text/css" href="styles/main.css">
     <link rel="stylesheet" type="text/css" href="css/app.css">
     <link rel="stylesheet" type="text/css" href="css/dateSlider.css">
+
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css">
+
     <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular-route.js"></script>
     <script src="//cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
+    <!-- build:js scripts/portal.js -->
     <script src="lib/leaflet.draw-0.2.2/leaflet.draw.js"></script>
     <script src="lib/angular-ui/bootstrap/ui-bootstrap-tpls-0.6.0.js"></script>
     <script src="lib/select2-3.4.5/select2.js"></script>
@@ -34,9 +41,9 @@
     <script src="scripts/controller/controllers_datapublisher.js"></script>
     <script src="scripts/controller/controllers_dataset.js"></script>
     <script src="scripts/controller/controllers_result_stat.js"></script>
+    <!-- endbuild -->
   </head>
   <body>
-
     <header>
       <nav>
         <ul>
@@ -66,7 +73,7 @@
         </ul>
       </nav>
     </header>
-    <div class="hero-unit entete">
+    <div id="entete">
       <p  class="text-block">
         Le GBIF France est le point nodal français du <a href="www.gbif.org">Global Biodiversity Information Facility</a>,
         projet scientifique international qui a pour but de mettre à disposition toute l’information connue sur la biodiversité.
@@ -76,12 +83,14 @@
       </div>
     </div>
 
-    <div ng-view></div>
+    <div id="main" ng-view></div>
 
     <footer>
-      <a href="http://www.gbif.fr"> A propos du GBIF France </a> |
-      <a href="http://www.gbif.fr/?page_id=355"> Contact </a> |
-      <a href="http://twitter.com/gbiffrance"><i class="icon-twitter"></i> Suivre GBIF France </a> 
+      <ul>
+        <li><a href="http://www.gbif.fr"> A propos du GBIF France </a></li>
+        <li><a href="http://www.gbif.fr/?page_id=355"> Contact </a></li>
+        <li><a href="http://twitter.com/gbiffrance"><i class="icon-twitter"></i> Suivre GBIF France </a></li>
+      </ul>
     </footer>
   </body>
 </html>

@@ -44,14 +44,14 @@ var myApp = angular.module('portailApp', ['ngRoute', 'ui.bootstrap', 'ui.select2
 myApp.factory('config', function($q, $http) {
 	var defer = $q.defer();
 
-	$http.get("config.json")
-		.success(function(data, status) {
+	$http.get('config.json')
+		.success(function(data) {
 			defer.resolve(data);
 		})
-		.error(function(data, status) {
+		.error(function() {
 			defer.resolve({
 				api: {
-					endpoint: "http://localhost:9000/api"
+					endpoint: 'http://localhost:9000/api'
 				},
 				map: {
 					franceMetropolitan: {
@@ -79,21 +79,22 @@ myApp.factory('config', function($q, $http) {
 
 myApp.factory('searchForm', function(){
 	//initialisation
-	var scientificNames = [];
-	var vernacularNames = [];
-	var localities = [];
-	var latitudes = [];
-	var longitudes = [];
-	var boundingBoxes = [];
-	var datapublishers = [];
-	var datasets = [];
-	var date = undefined;
-	var georeferencedData = false;
-	var datapublisherDataset = {empty: function() {
-		var self = this;
+	var scientificNames = [],
+		vernacularNames = [],
+		localities = [],
+		latitudes = [],
+		longitudes = [],
+		boundingBoxes = [],
+		date,
+		georeferencedData = false;
 
-		return Object.keys(self).length <= 1;
-	}};
+	var datapublisherDataset = {
+		empty: function() {
+			var self = this;
+
+			return Object.keys(self).length <= 1;
+		}
+	};
 
 	// Getter and setter for the taxa part
 	var getScientificName = function(){
@@ -219,7 +220,7 @@ myApp.factory('searchForm', function(){
 			endDate: right
 		};
 	};
-	var removeDate = function(index){
+	var removeDate = function(){
 		date = undefined;
 	};
 

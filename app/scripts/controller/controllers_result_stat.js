@@ -61,7 +61,7 @@ function CtrlResultStat($scope, searchForm, $http, config){
     if (!data) return;
 
 
-    var datasets = data.filter(function(el) { return el.typeFilter== 'dataset';});
+    var datasets = data.filter(function(el) { return el.typeFilter == 'dataset';});
 
 
     var width = 400,
@@ -69,7 +69,7 @@ function CtrlResultStat($scope, searchForm, $http, config){
       radius = Math.min(width, height) / 2;
 
     var color = d3.scale.ordinal()
-      .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+      .range(['#98abc5', '#8a89a6', '#7b6888', '#6b486b', '#a05d56', '#d0743c', '#ff8c00']);
 
     var arc = d3.svg.arc()
       .outerRadius(radius - 10)
@@ -107,8 +107,7 @@ function CtrlResultStat($scope, searchForm, $http, config){
 
   // Dates
   $scope.$watch('jsonStat', function(data) {
-    console.log(data);
-    if (!data) return;
+    if (!data) {return;}
 
 
     var years = data.filter(function(el) { return el.typeFilter== 'year';});

@@ -6,7 +6,7 @@ function CtrlMetadata($scope, $http, $q, config){
 	config.then(function(config){
 
 		console.log(config);
-		$http.get(config.api.endpoint + "/datapublisher")
+		$http.get(config.api.endpoint + '/datapublisher')
 			.success(function(data, status) {
 				$scope.reponse = status;
 				$scope.jsonDatapublisher = data;
@@ -16,7 +16,7 @@ function CtrlMetadata($scope, $http, $q, config){
 				$scope.jsonDatapublisher = data;
 			});
 
-		$http.get(config.api.endpoint + "/dataset")
+		$http.get(config.api.endpoint + '/dataset')
 			.success(function(data, status) {
 				$scope.reponse = status;
 				$scope.jsonDataset = data;
@@ -53,7 +53,7 @@ function CtrlMetadata($scope, $http, $q, config){
 		angular.extend(options, {
 			noWrap: true
 		});
-		var baseLayer = L.tileLayer(config.map.layers.default.url, options)
+		var baseLayer = L.tileLayer(config.map.layers.default.url, options);
 		baseLayer.addTo(map);
 
 
@@ -68,34 +68,30 @@ function CtrlMetadata($scope, $http, $q, config){
 
 	// Adds a layer to map showing the new dataset
 	$scope.toggleDataset = function(datasetId) {
-		console.log("toggleoutside", datasetId);
-		config.then(function(config){
-			mapInfo.then(function(info){
-				console.log("toggleinside", datasetId);
-				if (info.layers[datasetId]) {
-					// Unset layer and remove it
-					info.map.removeLayer(info.layers[datasetId]);
-					delete info.layers[datasetId];
+		mapInfo.then(function(info){
+			if (info.layers[datasetId]) {
+				// Unset layer and remove it
+				info.map.removeLayer(info.layers[datasetId]);
+				delete info.layers[datasetId];
 
-					delete $scope.datasetShown[datasetId];
-				} else {
-					// Set layer
-					var layer = L.tileLayer("http://www.gbif.fr/mbtiles/datasets/dataset_{datasetId}/{z}/{x}/{y}.png", {
-						datasetId: datasetId
-					});
-					layer.addTo(info.map);
+				delete $scope.datasetShown[datasetId];
+			} else {
+				// Set layer
+				var layer = L.tileLayer("http://www.gbif.fr/mbtiles/datasets/dataset_{datasetId}/{z}/{x}/{y}.png", {
+					datasetId: datasetId
+				});
+				layer.addTo(info.map);
 
-					// Store layer
-					info.layers[datasetId] = layer;
+				// Store layer
+				info.layers[datasetId] = layer;
 
-					$scope.datasetShown[datasetId] = true;
-				}
-			});
+				$scope.datasetShown[datasetId] = true;
+			}
 		});
 	};
 
 	$scope.datasetShown = {};
 
-};
+}
 
 myApp.controller('CtrlMetadata', ['$scope', '$http', '$q', 'config', CtrlMetadata]);

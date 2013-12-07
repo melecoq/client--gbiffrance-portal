@@ -1,14 +1,12 @@
-<div id="search-form">
+<div id="search-form" class="date">
 	<div ng-include="'portal/search/search.inc.html'"></div>
-	<div class="form-group search-form search-form-date">
-		<form class="form-bottom" ng-submit="setDate()">
-			<div class="form-horizontal ">
-				<div class="control">
-					<label class="control-label label-filter" for="date" ng-model="date">Date</label>
-					<div date-slider ng-model="dateslider"/>
-					<input type="submit" class="btn" value="Ajouter" />
-				</div>
-			</div>
+	<div class="forms">
+		<form ng-submit="setDate()">
+
+			<label class="control-label label-filter" for="date" ng-model="date">Date</label>
+			<div date-slider ng-model="dateslider"/>
+			<input type="submit" value="Ajouter" />
+
 			<div class="help-message" collapse="isCollapsedDate"> Faite glisser le curseur pour choisir votre plage de recherche pour la date. Pour n'avoir aucune date, il faut mettre le curseur sur "PAS DE DATE" et pour les données paléontologique, mettre "PRE" </div>
 		</form>
 	</div
