@@ -4,7 +4,29 @@
 
 function CtrlOccurrence($scope, $routeParams, $http, config){
 
-	$scope.isCollapsedSInstitution = false;
+	$scope.isCollapsedInstitution=true;
+	$scope.isCollapsedCollection=true;
+	$scope.isCollapsedFournisseur=true;
+	$scope.isCollapsedDataset=true;
+	$scope.isCollapsedCatalog=true;
+	$scope.isCollapsedEnregistrement=true;
+	$scope.isCollapsedPreparation=true;
+	$scope.isCollapsedDateEvent=true;
+	$scope.isCollapsedRoyaume=true;
+	$scope.isCollapsedPhylum=true;
+	$scope.isCollapsedClasse=true;
+	$scope.isCollapsedOrdre=true;
+	$scope.isCollapsedFamille=true;
+	$scope.isCollapsedGenus=true;
+	$scope.isCollapsedScientificName=true;
+	$scope.isCollapsedTaxonStatus=true;
+	$scope.isCollapsedEcatConceptId=true;
+	$scope.isCollapsedCountry=true;
+	$scope.isCollapsedState=true;
+	$scope.isCollapsedCounty=true;
+	$scope.isCollapsedLatLong=true;
+	$scope.isCollapsedElevation=true;
+	$scope.isCollapsedDepth=true;
 
 	config.then(function(config){
 
