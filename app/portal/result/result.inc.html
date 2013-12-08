@@ -4,7 +4,7 @@
 		<accordion-heading>
 			Votre recherche <i class="pull-right" ng-class="{'icon-chevron-down': isopen, 'icon-chevron-right': !isopen}"></i> 
 		</accordion-heading>
-<dl>
+		<dl>
 			<dt class="taxa" ng-if="scientificNames.length>=1"> Nom scientifique </dt>
 			<dd class="taxa">
 				<ul>
@@ -85,6 +85,7 @@
 				</ul>
 			</dd>
 			<dt class="geo" ng-if="georeferences">Données géoréférencées</dt>
+			<dd ng-if="georeferences"></dd>
 		</dl>
 		<a ng-href="#/result/occurrence" class="submit">Rechercher</a>
 	</accordion-group>
