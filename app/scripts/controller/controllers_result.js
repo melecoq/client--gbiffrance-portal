@@ -41,6 +41,11 @@ function CtrlResult($scope, $routeParams, searchForm, $http, config, withMap){
 
   });
 
+
+  $scope.objectEmpty = function(e) {
+    return !(Object.keys(e).length > 0);
+  };
+
   $scope.removeScientificName = function(index){
     searchForm.removeScientificName(index);
   };

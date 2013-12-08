@@ -60,10 +60,10 @@
 					</li>
 				</ul>
 			</dd>
-			<dt class="dataset" ng-if="!datapublisherDataset.empty()">Jeux de données</dt>
+			<dt class="dataset" ng-if="!objectEmpty(datapublisherDataset)">Jeux de données</dt>
 			<dd class="dataset">
 				<ul>
-					<li ng-if="!datapublisherDataset.empty()" ng-repeat="(dpId, dp) in datapublisherDataset">
+					<li ng-repeat="(dpId, dp) in datapublisherDataset">
 						<span ng-if="dp.includeAll">
 							<i class="icon-remove" ng-click="removeDatapublisher(dpId)"></i>
 							{{dp.name}}

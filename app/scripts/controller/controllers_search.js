@@ -34,6 +34,10 @@ function CtrlSearch($scope, $route, $routeParams, $http, $q, config, searchForm,
 		values: searchForm.getDate() || {}
 	};
 
+	$scope.objectEmpty = function(e) {
+		return !(Object.keys(e).length > 0);
+	};
+
 	// Function dedicated to the different filters of the research engine. 
 	// Each function add its filter to the searchForm
 	$scope.addScientificName = function() {

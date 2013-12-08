@@ -86,15 +86,8 @@ myApp.factory('searchForm', function(){
 		longitudes = [],
 		boundingBoxes = [],
 		date,
-		georeferencedData = false;
-
-	var datapublisherDataset = {
-		empty: function() {
-			var self = this;
-
-			return Object.keys(self).length <= 1;
-		}
-	};
+		georeferencedData = false,
+		datapublisherDataset = {};
 
 	// Getter and setter for the taxa part
 	var getScientificName = function(){
