@@ -1,6 +1,6 @@
 'use strict';
 
-function CtrlIndex(config) {
+function CtrlIndex($scope, $http, config) {
 
 	var map = L.map('index-map', {
 		zoomControl:false,
@@ -27,6 +27,11 @@ function CtrlIndex(config) {
 			attribution: 'GBIF',
 			maxZoom: 9
 		}).addTo(map);
+
+		var datasetStats = $http.get(config.api.endpoint + '/dataset/statistics')
+			.success(function(data) {
+				$scope.datasetStats = data;
+			})
 
 	});
 }

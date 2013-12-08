@@ -15,13 +15,18 @@
 
 		<dl>
 			<dt>Point d'acc&egrave;s</dt>
-			<dd>{{jsonDataset.url}}</dd>
+			<dd><a href="{{jsonDataset.url}}">{{jsonDataset.url}}</a></dd>
 		</dl>
 
 	</section>
 
-	<section>
+	<section class="statistics">
 		<h2>Statistiques</h2>
+
+		<div ng-repeat="(name, count) in datasetStats">
+			<h5>{{name}}</h5>
+			<p>{{count}}</p>
+		</div>
 	</section>
 
 	<!--section class="tags">

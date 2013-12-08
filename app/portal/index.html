@@ -1,11 +1,19 @@
-<div ng-controller="CtrlIndex">
-	<div id="index">
+<div ng-controller="CtrlIndex" id="index">
+	<div class="map">
 		<h3>Les données géoréférencées fournis par le GBIF France et ses fournisseurs</h3>
 		<div id="index-map"></div>
 	</div>
 	<div class="bouton-nav" id="main-nav">
 		<a ng-href="#/search/taxa" class="btn btn-info">Le moteur de recherche</a>
 		<a ng-href="#/metadata" class="btn btn-success">Les jeux de données</a>
+	</div>
+	<div class="statistics">
+		<h2>Statistiques</h2>
+
+		<div ng-repeat="(name, count) in datasetStats">
+			<h5>{{name}}</h5>
+			<p>{{count}}</p>
+		</div>
 	</div>
 	<!-- <div class="hero-unit hidden">
 		<div class="description">

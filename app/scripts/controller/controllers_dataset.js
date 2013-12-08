@@ -21,6 +21,11 @@ function CtrlDataset($scope, $routeParams, $http, config){
 				});
 		});
 
+		var datasetStats = $http.get(config.api.endpoint + '/dataset/' + $routeParams.id + '/stats')
+			.success(function(data) {
+				$scope.datasetStats = data;
+			})
+
 
 		dataset.then(function(dataset){
 

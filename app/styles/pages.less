@@ -74,6 +74,8 @@ article.dataset {
 			margin-top: 15px;
 		}
 	}
+
+	
 }
 
 article.datapublisher{
@@ -104,7 +106,10 @@ article.datapublisher{
 	}
 }
 
-#index:extend(.hero-unit){
+#index{
+	.map {
+		&:extend(.hero-unit);
+	}
 	h3 {
 		font-size: 19.5px;
 		text-align: center;
@@ -114,5 +119,66 @@ article.datapublisher{
 		width: 100%;
 		height: 500px;
 
+	}
+
+	.statistics {
+		&:extend(.hero-unit);
+
+		margin-top: 25px;
+
+
+		h2 {
+			font-size: 1.5em;
+		}
+	}
+}
+
+#index, article.dataset {
+	.statistics {
+		div {
+			border: 1px solid #dddddd;
+
+			float: left;
+			height: 75px;
+			width: 175px;
+
+			.border-radius(3px);
+
+			text-align: center;
+
+			h5 {
+				font-size: 1.3em;
+				text-transform: capitalize;
+
+				background-color: #dddddd;
+				border-bottom: 1px solid #eeeeee;
+				margin:0;
+				padding: 7px 0;
+			}
+			p {
+				font-size: 1.5em;
+				padding: 7px 0;
+				margin: 0;
+			}
+
+			margin-left: 10px;
+			margin-bottom: 10px;
+			
+			&:first-child {
+				margin-left: 0;
+			}
+		}
+
+
+		&:before, &:after {
+			display: table;
+			content: "";
+			line-height: 0;
+		}
+
+		&:after {
+			clear: both;
+
+		}
 	}
 }
