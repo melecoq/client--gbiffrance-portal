@@ -9,7 +9,7 @@ function CtrlResult($scope, $routeParams, searchForm, $http, config, withMap){
   $scope.latitudes=searchForm.getLatitude();
   $scope.longitudes=searchForm.getLongitude();
   $scope.boundingBoxes=searchForm.getBoundingBoxes();
-  $scope.dates=searchForm.getDate();
+  $scope.date = searchForm.getDate();
   $scope.georeferences = searchForm.getGeoreferencedData();
   $scope.datapublisherDataset = searchForm.getDatapublisherDataset();
   $scope.isCollapsedRecherche = true;
