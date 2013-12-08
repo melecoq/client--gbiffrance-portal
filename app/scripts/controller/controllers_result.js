@@ -61,14 +61,18 @@ function CtrlResult($scope, $routeParams, searchForm, $http, config, withMap){
     searchForm.removeLongitude(index);
   };
 
-  $scope.removeDataset = function(index){
-    searchForm.removeDataset(index);
+  $scope.removeDataset = function(id){
+    searchForm.removeDataset(id);
   };
 
-  $scope.removeDate = function(index){
-    searchForm.removeDate(index);
+  $scope.removeDatapublisher = function(id){
+    searchForm.removeDatapublisher(id);
   };
 
+  $scope.removeDate = function(){
+    searchForm.removeDate();
+    $scope.date = searchForm.getDate();
+  };
 
 
   if(withMap) {
