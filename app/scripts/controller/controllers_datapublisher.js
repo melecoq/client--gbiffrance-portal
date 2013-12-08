@@ -17,7 +17,7 @@ function CtrlDatapublisher($scope, $routeParams, $http, config){
 
 		var filteredDatasets = datasets.then(function(data) {
 			$scope.datasets = data.data.filter(function(el) {
-				return el.dataPublisher.id === $routeParams.id;
+				return el.dataPublisher.id == $routeParams.id;
 			});
 			return $scope.datasets;
 		});

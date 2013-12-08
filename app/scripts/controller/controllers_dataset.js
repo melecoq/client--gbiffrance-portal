@@ -13,8 +13,9 @@ function CtrlDataset($scope, $routeParams, $http, config){
 
 		dataset.then(function(dataset){
 			$scope.jsonDataset = dataset.data;
+			console.log($scope.jsonDataset);
 
-			$http.get(config.api.endpoint + '/datapublisher/'+ $scope.jsonDataset.dataPublisherId)
+			$http.get(config.api.endpoint + '/datapublisher/'+ $scope.jsonDataset.dataPublisher['$id'])
 				.success(function(data) {
 					$scope.dataPublisherName = data.name;
 				});

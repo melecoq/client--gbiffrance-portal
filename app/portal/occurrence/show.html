@@ -8,72 +8,79 @@
 
 	<div id="map"></div>
 
-	<section class="details row">
+	<section class="details">
 		<h2>Occurrence</h2>
-		<dl class="span5">
-			<dt>Numéro de catalogue
-				<i class="icon-question-sign" ng-click="isCollapsedCatalog = !isCollapsedCatalog"></i>
-			</dt>
-			<dd>{{jsonOccurrence.catalogNumber}}</dd>
-			<div class="help-message" collapse="isCollapsedCatalog">
-				Un identifiant (de préférence unique), pour l'occurrence dans le jeu de données ou la collection.
-			</div>	
-			<dt>Type d'enregistrement
-				<i class="icon-question-sign" ng-click="isCollapsedEnregistrement = !isCollapsedEnregistrement"></i>
-			</dt>
-			<dd>{{jsonOccurrence.basisOfRecord}}</dd>
-			<div class="help-message" collapse="isCollapsedEnregistrement">
-				La nature spécifique de l'enregistrement. 
-				* Observation : Un rapport par un observateur connu
-				* Specimen : Un objet physique représentant un ou plusieurs organismes
-				* Living : Un organisme prélevé de son milieu naturel et maintenant vivant en captivité ou culture
-				* Germplasm : Matériel génétique végétal, animal ou bactérien utilisé dans la production de nouveaux organismes
-				* Fossil : Un objet physique représentant un ou plusieurs organisme fossile 
-			</div>	
-			<dt>Préparation
-				<i class="icon-question-sign" ng-click="isCollapsedPreparation = !isCollapsedPreparation"></i>
-			</dt>
-			<dd>{{jsonOccurrence.preparation}}</dd>
-			<div class="help-message" collapse="isCollapsedPreparation">
-				Etat du spécimen
-			</div>	
-			<dt>Date d'évenement
-				<i class="icon-question-sign" ng-click="isCollapsedDateEvent = !isCollapsedDateEvent"></i>
-			</dt>
-			<dd>{{jsonOccurrence.eventDate}}</dd>
-			<div class="help-message" collapse="isCollapsedDateEvent">
-				La date-heure ou l'intervalle pendant lequel le sujet a été récolté/observé. Ne convient pas pour un temps dans un contexte géologique. Il est recommandé d'utiliser un schéma de codage, tels que l'ISO 8601:2004 (E)
-			</div>	
-		</dl>
-		<dl class="span5 offset1">
-			<dt>Code de l'institution 
-				<i class="icon-question-sign" ng-click="isCollapsedInstitution = !isCollapsedInstitution"></i>
-			</dt>
-			<dd>{{jsonOccurrence.collectionCode}}</dd>
-			<div class="help-message" collapse="isCollapsedInstitution">
-				Le nom (ou l'acronyme) de l'institution ayant la garde de l'occurrence 
-			</div>	
-			<dt>Code de la collection
-				<i class="icon-question-sign" ng-click="isCollapsedCollection = !isCollapsedCollection"></i>
-			</dt>
-			<dd>{{jsonOccurrence.collectionCode}}</dd>
-			<div class="help-message" collapse="isCollapsedCollection">
-				Le nom, l'acronyme, le code ou les initiales identifiant la collection ou le jeu de données dont l'occurrence provient 
-			</div>	
-			<dt>Fournisseur de données
-				<i class="icon-question-sign" ng-click="isCollapsedFournisseur = !isCollapsedFournisseur"></i>
-			</dt>
-			<dd>Fournisseur de données</dd>
-			<div class="help-message" collapse="isCollapsedFournisseur">
-			Le nom du fournisseur de données de l'occurrence </div>	
-			<dt>Jeu de données
-				<i class="icon-question-sign" ng-click="isCollapsedDataset = !isCollapsedDataset"></i>
-			</dt>
-			<dd><a href="#/dataset/{{jsonOccurrence.datasetId}}">{{jsonOccurrence.datasetName}}</a></dd>
-			<div class="help-message" collapse="isCollapsedDataset">
-				Le nom du jeu de données de l'occurrence
-			</div>	
-		</dl>
+		<div class="row">
+			<div class="span7">
+				<dl>
+					<dt>Numéro de catalogue
+						<i class="icon-question-sign" ng-click="isCollapsedCatalog = !isCollapsedCatalog"></i>
+					</dt>
+					<dd>{{jsonOccurrence.catalogNumber}}</dd>
+					<div class="help-message" collapse="isCollapsedCatalog">
+						Un identifiant (de préférence unique), pour l'occurrence dans le jeu de données ou la collection.
+					</div>	
+					<dt>Type d'enregistrement
+						<i class="icon-question-sign" ng-click="isCollapsedEnregistrement = !isCollapsedEnregistrement"></i>
+					</dt>
+					<dd>{{jsonOccurrence.basisOfRecord}}</dd>
+					<div class="help-message" collapse="isCollapsedEnregistrement">
+						La nature spécifique de l'enregistrement. 
+						* Observation : Un rapport par un observateur connu
+						* Specimen : Un objet physique représentant un ou plusieurs organismes
+						* Living : Un organisme prélevé de son milieu naturel et maintenant vivant en captivité ou culture
+						* Germplasm : Matériel génétique végétal, animal ou bactérien utilisé dans la production de nouveaux organismes
+						* Fossil : Un objet physique représentant un ou plusieurs organisme fossile 
+					</div>	
+					<dt>Préparation
+						<i class="icon-question-sign" ng-click="isCollapsedPreparation = !isCollapsedPreparation"></i>
+					</dt>
+					<dd>{{jsonOccurrence.preparation}}</dd>
+					<div class="help-message" collapse="isCollapsedPreparation">
+						Etat du spécimen
+					</div>	
+					<dt>Date d'évenement
+						<i class="icon-question-sign" ng-click="isCollapsedDateEvent = !isCollapsedDateEvent"></i>
+					</dt>
+					<dd>{{jsonOccurrence.eventDate}}</dd>
+					<div class="help-message" collapse="isCollapsedDateEvent">
+						La date-heure ou l'intervalle pendant lequel le sujet a été récolté/observé. Ne convient pas pour un temps dans un contexte géologique. Il est recommandé d'utiliser un schéma de codage, tels que l'ISO 8601:2004 (E)
+					</div>	
+				</dl>
+			</div>
+
+			<div class="span5">
+				<dl>
+					<dt>Code de l'institution 
+						<i class="icon-question-sign" ng-click="isCollapsedInstitution = !isCollapsedInstitution"></i>
+					</dt>
+					<dd>{{jsonOccurrence.collectionCode}}</dd>
+					<div class="help-message" collapse="isCollapsedInstitution">
+						Le nom (ou l'acronyme) de l'institution ayant la garde de l'occurrence 
+					</div>	
+					<dt>Code de la collection
+						<i class="icon-question-sign" ng-click="isCollapsedCollection = !isCollapsedCollection"></i>
+					</dt>
+					<dd>{{jsonOccurrence.collectionCode}}</dd>
+					<div class="help-message" collapse="isCollapsedCollection">
+						Le nom, l'acronyme, le code ou les initiales identifiant la collection ou le jeu de données dont l'occurrence provient 
+					</div>	
+					<dt>Fournisseur de données
+						<i class="icon-question-sign" ng-click="isCollapsedFournisseur = !isCollapsedFournisseur"></i>
+					</dt>
+					<dd>Fournisseur de données</dd>
+					<div class="help-message" collapse="isCollapsedFournisseur">
+					Le nom du fournisseur de données de l'occurrence </div>	
+					<dt>Jeu de données
+						<i class="icon-question-sign" ng-click="isCollapsedDataset = !isCollapsedDataset"></i>
+					</dt>
+					<dd><a href="#/dataset/{{jsonOccurrence.datasetId}}">{{jsonOccurrence.datasetName}}</a></dd>
+					<div class="help-message" collapse="isCollapsedDataset">
+						Le nom du jeu de données de l'occurrence
+					</div>	
+				</dl>
+			</div>
+		</div>
 	</section>
 	<section class="taxonomy row">
 		<h2>Taxon</h2>

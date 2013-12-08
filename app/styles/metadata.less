@@ -1,10 +1,20 @@
 
 
-.metadata {
+#metadata {
+
 	#map {
-		width: 100%;
+		&:extend(.container);
 		height: 400px;
 		margin-bottom: 20px;
+	}
+
+	.list {
+		&:extend(.hero-unit);
+		padding: 25px;
+
+		.accordion {
+			margin-bottom: 0;
+		}
 	}
 
 	button:extend(.btn):extend(.btn-mini) {
@@ -13,6 +23,15 @@
 
 	button.shown:extend(.btn-primary) {
 
+	}
+
+	.datapublisher {
+		font-style: italic;
+		font-size: 0.8em;
+	}
+
+	li {
+		list-style-type: none;
 	}
 }
 

@@ -1,24 +1,24 @@
 
-<div class="metadata">
+<div id="metadata">
 	
 	<div id="map"></div>
 
+	<div class="list">
+		<accordion close-others="false">
+			<accordion-group ng-repeat="datapublisher in jsonDatapublisher" is-open="isopen">
+			<accordion-heading>
+				{{datapublisher.name}}
+				<i class="pull-right" ng-class="{'icon-chevron-down': isopen, 'icon-chevron-right': !isopen}"></i>
+			</accordion-heading>
 
-
-	<accordion close-others="false">
-		<accordion-group ng-repeat="datapublisher in jsonDatapublisher" is-open="isopen">
-		<accordion-heading>
-			{{datapublisher.name}}
-			<i class="pull-right" ng-class="{'icon-chevron-down': isopen, 'icon-chevron-right': !isopen}"></i>
-		</accordion-heading>
-
-			<a href="#/datapublisher/{{datapublisher.id}}">Aller sur la page de {{datapublisher.name}}</a> 
-			<ul>
-				<li ng-repeat="dataset in jsonDataset|filter: {dataPublisher.id : datapublisher.id}">
-					<button ng-class="{shown: datasetShown[dataset.id]}" ng-click="toggleDataset(dataset.id)">x</button>
-					<a href="#/dataset/{{dataset.id}}">{{dataset.title}}</a>
-				</li>
-			</ul>
-		</accordion-group>
-	</accordion>
+				<a class="datapublisher" href="#/datapublisher/{{datapublisher.id}}">Aller sur la page de {{datapublisher.name}}</a> 
+				<ul>
+					<li ng-repeat="dataset in jsonDataset|filter: {dataPublisher.id : datapublisher.id}" ng-class="{selected: datasetShown[dataset.id]}">
+						<i class="fa" ng-class='{"fa-eye-slash": datasetShown[dataset.id], "fa-eye": !datasetShown[dataset.id]}' ng-click="toggleDataset(dataset.id)"></i>
+						<a href="#/dataset/{{dataset.id}}">{{dataset.title}}</a>
+					</li>
+				</ul>
+			</accordion-group>
+		</accordion>
+</div>
 </div>

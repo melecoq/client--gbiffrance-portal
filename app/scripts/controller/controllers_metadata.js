@@ -5,7 +5,6 @@
 function CtrlMetadata($scope, $http, $q, config){
 	config.then(function(config){
 
-		console.log(config);
 		$http.get(config.api.endpoint + '/datapublisher')
 			.success(function(data, status) {
 				$scope.reponse = status;
@@ -51,7 +50,7 @@ function CtrlMetadata($scope, $http, $q, config){
 		var options = {};
 		angular.extend(options, config.map.layers.default.options);
 		angular.extend(options, {
-			noWrap: true
+			noWrap: false
 		});
 		var baseLayer = L.tileLayer(config.map.layers.default.url, options);
 		baseLayer.addTo(map);
