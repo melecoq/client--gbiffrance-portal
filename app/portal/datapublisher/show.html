@@ -18,16 +18,17 @@
 					<h4>Technique</h4>
 					<p>{{jsonDatapublisher.technicalContact}}</p>
 				</li>
+				<li>
+					<h4>Contact</h4>
+					<p>{{jsonDatapublisher.email}}</p>
+					<p>{{jsonDatapublisher.phone}}</p>
+				</li>
+				<li>
+					<h4>Identifiant GBIF International</h4>
+					<p>{{jsonDatapublisher.uuid}}</p>
+				</li>
 			</ul>
 		</div>
-	</section>
-
-	<section class="tags">
-
-		<h2>Tags</h2>
-		<ul>
-			<li ng-repeat="tag in jsonDatapublisher.tags">{{tag}}</li>
-	    </ul>
 	</section>
 
 	<section class="dataset">
