@@ -2,7 +2,7 @@
 	<div ng-include="'portal/search/search.inc.html'"></div>
 	<div class="forms">
 		<form ng-submit="addLocality()">
-			<i class="icon-question-sign" ng-click="isCollapsedLocality = !isCollapsedLocality"></i>
+			<i class="fa fa-question-circle" ng-click="isCollapsedLocality = !isCollapsedLocality"></i>
 			<label for="locality">Lieu </label>
 			<input type="text" id="locality" class="input-medium" ng-model="locality" typeahead="name for name in autocompleteLocality($viewValue)" />
 			<input type="submit" value="Ajouter" />
@@ -11,7 +11,7 @@
 		</form>
 
 		<form ng-submit="addLatitude()">
-			<i class="icon-question-sign" ng-click="isCollapsedLatitude = !isCollapsedLatitude"></i>
+			<i class="fa fa-question-circle" ng-click="isCollapsedLatitude = !isCollapsedLatitude"></i>
 			<label for="latitude">Latitude</label>
 			<select class="lt-gt-filter" ng-model="latitudeFilter">
 				<option value="inf" selected>&lt;</option>
@@ -25,7 +25,7 @@
 
 		<form ng-submit="addLongitude()">
 
-			<i class="icon-question-sign" ng-click="isCollapsedLongitude = !isCollapsedLongitude"></i>
+			<i class="fa fa-question-circle" ng-click="isCollapsedLongitude = !isCollapsedLongitude"></i>
 			<label for="Longitude">Longitude</label>
 			<select class="lt-gt-filter" ng-model="longitudeFilter">
 				<option value="inf" selected>&lt;</option>
@@ -38,7 +38,7 @@
 		</form>
 
 		<form id="georeferenced-data">
-			<i class="icon-question-sign" ng-click="isCollapsedGeoreferenced = !isCollapsedGeoreferenced"></i>
+			<i class="fa fa-question-circle" ng-click="isCollapsedGeoreferenced = !isCollapsedGeoreferenced"></i>
 			<label for="georeference">Données géoréférencées</label>
 			<input type="checkbox" id="georeference" ng-model="georeference" ng-init="getGeoreferencedData()" ng-change="addGeoreferencedData()" />
 

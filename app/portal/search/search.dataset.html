@@ -2,7 +2,7 @@
 	<div ng-include="'portal/search/search.inc.html'"></div>
 	<div class="forms">
 		<form ng-submit="addDatapublisherDataset()">
-			<i class="icon-question-sign" ng-click="isCollapsedDatapublisher = !isCollapsedDatapublisher"></i>
+			<i class="fa fa-question-circle" ng-click="isCollapsedDatapublisher = !isCollapsedDatapublisher"></i>
 			<label for="datapublisher">Fournisseur de données </label>
 			<select ui-select2="{allowClear: true}" data-placeholder="Select a data publisher" id="datapublisher" class="search-query"  ng-model="datapublisher">
 				<option ng-repeat="taxa in dataPublisherList" value="{{taxa.id}}">{{taxa.name}}</option>
@@ -12,7 +12,7 @@
 		</form>
 		<form ng-submit="addDatapublisherDataset()">
 
-			<i class="icon-question-sign" ng-click="isCollapsedDataset = !isCollapsedDataset"></i>
+			<i class="fa fa-question-circle" ng-click="isCollapsedDataset = !isCollapsedDataset"></i>
 			<label for="dataset">Jeu de données</label>
 			<select ui-select2 id="dataset" class="search-query" ng-model="dataset">
 				<option ng-repeat="name in datasetListShow" value="{{name.id}}">{{name.name}}</option>

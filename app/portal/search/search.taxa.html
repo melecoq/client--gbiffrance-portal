@@ -3,7 +3,7 @@
 
 	<div class="forms">
 		<form ng-submit="addScientificName()">
-			<i class="icon-question-sign" ng-click="isCollapsedScientific = !isCollapsedScientific"></i>
+			<i class="fa fa-question-circle" ng-click="isCollapsedScientific = !isCollapsedScientific"></i>
 			<label  for="scientificName">Nom scientifique </label>
 			<input type="text" id="scientificName" ng-model="scientificName" typeahead="name for name in autocompleteScientificName($viewValue)" />
 			<input type="submit" value="Ajouter" />
@@ -12,7 +12,7 @@
 		</form>
 		<form class="" ng-submit="addVernacularName()">
 
-			<i class="icon-question-sign" ng-click="isCollapsedCommun = !isCollapsedCommun"></i>
+			<i class="fa fa-question-circle" ng-click="isCollapsedCommun = !isCollapsedCommun"></i>
 			<label for="vernacularName">Nom commun</label>
 			<input type="text" id="vernacularName" class="input-medium" ng-model="vernacularName" typeahead="name for name in autocompleteVernacularName($viewValue)" disabled="disabled"/>
 			<input type="submit" value="Ajouter" />
