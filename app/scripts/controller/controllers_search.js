@@ -52,7 +52,7 @@ function CtrlSearch($scope, $route, $routeParams, $http, $q, config, searchForm,
 					searchForm.addScientificName(scientificName.trim(), scientificNameRank);
 				})
 				.error(function(data, status) {
-					scientificNameRank = 'no rank';
+					scientificNameRank = 'NO_RANK';
 					searchForm.addScientificName(scientificName.trim(), scientificNameRank);
 				});
 		}
