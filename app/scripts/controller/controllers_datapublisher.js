@@ -1,5 +1,4 @@
 'use strict';
-
 /* Controllers */
 
 function CtrlDatapublisher($scope, $routeParams, $http, config){

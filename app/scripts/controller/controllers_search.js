@@ -50,6 +50,10 @@ function CtrlSearch($scope, $route, $routeParams, $http, $q, config, searchForm,
 				.success(function(data, status) {
 					scientificNameRank = data.rank;
 					searchForm.addScientificName(scientificName.trim(), scientificNameRank);
+				})
+				.error(function(data, status) {
+					scientificNameRank = 'no rank';
+					searchForm.addScientificName(scientificName.trim(), scientificNameRank);
 				});
 		}
 

@@ -1,6 +1,12 @@
 <div ng-include="'portal/result/result.inc.html'"></div>
 <div id="result-map"></div>
-
+<div id="loadingWidget" class="row-fluid ui-corner-all" style="padding: 0 .7em; display: none;">
+   	<div class="loadingContent">
+            <p>
+                <img alt="Loading  Content" src="images/ajax-loader.gif" /> Loading
+            </p>
+        </div>
+    </div>
 <div id="results" class="no-result" ng-if="totalHits==0">
 	Pas de résultat
 </div>
