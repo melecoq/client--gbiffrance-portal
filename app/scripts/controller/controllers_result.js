@@ -66,6 +66,10 @@ function CtrlResult($scope, $routeParams, searchForm, $http, config, withMap){
     searchForm.removeLongitude(index);
   };
 
+  $scope.removeBoundingBox= function(index){
+    searchForm.removeBoundingBox(index);
+  };
+
   $scope.removeDataset = function(id){
     searchForm.removeDataset(id);
   };
