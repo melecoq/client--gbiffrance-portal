@@ -66,7 +66,7 @@ function CtrlResult($scope, $routeParams, searchForm, $http, config, withMap){
     searchForm.removeLongitude(index);
   };
 
-  $scope.removeBoundingBox= function(box){
+  $scope.removeBoundingBox = function(box) {
     searchForm.removeBoundingBox(box.bounds);
     filterLayers(box.bounds);
     $scope.boundingBoxes = searchForm.getBoundingBoxes();
