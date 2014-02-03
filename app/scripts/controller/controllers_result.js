@@ -68,6 +68,8 @@ function CtrlResult($scope, $routeParams, searchForm, $http, config, withMap){
 
   $scope.removeBoundingBox= function(index){
     searchForm.removeBoundingBox(index);
+    filterLayers(box.bounds);
+    $scope.boundingBoxes = searchForm.getBoundingBoxes();
   };
 
   $scope.removeDataset = function(id){
